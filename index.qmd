@@ -1,0 +1,15 @@
+---
+title: "RESM3002_Workshops"
+author: "Jason Hilton"
+engine: knitr
+filters:
+  - webr
+---
+
+This is the landing page for the R workshops for Jason Hilton's part of the course RESM3002 'Advanced Social Data Science".
+
+
+- [Introduction to R](Introduction-to-R.html)
+
+
+

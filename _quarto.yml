@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "RESM3002 Workshops"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: Introduction-to-R.qmd
+        text: "Introduction to R"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

@@ -1,0 +1,737 @@
+---
+title: "Introduction to R"
+author: "Jason Hilton"
+engine: knitr
+filters:
+  - webr
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color,
+      x)
+  } else x
+}
+```
+
+
+## What is R?
+
+R is different from other tools you may have used. 
+
+In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data and calculations are separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. [^1]
+
+[^1]: It is possible to write SPSS code (called syntax) to carry out particular statistical analyses. Similarly, it is possible to write code to perform particular tasks in excel (called 'Macros', using a language called Visual Basic). However, while useful, R has a wider array of features and tools available. 
+
+This is because R is a statistical *programming language*. We write out the particular steps we need to take in one or more *scripts* - text files containing code. Using a programming language to do data analysis has a number of advantages:
+
+- **Automation.** We can set our analyses to run without manually having to oversee every step
+- **Reusability.** Parts of our code can be used when we have to do similar tasks in other projects. This is particularly the case when we write *functions* (on which more later).
+- **Scalability.** Because our analyses are automated, it is easy to repeat on larger volumnes of data.  
+- **Reproducability** If we pass our script to someone else, they can obtain the same results as us, given the same data. 
+
+## This tutorial 
+
+The aim of this worksheet is to introduce you to the basics of R. Nothing will be very complicated - and in fact, the examples are deliberately very simple - but there will be a lot to take in all at once, and it might take you a while to digest everything. The more you work with R, the more these things will become second nature, however. Don't be afraid to try your own examples in the worksheet below.
+
+
+Most of the time we will work with R using the desktop application called `Rstudio`. For the first part of this tutorial, we will use a web interface to R called webr. This will allow us to keep things simple and focus on R itself. The interactive R code boxes (like the one below) allow us to run particular R commands or chunks of code by clicking the `Run Code` button. 
+
+
+
+```{webr-r}
+1 + 2
+
+```
+
+We can also edit the code in the code chunks. Try editing the code above, replacing the `+` with and `-`, for example.
+
+Try doing some other calculations below.
+
+You can use the standard mathematical symbols. to do this: `+`, `-`, `/`. Note that `*` is used for multiplication, and `**` or `^` to raise something to a power. In R code, these symbols are called *operators*.
+
+```{webr-r}
+# note that lines that start with the hash symbol are comments in R
+# this means that they don't do anything, and are just meant to be read.
+
+
+```
+
+
+
+
+## R Objects. 
+
+Generally, we want to use the results of one calculation in the next step of our analysis. We therefore store the results of as *objects*.
+To create an R object, we first write the name we would like to give the object, followed by an arrow symbol created by the $<$ and $-$ symbols next to each other, followed by the thing we want to store. 
+
+```{webr-r}
+a <- 5
+b <- 6
+a
+```
+
+Note that you can't have spaces in the names of R objects, as these are used to separate different bits of R code. If you try to do create an object with a space in it, you will get an error message (see below for more on error messages).
+
+```{webr-r}
+this thing <- 4
+```
+
+R objects come in many different forms, from single numbers to whole datasets, and from chunks of text to the results of regression analysis.
+
+When R objects are simply numbers, we can perform simple calculations with them as we did with the 'raw' numbers.
+
+```{webr-r}
+a + b
+```
+
+## Types of data 
+
+There are several basic types of data in R, from which more complicated data structures are built.
+
+### Numeric
+As the name suggests, this type corresponds to numeric data, including decimals (or 'doubles'). [^2]. We can create a numeric object in the same way as we did above:
+
+```{webr-r}
+d <- 4.545
+d
+```
+
+[^2]: Technically, the numeric type includes both 'double' (decimal or real) and 'integer' data types. But most of the time you won't need to worry about this. It is also possible to store complex numbers, which have their own type (but again, don't worry if this doesn't mean anything to you). 
+
+
+### Character
+This type corresponds to text data, and we indicate to R that we are working with such data by enclosing the text in quotes `"`
+
+```{webr-r}
+some_text <- "Hello, I am a character object"
+some_text
+```
+
+### Logical 
+
+This type can only every be one of two values, `TRUE` or `FALSE`. Sometimes, you will see these used in abbreviated fashion as `T` or `F`.
+
+
+```{webr-r}
+R_is_great <- TRUE
+spreadheets_rule <- FALSE
+R_is_great
+```
+
+
+## Functions
+
+Functions are pre-existing bits of R code that we can re-use to perform a specific task.
+
+Such tasks include loading a dataset, calculating the data's descriptive statistics, and running a simple linear regression.
+
+You can also use functions to do simple tasks such as computing a mean or rounding a variable.
+
+- To 'call' (use) a function, you must write the function name followed by the things you want that function to act upon (the 'arguments') enclosed in parentheses: 
+
+`function(argument1, argument2, ...)`
+
+- These arguments could be data stored in R objects, files to open or options, etc
+
+For example, if you want to round the number 3.1415 you can use the function `round` 
+
+```{webr-r rounding}
+# To round a number
+pie <- round(3.141592)
+pie
+```
+
+*NB: the real value of $\pi$ is stored in the pre-existing object `pi`.*
+
+The functions may have more than one argument. The order in which arguments are written determines how they are used by the function. With the round argument, the second argument tells R how many digits to keep after the decimal point when rounding. 
+
+```{webr-r rounding}
+#To round a number to the third decimal point using the second argument 'digits'
+pie <- round(3.141592, 3)
+pie
+```
+
+If the digits argument is not specified, the default value of `0` is used instead. Instead of using the position of the arguments, we can use the name of the arguments instead. The `round` functions arguments are named `x` (the thing to be rounded) and `digits`. 
+
+```{webr-r rounding}
+#To round a number to the third decimal point using the second argument 'digits'
+pie <- round(digits=3, x=3.141592)
+pie
+```
+
+
+
+## Data Structures 
+
+The basic data types can be combined within data structures. R has several of these. 
+
+### Vectors
+
+Vectors are the simplest of the data types. We can create vectors using the `c()` function, with elements of the vector separated by commas: 
+
+
+```{webr-r}
+#Vector example
+cat_ages <- c(1, 3, 5, 5) 
+cat_ages
+
+```
+
+
+- You can even make vectors using strings instead of numerical values
+
+```{webr-r}
+#Vector example
+cat_names <- c("Ramiz", "Pepe", "Bella", "Bahar") 
+cat_names
+
+```
+
+
+You cannot mix data types within a vector, however: 
+
+```{webr-r}
+c("234234", 3)
+
+```
+
+You can also create vectors consisting of a range of integers by writing the start and end of the range you want, separated by a colon: 
+
+```{webr-r}
+my_numbers <- 10:20
+my_numbers
+```
+
+
+Sometimes, we want to select particular elements from within a vector. To do this, we write the name of the vector, followed by square brackets, and the position of the thing we want within the vector. 
+
+For instance, if we want the second element from the list of cat names, we write:
+
+
+```{webr-r}
+cat_names[2]
+
+```
+
+We can select more than one element using 'slicing'. We use the same range method as before: 
+
+```{webr-r}
+cat_ages[2:3]
+```
+
+
+
+You can find the length of a vector using the `length` function.
+
+
+```{webr-r}
+length(cat_ages)
+```
+
+}}
+
+### An aside: The help function
+
+To find our more information about a particular function, we can use the `help` function. For instance, to find out more about the `mean` function, we can call the help function with `mean` as the argument:
+
+
+```{webr-r}
+help(mean)
+```
+
+This is usually instantaneous, but takes a few seconds in the web version of R. 
+
+
+Try to calculate the mean of the first 5 numbers of the `my_numbers` vector we created above. 
+
+```{webr-r}
+
+
+```
+
+
+### NA values
+You may have noticed in the help file for the mean function, there is an argument to the function called `na.rm`. This stands for 'NA remove'. 
+NA stands for 'Not Available' [^4], and is used by R to represent missing values. If 
+
+```{webr-r}
+
+my_data <- c(4,5, NA, seq(1,100, 4))
+mean(my_data)
+
+```
+
+- What do you think `seq` is doing here? Use the help function to help find out. 
+- Calculate the mean of my_data without the NA value. Do this using the mean function, and via indexing.
+
+### Lists
+
+Lists are very similar to vectors, but can include data of different types. This means calculations with them are a bit slower, but they are more flexible. 
+
+
+```{webr-r}
+
+Entry <- list(Name="Henry VIII",
+              Occupation="King",
+              Date_of_birth=1491,
+              Wives=6
+)
+Entry
+```
+
+We can extract specific elements from a list using the `$` symbol:
+
+```{webr-r}
+
+Entry$Occupation
+
+```
+
+We can also index elements, but to extract them we should use the double square brackets: 
+
+
+```{webr-r}
+Entry[[1]]
+
+```
+
+
+### Data frames
+
+These are probably the data structure in R you will use most often. 
+They are used for holding whole datasets. 
+Practically speaking, they are lists of vectors of equal length.
+
+The built-in dataset `iris` is a good example of a dataframe. 
+We can look at the first few rows of this dataframe using the head function:
+
+```{webr-r}
+head(iris)
+
+```
+
+As with lists, we can access particular columns using the `$` symbol.
+
+```{webr-r}
+mean(iris$Petal.Length)
+```
+
+As with vectors, we can slice away particular parts of the dataframe. In this case we select the 10th to the 20th row, and the second and third column.
+
+```{webr-r}
+iris[10:20,2:3]
+```
+
+We can also do this by name: 
+
+
+```{webr-r}
+iris[seq(2,dim(iris)[1], 10), c("Petal.Width", "Species")]
+
+```
+
+Check you understand what the above code is doing, using the help function if necessary. 
+
+### Matrix 
+
+A matrix is another collection of vectors, but is somewhat simpler than a dataframe. All elements of a matrix must have the same type, and column names are not required. We create a matrix using the `matrix` function ( surprise surprise), often from vectors.
+
+```{webr-r}
+matrix(c(1,2,3,4), nrow = 2)
+
+```
+
+
+## Conditions
+
+Logical data results whenever we use *conditions*. For instance, we might check if value of variable is greater than a particular number, using the greater than `>` operator.
+
+```{webr-r}
+a > b
+
+```
+
+We can also use the `<`, `>=` and `<=` operators to check for "less than", "greater than or equal to", or "less than or equal to" relationships.
+
+To test whether to values are equal, we can use the `==`, which means "is equal to". Note that we **must** use two `=` symbols, otherwise our code will not work. 
+
+
+```{webr-r}
+R_is_great == spreadheets_rule
+```
+
+```{webr-r}
+R_is_great == TRUE
+```
+
+```{webr-r}
+spreadheets_rule== F
+```
+
+These logical conditions are important when writing R code, because it allows our R scripts to do different things depending on what inputs are given to it. 
+
+We do this using if / else clauses: 
+
+```{webr-r}
+a <- 10
+
+if (a>5){
+  print("Bigger")  
+} else { 
+  print("Smaller")
+}
+```
+
+If the condition beside the `if` statement is true, the first print statement is executed (run). Otherwise, the part in the else clause is run (the bit enclosed in else{...}). 
+
+
+
+## Errors in R 
+
+When we do something wrong, R will give us an error message. At first, these can seem quite mysterious. It is important to read error messages, however, because they often help you understand what you have done wrong. 
+
+- `Subscript out of bounds`. This means that you have tried to go beyond the end of a vector, list or dataframe. For example, you have tried to access the 10th number in a list that is only 9 numbers long. You can find out how long a list is by using the function `length`. Similarly, the function `dim` (for 'dimension') tells you the number of rows and columns in a dataframe.
+
+
+```{webr-r}
+thing <- list(1,2,3)
+
+thing[[4]]
+
+
+```
+
+- `non-numeric argument to binary operator`. This sounds like gibberish, but generally it just means your data is of the wrong type. An operator in R represents a mathematical calculation like `+`, `-`, `*`, or `/`. If we try to use these, for instance, text data, we get this error. 
+
+Run the code below, and see if you can work out how to fix it. 
+
+```{webr-r}
+"4" + 5
+```
+
+Often this can happen when you read in data that has a mix of numeric an character data in one of the columns.
+
+- `object "unicorn" was not found`. This error occurs when you try to access an R object (`unicorn` in this case) that doesn't exist. This could be because you have typed the name wrong, or because you are running your code in the wrong order and you haven't created it yet. 
+
+See the example below and try to fix it.
+
+```{webr-r}
+unicorn <- c(3,4,5)
+
+unicon * 10
+
+```
+
+
+- `Could not find function "help_me"`. Similarly, this happens when you try to use a function that doesn't exist. This might be because of a mis-typing [^3]. See the example below.
+
+[^3]: Alternatively, it could be because you are trying to use a function from a package that isn't loaded yet. See the section on packages.
+
+
+```{webr-r}
+mena(iris$Sepal.Length)
+```
+
+
+- `Object of type 'closure' is not subsettable` Another strange-sounding message. This occurs when you try to use indexing on a function:
+
+```{webr-r}
+mean[4]
+```
+
+
+
+
+## Doing stuff lots of times 
+
+Often, we want to repeat the same chunk of code many times. 
+For-loops are one way of doing this. These take values from a vector or list one at a time, and storing each value in iteration in an iteration variable, often called i.
+
+
+```{webr-r}
+
+for (i in 1:10){
+  # the code starts with i=1
+  print(i)
+} 
+# ^ every time the code reaches this bottom bracket }, 
+# it returns to the top bracket { again, with i becoming the next item in the list (2,3).
+# Once the last element of the list is reached, the for-loop terminates.
+
+
+```
+
+
+### Vectorisation
+
+If we wanted to add two vectors together, we could do this using a for loop: 
+
+```{webr-r}
+for_loop_result <- c()
+
+a <- 1:10
+b <-10:1
+
+for (i in 1:length(a)){
+  for_loop_result <- c(for_loop_result, a[i]+b[i])
+}
+
+```
+
+
+```{webr-r}
+vectorised_result <- a + b
+```
+
+However, R has built in ways of dealing with simple operations on vectors. Mathematical operations on vectors in R are automatically **vectorised** - the first elements of each vector are added together and stored in first element of the answer object, and the same happens with each subsequent position: 
+
+
+```{webr-r}
+for_loop_result == vectorised_result
+
+```
+
+Not everything can be easily vectorised, however, and for particularly complex calculations, it may be necessary to write for loops. 
+
+
+## Using R from R Studio
+
+Rstudio is a good way to work with R.
+
+- R and RStudio are available for free, so if you would like to download them onto your PC follow these instructions: \href{https://rstudio-education.github.io/hopr/starting.html}{How to install R and RStudio}
+- You need to download both. R is a programming language, whereas RStudio is an application (an interface) that helps you write in that language
+- On a university PC, open the start menu and start typing `Rstudio` and you should see the rstudio icon appear
+- To launch RStudio on your own machine, once installed, click on the RStudio icon:
+
+![](images\Rstudio_logo.PNG)
+
+
+
+## RStudio Interface
+
+From this point, you should work with Rstudio rather than with webR.
+
+When you open Rstudio, you will see something that looks like the image below. 
+
+  ![](images\interface.PNG){width=94%}
+  
+The different bits of the Rstudio window have been labelled in yellow in the image, and are explained in more detail below. 
+  
+- The **console/command window** is where you can type commands. Type the command next to the $>$ sign and press ENTER
+
+- The **editor/script window** is  where you can edit and save commands. To run commands from here highlight the command and either click Run or type CTRL+ENTER. This will run the line your cursor is currently on, or the code you have highlighted (which could be multiple lines).
+
+- The environment pane of the **environment/history window** shows the data you have loaded and any values your have created during your session. You can have a closer look by clicking on them. The history pane shows a history of your typed commands
+
+- The **files/plots/packages/help** window has panes that allow you to open files, view plots, install and load packages, or use the help function
+
+## Project Management
+
+- To be able to work effectively we will create **"RStudio projects"** which is a feature of RStudio that allows us to keep  the data, code and outputs for one project in one folder.
+
+- This organizes our work, helps us prevent mistakes when loading and saving files, and makes it easier to switch between different projects.
+
+- Within a project, group together all code relating to a particular step in a separate *scripts*. A script is just a file containing R code.
+
+- Scripts can be saved in the project folder (you might like to create a folder called `scripts` within your folder), and they can be revisited and amended
+
+- By adding comments in our scripts, we can add notes explaining what each command is meant to do. This might help others understand our thought process, or even the Future You who revisits your code at a later date!
+
+
+## RStudio Project
+
+To create a **new project** in RStudio:
+
+
+1. Click on "File", then click on "New Project"
+2. Click on "New Directory"
+3. Click on "New Project"
+4. Browse, find and choose the area where you want to save your project folder in the box: "Create project as subdirectory of", and then type in the box "Directory name" the name of the folder where your project will be stored. This will create **both** the folder and the project within it
+5. Click on "Create Project"
+
+To open an "existing project" in RStudio, go to the project folder (directory) and double click on the .Rproj file in that directory. 
+
+Alternatively, you can use the `open project` dialog in the menu on the top right of the Rstudio screen.
+
+
+## Script
+
+Once you create an RStudio Project, then you should create a Script. To create a **Script**:
+
+
+1. Click on "File", then click on "New File" and then click on "R Script"
+2. The R Script will open in the upper left window and will be untitled and not saved yet 
+3. Click on the "save" button at the top of the Script and your project folder will open
+4. Type the name you want to give to your Script in the "File name" box and press "Save". Your Script will show in your bottom-right Files window
+
+  
+## The R User Interface
+
+- Once you type a command in the command window and press enter, the result will show right underneath it 
+- You will notice that the result shows next to this: [1]. This indicates the first value of your result, and if more values are produced, more of those bracketed numbers will appear at the start of the result lines
+- If you write and run an incomplete command, R will display a + prompt indicating that it is waiting for you to type the rest of the command
+- If you type a command that R doesn't recognize, it will return an **error message**
+- If you want to add **comments** in your code, add a \# at the beginning of the comment. R will not run anything that follows a \# on a line. Comments appear in `r colorize("green", "green")` 
+
+
+## Packages in R
+Packages are collections of R code designed to perform specific tasks. These may be included in R by default, or they may be written by other R users. R has a vibrant community of statisticians, data scientists, biologists, epidemiologists, economists, geographers, etc. etc. who contribute code relating to their discipline. 
+
+To use functions from a package, we first need to load it from our package library using the `library` function.
+
+For instance, we can load in the `rpart` package for tree-based models (on which more later in the course). This package is included in the base R installation. 
+
+Don't worry about what the code is doing for the moment, just notice that if we try to use a function from the `rpart` package without first loading the package we get an error: 
+```{r}
+#| error: true
+fit <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
+fit
+
+```
+
+
+```{r}
+library(rpart)
+fit <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
+fit
+```
+
+
+## Installing packages
+Most packages do not come pre-installed. We install them using the `install.packages` function. Try running the code below in Rstudio:
+
+
+```{r, eval=FALSE}
+install.packages("tibble")
+
+```
+
+Unlike when you are using the `library()` function, you must enclose the name of the package you wish to install in quotes, or else you will get an error. The tibble package provide easier-to-read dataframes, along with additional special features. 
+
+```{r}
+library(tibble)
+
+as_tibble(iris)
+
+```
+
+**Housekeeping tip!**
+When you write a script, begin by loading all your packages at the very top of the script.
+
+# How to open a data file in RStudio
+
+If you want to open an `.xls` (excel) file in RStudio follow these steps:
+
+
+- Save the data file "wage2.xls" from the blackboard page in the project folder, in a directory called "data".
+- Install the package `readxl` as discussed above.
+- In your script, type the function that loads the library `readxl`:
+
+```{r installpackage, eval=FALSE}
+install.packages("readxl")
+```
+
+```{r}
+library(readxl)
+```
+
+- Then, type in your script the function that loads that specific file, and create a new object that contains it:
+```{r readxls}
+my_data <- read_excel("data/wage2.xls")
+```
+
+In this example, we named the object "mydata". You can now see this object  in the top-right Environment window. 
+
+```{r}
+head(my_data)
+summary(my_data)
+```
+
+
+
+## Create new variables in the dataframe
+
+Some logical operators that you should know are the following:
+
+- `&` means AND, it returns TRUE if the conditions on both sides of the `&` are  `TRUE` 
+
+
+- `|` means OR, it returns TRUE when at least of the two sides are `TRUE`
+
+- `!` means NOT, it returns FALSE if the logical variable is TRUE
+
+- `==` means EQUALS, it is used when specifying a value of an existing variable in and if statement
+
+
+- To access a variable in a dataframe, use `$` after the name of the dataframe
+```{r}
+#The function `head` will only let us see the first few values
+head(my_data$age)
+```
+
+
+- To create a new binary variable you can use the `$` to name it and `ifelse` arguments to specify its values with respect to other variables in the dataframe
+```{r}
+my_data$age_dummy <- ifelse(my_data$age < 35, "young", "old")
+table(my_data$age_dummy)
+```
+
+##Create new variables in the dataframe
+
+- To create a new categorical variable you can use the $ to name it and the `cut` function to specify its values with respect to other variables in the dataframe
+```{r}
+my_data$age_group <- cut(my_data$age, c(27, 30,34, 38))
+table(my_data$age_group)
+```
+
+
+
+
+## Descriptive Statistics in RStudio
+
+- Once you have loaded your data and named it as an object (`mydata` in the example above), you can estimate some basic \textbf{descriptive statistics} by typing the following command:
+
+```{r summarystats}
+summary(my_data)
+```
+
+- This will produce the mean, median, the 25th  and 75th quartiles, and the minimum and maximum values in the sample
+
+
+
+## Linear Regression in RStudio
+
+- To run a linear regression, you type the following command:
+
+```{r linearreg, eval=FALSE}
+regression <- lm(dependent ~ independent1 + independent2, data=my_data)
+```
+    
+where "regression" is the name of the object that contains the regression results, "dependent" is the name of the dependent variable ($y$) in the data, and "independent1" and "independent2" are the names of the independent variables ($x$) in the data. 
+
+- After the comma we tell R which dataframe to use to run this regression
+
+- Once we run the regression, we need to run another command to display the results:
+```{r summaryreg, eval=FALSE}
+summary(regression) 
+```    
+where "summary" is the function that calls the results of the regression, and "regression" is the name I chose for the object that contains the regression results
+
+**TASK:** Try running a linear regression model using the wage2.xls data.
+
+
+
+
+
+## Further Resources
+
+
+- Ismay, C and Kim, A.Y. [Statistical Inference via Data Science](https://moderndive.com/) CRC Press
+-  Grolemund G., *Hands-On Programming with R*, O'REILLY, 2014, https://rstudio-education.github.io/hopr/index.html, Open Source
+-  Hanck C., Arnold M., Gerber A., and Schmelzer M, *Introduction to Econometrics with R*, University of Duisburg-Essen, 2020, https://www.econometrics-with-r.org/index.html, Open Source 

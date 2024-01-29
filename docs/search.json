@@ -1,0 +1,233 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "RESM3002_Workshops",
+    "section": "",
+    "text": "This is the landing page for the R workshops for Jason Hilton’s part of the course RESM3002 ’Advanced Social Data Science”.\n\nIntroduction to R"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "Introduction to R.html",
+    "href": "Introduction to R.html",
+    "title": "Introduction to R",
+    "section": "",
+    "text": "Please enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html",
+    "href": "Introduction-to-R.html",
+    "title": "Introduction to R",
+    "section": "",
+    "text": "R is different from other tools you may have used.\nIn Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data and calculations are separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. 1\nThis is because R is a statistical programming language. We write out the particular steps we need to take in one or more scripts - text files containing code. Using a programming language to do data analysis has a number of advantages:\n\nAutomation. We can set our analyses to run without manually having to oversee every step\nReusability. Parts of our code can be used when we have to do similar tasks in other projects. This is particularly the case when we write functions (on which more later).\nScalability. Because our analyses are automated, it is easy to repeat on larger volumnes of data.\n\nReproducability If we pass our script to someone else, they can obtain the same results as us, given the same data."
+  },
+  {
+    "objectID": "Introduction-to-R.html#working-with-r",
+    "href": "Introduction-to-R.html#working-with-r",
+    "title": "Introduction to R",
+    "section": "Working with R",
+    "text": "Working with R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTry doing some other calculations below.\nYou can use the standard mathematical operators to do this: +, -, /. Note that * is used for multiplication.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html#variables",
+    "href": "Introduction-to-R.html#variables",
+    "title": "Introduction to R",
+    "section": "Variables",
+    "text": "Variables\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html#types-of-data",
+    "href": "Introduction-to-R.html#types-of-data",
+    "title": "Introduction to R",
+    "section": "Types of data",
+    "text": "Types of data\nThere are several basic types of data in R, from which more complicated data structures are built.\n\nNumeric\nAs the name suggests, this type corresponds to numeric data, including decimals (or ‘doubles’). 2. We can create a numeric object in the same way as we did above:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nCharacter\nThis type corresponds to text data, and we indicate to R that we are working with such data by enclosing the text in quotes \"\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nLogical\nThis type can only every be one of two values, TRUE or FALSE. Sometimes, you will see these used in abbreviated fashion as T or F.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html#functions",
+    "href": "Introduction-to-R.html#functions",
+    "title": "Introduction to R",
+    "section": "Functions",
+    "text": "Functions\nFunctions are pre-existing bits of R code that we can re-use to perform a specific task.\nSuch tasks include loading a dataset, calculating the data’s descriptive statistics, and running a simple linear regression.\nYou can also use functions to do simple tasks such as computing a mean or rounding a variable.\n\nTo ‘call’ (use) a function, you must write the function name followed by the things you want that function to act upon (the ‘arguments’) enclosed in parentheses:\n\nfunction(argument1, argument2, ...)\n\nThese arguments could be data stored in R objects, files to open or options, etc\n\nFor example, if you want to round the number 3.1415 you can use the function round\n# To round a number\npie &lt;- round(3.141592)\npie\nNB: the real value of \\(\\pi\\) is stored in the pre-existing object pi.\nThe functions may have more than one argument. The order in which arguments are written determines how they are used by the function. With the round argument, the second argument tells R how many digits to keep after the decimal point when rounding.\n#To round a number to the third decimal point using the second argument 'digits'\npie &lt;- round(3.141592, 3)\npie\nIf the digits argument is not specified, the default value of 0 is used instead. Instead of using the position of the arguments, we can use the name of the arguments instead. The round functions arguments are named x (the thing to be rounded) and digits.\n#To round a number to the third decimal point using the second argument 'digits'\npie &lt;- round(digits=3, x=3.141592)\npie"
+  },
+  {
+    "objectID": "Introduction-to-R.html#data-structures",
+    "href": "Introduction-to-R.html#data-structures",
+    "title": "Introduction to R",
+    "section": "Data Structures",
+    "text": "Data Structures\nThe basic data types can be combined within data structures. R has several of these.\n\nVectors\nVectors are the simplest of the data types. We can create vectors using the c() function, with elements of the vector separated by commas:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nYou can even make vectors using strings instead of numerical values\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou cannot mix data types within a vector, however:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can also create vectors consisting of a range of integers by writing the start and end of the range you want, separated by a colon:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSometimes, we want to select particular elements from within a vector. To do this, we write the name of the vector, followed by square brackets, and the position of the thing we want within the vector.\nFor instance, if we want the second element from the list of cat names, we write:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can select more than one element using ‘slicing’. We use the same range method as before:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can find the length of a vector using the length function.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n}}\n\n\nAn aside: The help function\nTo find our more information about a particular function, we can use the help function. For instance, to find out more about the mean function, we can call the help function with mean as the argument:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis is usually instantaneous, but takes a few seconds in the web version of R.\nTry to calculate the mean of the first 5 numbers of the my_numbers vector we created above.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nNA values\nYou may have noticed in the help file for the mean function, there is an argument to the function called na.rm. This stands for ‘NA remove’. NA stands for ‘Not Available’ [^4], and is used by R to represent missing values. If\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhat do you think seq is doing here? Use the help function to help find out.\nCalculate the mean of my_data without the NA value. Do this using the mean function, and via indexing.\n\n\n\nLists\nLists are very similar to vectors, but can include data of different types. This means calculations with them are a bit slower, but they are more flexible.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can extract specific elements from a list using the $ symbol:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can also index elements, but to extract them we should use the double square brackets:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nData frames\nThese are probably the data structure in R you will use most often. They are used for holding whole datasets. Practically speaking, they are lists of vectors of equal length.\nThe built-in dataset iris is a good example of a dataframe. We can look at the first few rows of this dataframe using the head function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAs with lists, we can access particular columns using the $ symbol.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAs with vectors, we can slice away particular parts of the dataframe. In this case we select the 10th to the 20th row, and the second and third column.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can also do this by name:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCheck you understand what the above code is doing, using the help function if necessary.\n\n\nMatrix\nA matrix is another collection of vectors, but is somewhat simpler than a dataframe. All elements of a matrix must have the same type, and column names are not required. We create a matrix using the matrix function ( surprise surprise), often from vectors.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html#packages-in-r",
+    "href": "Introduction-to-R.html#packages-in-r",
+    "title": "Introduction to R",
+    "section": "Packages in R",
+    "text": "Packages in R\nPackages are collections of R code designed to perform specific tasks. These may be included in R by default, or they may be written by other R users. R has a vibrant community of statisticians, data scientists, biologists, epidemiologists, economists, geographers, etc. etc. who contribute code relating to their discipline.\nTo use functions from a package, we first need to load it from our package library using the library function.\nFor instance, we can load in the rpart package for tree-based models (on which more later in the course). This package is included in the base R installation.\nDon’t worry about what the code is doing for the moment, just notice that if we try to use a function from the rpart package without first loading the package we get an error:\n\nfit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)\n\nError in rpart(Kyphosis ~ Age + Number + Start, data = kyphosis): could not find function \"rpart\"\n\nfit\n\nError in eval(expr, envir, enclos): object 'fit' not found\n\n\n\nlibrary(rpart)\nfit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)\nfit\n\nn= 81 \n\nnode), split, n, loss, yval, (yprob)\n      * denotes terminal node\n\n 1) root 81 17 absent (0.79012346 0.20987654)  \n   2) Start&gt;=8.5 62  6 absent (0.90322581 0.09677419)  \n     4) Start&gt;=14.5 29  0 absent (1.00000000 0.00000000) *\n     5) Start&lt; 14.5 33  6 absent (0.81818182 0.18181818)  \n      10) Age&lt; 55 12  0 absent (1.00000000 0.00000000) *\n      11) Age&gt;=55 21  6 absent (0.71428571 0.28571429)  \n        22) Age&gt;=111 14  2 absent (0.85714286 0.14285714) *\n        23) Age&lt; 111 7  3 present (0.42857143 0.57142857) *\n   3) Start&lt; 8.5 19  8 present (0.42105263 0.57894737) *"
+  },
+  {
+    "objectID": "Introduction-to-R.html#doing-stuff-lots-of-times",
+    "href": "Introduction-to-R.html#doing-stuff-lots-of-times",
+    "title": "Introduction to R",
+    "section": "Doing stuff lots of times",
+    "text": "Doing stuff lots of times\nOften, we want to repeat the same chunk of code many times. For-loops are one way of doing this. These take values from a vector or list one at a time, and storing each value in iteration in an iteration variable, often called i.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nVectorisation\nIf we wanted to add two vectors together, we could do this using a for loop:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHowever, R has built in ways of dealing with simple operations on vectors. Mathematical operations on vectors in R are automatically vectorised - the first elements of each vector are added together and stored in first element of the answer object, and the same happens with each subsequent position:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNot everything can be easily vectorised, however, and for particularly complex calculations, it may be necessary to write for loops."
+  },
+  {
+    "objectID": "Introduction-to-R.html#other-resources",
+    "href": "Introduction-to-R.html#other-resources",
+    "title": "Introduction to R",
+    "section": "Other resources",
+    "text": "Other resources\nStatistical Inference via Data Science"
+  },
+  {
+    "objectID": "Introduction-to-R.html#what-is-r",
+    "href": "Introduction-to-R.html#what-is-r",
+    "title": "Introduction to R",
+    "section": "",
+    "text": "R is different from other tools you may have used.\nIn Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data and calculations are separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. 1\nThis is because R is a statistical programming language. We write out the particular steps we need to take in one or more scripts - text files containing code. Using a programming language to do data analysis has a number of advantages:\n\nAutomation. We can set our analyses to run without manually having to oversee every step\nReusability. Parts of our code can be used when we have to do similar tasks in other projects. This is particularly the case when we write functions (on which more later).\nScalability. Because our analyses are automated, it is easy to repeat on larger volumnes of data.\n\nReproducability If we pass our script to someone else, they can obtain the same results as us, given the same data."
+  },
+  {
+    "objectID": "Introduction-to-R.html#using-r-from-r-studio",
+    "href": "Introduction-to-R.html#using-r-from-r-studio",
+    "title": "Introduction to R",
+    "section": "Using R from R Studio",
+    "text": "Using R from R Studio\nRstudio is a good way to work with R.\n\nR and RStudio are available for free, so if you would like to download them onto your PC follow these instructions: \nYou need to download both. R is a programming language, whereas RStudio is an application (an interface) that helps you write in that language\nOn a university PC, open the start menu and start typing Rstudio and you should see the rstudio icon appear\nTo launch RStudio on your own machine, once installed, click on the RStudio icon:"
+  },
+  {
+    "objectID": "Introduction-to-R.html#resources",
+    "href": "Introduction-to-R.html#resources",
+    "title": "Introduction to R",
+    "section": "Resources",
+    "text": "Resources\n\nIsmay, C and Kim, A.Y. Statistical Inference via Data Science CRC Press\nGrolemund G., Hands-On Programming with R, O’REILLY, 2014, https://rstudio-education.github.io/hopr/index.html, Open Source\nHanck C., Arnold M., Gerber A., and Schmelzer M, Introduction to Econometrics with R, University of Duisburg-Essen, 2020, https://www.econometrics-with-r.org/index.html, Open Source"
+  },
+  {
+    "objectID": "Introduction-to-R.html#footnotes",
+    "href": "Introduction-to-R.html#footnotes",
+    "title": "Introduction to R",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nIt is possible to write SPSS code (called syntax) to carry out particular statistical analyses. Similarly, it is possible to write code to perform particular tasks in excel (called ‘Macros’, using a language called Visual Basic). However, while useful, R has a wider array of features and tools available.↩︎\nTechnically, the numeric type includes both ‘double’ (decimal or real) and ‘integer’ data types. But most of the time you won’t need to worry about this. It is also possible to store complex numbers, which have their own type (but again, don’t worry if this doesn’t mean anything to you).↩︎\nAlternatively, it could be because you are trying to use a function from a package that isn’t loaded yet. See the section on packages.↩︎"
+  },
+  {
+    "objectID": "Introduction-to-R.html#r-objects.",
+    "href": "Introduction-to-R.html#r-objects.",
+    "title": "Introduction to R",
+    "section": "R Objects.",
+    "text": "R Objects.\nGenerally, we want to use the results of one calculation in the next step of our analysis. We therefore store the results of as objects. To create an R object, we first write the name we would like to give the object, followed by an arrow symbol created by the \\(&lt;\\) and \\(-\\) symbols next to each other, followed by the thing we want to store.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNote that you can’t have spaces in the names of R objects, as these are used to separate different bits of R code. If you try to do create an object with a space in it, you will get an error message (see below for more on error messages).\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR objects come in many different forms, from single numbers to whole datasets, and from chunks of text to the results of regression analysis.\nWhen R objects are simply numbers, we can perform simple calculations with them as we did with the ‘raw’ numbers.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html#rstudio-interface",
+    "href": "Introduction-to-R.html#rstudio-interface",
+    "title": "Introduction to R",
+    "section": "RStudio Interface",
+    "text": "RStudio Interface\nFrom this point, you should work with Rstudio rather than with webR.\nWhen you open Rstudio, you will see something that looks like the image below.\n\nThe different bits of the Rstudio window have been labelled in yellow in the image, and are explained in more detail below.\n\nThe console/command window is where you can type commands. Type the command next to the \\(&gt;\\) sign and press ENTER\nThe editor/script window is where you can edit and save commands. To run commands from here highlight the command and either click Run or type CTRL+ENTER. This will run the line your cursor is currently on, or the code you have highlighted (which could be multiple lines).\nThe environment pane of the environment/history window shows the data you have loaded and any values your have created during your session. You can have a closer look by clicking on them. The history pane shows a history of your typed commands\nThe files/plots/packages/help window has panes that allow you to open files, view plots, install and load packages, or use the help function"
+  },
+  {
+    "objectID": "Introduction-to-R.html#rstudio-interface-1",
+    "href": "Introduction-to-R.html#rstudio-interface-1",
+    "title": "Introduction to R",
+    "section": "RStudio Interface",
+    "text": "RStudio Interface"
+  },
+  {
+    "objectID": "Introduction-to-R.html#rstudio-interface-2",
+    "href": "Introduction-to-R.html#rstudio-interface-2",
+    "title": "Introduction to R",
+    "section": "RStudio Interface",
+    "text": "RStudio Interface\n\nThe console/command window is where you can type commands. Type the command next to the \\(&gt;\\) sign and press ENTER\nThe editor/script window is where you can edit and save commands. To run commands from here highlight the command and either click Run or type CTRL+ENTER. This will run the line your cursor is currently on, or the code you have highlighted (which could be multiple lines).\nThe environment pane of the environment/history window shows the data you have loaded and any values your have created during your session. You can have a closer look by clicking on them. The history pane shows a history of your typed commands\nThe files/plots/packages/help window has panes that allow you to open files, view plots, install and load packages, or use the help function"
+  },
+  {
+    "objectID": "Introduction-to-R.html#project-management",
+    "href": "Introduction-to-R.html#project-management",
+    "title": "Introduction to R",
+    "section": "Project Management",
+    "text": "Project Management\n\nTo be able to work effectively we will create “RStudio projects” which is a feature of RStudio that allows us to keep the data, code and outputs for one project in one folder.\nThis organizes our work, helps us prevent mistakes when loading and saving files, and makes it easier to switch between different projects.\nWithin a project, group together all code relating to a particular step in a separate scripts. A script is just a file containing R code.\nScripts can be saved in the project folder (you might like to create a folder called scripts within your folder), and they can be revisited and amended\nBy adding comments in our scripts, we can add notes explaining what each command is meant to do. This might help others understand our thought process, or even the Future You who revisits your code at a later date!"
+  },
+  {
+    "objectID": "Introduction-to-R.html#rstudio-project",
+    "href": "Introduction-to-R.html#rstudio-project",
+    "title": "Introduction to R",
+    "section": "RStudio Project",
+    "text": "RStudio Project\nTo create a new project in RStudio:\n\nClick on “File”, then click on “New Project”\nClick on “New Directory”\nClick on “New Project”\nBrowse, find and choose the area where you want to save your project folder in the box: “Create project as subdirectory of”, and then type in the box “Directory name” the name of the folder where your project will be stored. This will create both the folder and the project within it\nClick on “Create Project”\n\nTo open an “existing project” in RStudio, go to the project folder (directory) and double click on the .Rproj file in that directory.\nAlternatively, you can use the open project dialog in the menu on the top right of the Rstudio screen."
+  },
+  {
+    "objectID": "Introduction-to-R.html#script",
+    "href": "Introduction-to-R.html#script",
+    "title": "Introduction to R",
+    "section": "Script",
+    "text": "Script\nOnce you create an RStudio Project, then you should create a Script. To create a Script:\n\nClick on “File”, then click on “New File” and then click on “R Script”\nThe R Script will open in the upper left window and will be untitled and not saved yet\nClick on the “save” button at the top of the Script and your project folder will open\nType the name you want to give to your Script in the “File name” box and press “Save”. Your Script will show in your bottom-right Files window"
+  },
+  {
+    "objectID": "Introduction-to-R.html#the-r-user-interface",
+    "href": "Introduction-to-R.html#the-r-user-interface",
+    "title": "Introduction to R",
+    "section": "The R User Interface",
+    "text": "The R User Interface\n\nOnce you type a command in the command window and press enter, the result will show right underneath it\nYou will notice that the result shows next to this: [1]. This indicates the first value of your result, and if more values are produced, more of those bracketed numbers will appear at the start of the result lines\nIf you write and run an incomplete command, R will display a + prompt indicating that it is waiting for you to type the rest of the command\nIf you type a command that R doesn’t recognize, it will return an error message\nIf you want to add comments in your code, add a # at the beginning of the comment. R will not run anything that follows a # on a line. Comments appear in green"
+  },
+  {
+    "objectID": "Introduction-to-R.html#errors-in-r",
+    "href": "Introduction-to-R.html#errors-in-r",
+    "title": "Introduction to R",
+    "section": "Errors in R",
+    "text": "Errors in R\nWhen we do something wrong, R will give us an error message. At first, these can seem quite mysterious. It is important to read error messages, however, because they often help you understand what you have done wrong.\n\nSubscript out of bounds. This means that you have tried to go beyond the end of a vector, list or dataframe. For example, you have tried to access the 10th number in a list that is only 9 numbers long. You can find out how long a list is by using the function length. Similarly, the function dim (for ‘dimension’) tells you the number of rows and columns in a dataframe.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nnon-numeric argument to binary operator. This sounds like gibberish, but generally it just means your data is of the wrong type. An operator in R represents a mathematical calculation like +, -, *, or /. If we try to use these, for instance, text data, we get this error.\n\nRun the code below, and see if you can work out how to fix it.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nOften this can happen when you read in data that has a mix of numeric an character data in one of the columns.\n\nobject \"unicorn\" was not found. This error occurs when you try to access an R object (unicorn in this case) that doesn’t exist. This could be because you have typed the name wrong, or because you are running your code in the wrong order and you haven’t created it yet.\n\nSee the example below and try to fix it.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nCould not find function \"help_me\". Similarly, this happens when you try to use a function that doesn’t exist. This might be because of a mis-typing 3. See the example below.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nObject of type 'closure' is not subsettable Another strange-sounding message. This occurs when you try to use indexing on a function:\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html#this-tutorial",
+    "href": "Introduction-to-R.html#this-tutorial",
+    "title": "Introduction to R",
+    "section": "This tutorial",
+    "text": "This tutorial\nThe aim of this worksheet is to introduce you to the basics of R. Nothing will be very complicated - and in fact, the examples are deliberately very simple - but there will be a lot to take in all at once, and it might take you a while to digest everything. The more you work with R, the more these things will become second nature, however. Don’t be afraid to try your own examples in the worksheet below.\nMost of the time we will work with R using the desktop application called Rstudio. For the first part of this tutorial, we will use a web interface to R called webr. This will allow us to keep things simple and focus on R itself. The interactive R code boxes (like the one below) allow us to run particular R commands or chunks of code by clicking the Run Code button.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can also edit the code in the code chunks. Try editing the code above, replacing the + with and -, for example.\nTry doing some other calculations below.\nYou can use the standard mathematical symbols. to do this: +, -, /. Note that * is used for multiplication, and ** or ^ to raise something to a power. In R code, these symbols are called operators.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "Introduction-to-R.html#the-help-function",
+    "href": "Introduction-to-R.html#the-help-function",
+    "title": "Introduction to R",
+    "section": "The help function",
+    "text": "The help function"
+  },
+  {
+    "objectID": "Introduction-to-R.html#installing-packages",
+    "href": "Introduction-to-R.html#installing-packages",
+    "title": "Introduction to R",
+    "section": "Installing packages",
+    "text": "Installing packages\nMost packages do not come pre-installed. We install them using the install.packages function. Try running the code below in Rstudio:\n\ninstall.packages(\"tibble\")\n\nUnlike when you are using the library() function, you must enclose the name of the package you wish to install in quotes, or else you will get an error. The tibble package provide easier-to-read dataframes, along with additional special features.\n\nlibrary(tibble)\n\nas_tibble(iris)\n\n# A tibble: 150 × 5\n   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  \n 1          5.1         3.5          1.4         0.2 setosa \n 2          4.9         3            1.4         0.2 setosa \n 3          4.7         3.2          1.3         0.2 setosa \n 4          4.6         3.1          1.5         0.2 setosa \n 5          5           3.6          1.4         0.2 setosa \n 6          5.4         3.9          1.7         0.4 setosa \n 7          4.6         3.4          1.4         0.3 setosa \n 8          5           3.4          1.5         0.2 setosa \n 9          4.4         2.9          1.4         0.2 setosa \n10          4.9         3.1          1.5         0.1 setosa \n# ℹ 140 more rows\n\n\nHousekeeping tip! When you write a script, begin by loading all your packages at the very top of the script."
+  },
+  {
+    "objectID": "Introduction-to-R.html#conditions",
+    "href": "Introduction-to-R.html#conditions",
+    "title": "Introduction to R",
+    "section": "Conditions",
+    "text": "Conditions\nLogical data results whenever we use conditions. For instance, we might check if value of variable is greater than a particular number, using the greater than &gt; operator.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can also use the &lt;, &gt;= and &lt;= operators to check for “less than”, “greater than or equal to”, or “less than or equal to” relationships.\nTo test whether to values are equal, we can use the ==, which means “is equal to”. Note that we must use two = symbols, otherwise our code will not work.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThese logical conditions are important when writing R code, because it allows our R scripts to do different things depending on what inputs are given to it.\nWe do this using if / else clauses:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf the condition beside the if statement is true, the first print statement is executed (run). Otherwise, the part in the else clause is run (the bit enclosed in else{…})."
+  },
+  {
+    "objectID": "Introduction-to-R.html#descriptive-statistics-in-rstudio",
+    "href": "Introduction-to-R.html#descriptive-statistics-in-rstudio",
+    "title": "Introduction to R",
+    "section": "Descriptive Statistics in RStudio",
+    "text": "Descriptive Statistics in RStudio\n\nOnce you have loaded your data and named it as an object (mydata in the example above), you can estimate some basic by typing the following command:\n\n\nsummary(my_data)\n\n      wage            hours             IQ             KWW       \n Min.   : 115.0   Min.   :25.00   Min.   : 54.0   Min.   :13.00  \n 1st Qu.: 699.0   1st Qu.:40.00   1st Qu.: 94.0   1st Qu.:32.00  \n Median : 937.0   Median :40.00   Median :104.0   Median :37.00  \n Mean   : 988.5   Mean   :44.06   Mean   :102.5   Mean   :36.19  \n 3rd Qu.:1200.0   3rd Qu.:48.00   3rd Qu.:113.0   3rd Qu.:41.00  \n Max.   :3078.0   Max.   :80.00   Max.   :145.0   Max.   :56.00  \n      educ           exper          tenure            age       \n Min.   : 9.00   Min.   : 1.0   Min.   : 0.000   Min.   :28.00  \n 1st Qu.:12.00   1st Qu.: 8.0   1st Qu.: 3.000   1st Qu.:30.00  \n Median :13.00   Median :11.0   Median : 7.000   Median :33.00  \n Mean   :13.68   Mean   :11.4   Mean   : 7.217   Mean   :32.98  \n 3rd Qu.:16.00   3rd Qu.:15.0   3rd Qu.:11.000   3rd Qu.:36.00  \n Max.   :18.00   Max.   :22.0   Max.   :22.000   Max.   :38.00  \n    married           south            urban             sibs       \n Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   : 0.000  \n 1st Qu.:1.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.: 1.000  \n Median :1.0000   Median :0.0000   Median :1.0000   Median : 2.000  \n Mean   :0.9005   Mean   :0.3228   Mean   :0.7195   Mean   : 2.846  \n 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.: 4.000  \n Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :14.000  \n    brthord           meduc           feduc           lwage      \n Min.   : 1.000   Min.   : 0.00   Min.   : 0.00   Min.   :4.745  \n 1st Qu.: 1.000   1st Qu.: 9.00   1st Qu.: 8.00   1st Qu.:6.550  \n Median : 2.000   Median :12.00   Median :11.00   Median :6.843  \n Mean   : 2.178   Mean   :10.83   Mean   :10.27   Mean   :6.814  \n 3rd Qu.: 3.000   3rd Qu.:12.00   3rd Qu.:12.00   3rd Qu.:7.090  \n Max.   :10.000   Max.   :18.00   Max.   :18.00   Max.   :8.032  \n  age_dummy           age_group  \n Length:663         (27,30]:186  \n Class :character   (30,34]:246  \n Mode  :character   (34,38]:231  \n                                 \n                                 \n                                 \n\n\n\nThis will produce the mean, median, the 25th and 75th quartiles, and the minimum and maximum values in the sample"
+  },
+  {
+    "objectID": "Introduction-to-R.html#linear-regression-in-rstudio",
+    "href": "Introduction-to-R.html#linear-regression-in-rstudio",
+    "title": "Introduction to R",
+    "section": "Linear Regression in RStudio",
+    "text": "Linear Regression in RStudio\n\nTo run a linear regression, you type the following command:\n\n\nregression &lt;- lm(dependent ~ independent1 + independent2, data=my_data)\n\nwhere “regression” is the name of the object that contains the regression results, “dependent” is the name of the dependent variable (\\(y\\)) in the data, and “independent1” and “independent2” are the names of the independent variables (\\(x\\)) in the data.\n\nAfter the comma we tell R which dataframe to use to run this regression\nOnce we run the regression, we need to run another command to display the results:\n\n\nsummary(regression) \n\nwhere “summary” is the function that calls the results of the regression, and “regression” is the name I chose for the object that contains the regression results\nTASK: Try running a linear regression model using the wage2.xls data."
+  },
+  {
+    "objectID": "Introduction-to-R.html#create-new-variables-in-the-dataframe",
+    "href": "Introduction-to-R.html#create-new-variables-in-the-dataframe",
+    "title": "Introduction to R",
+    "section": "Create new variables in the dataframe",
+    "text": "Create new variables in the dataframe\nSome logical operators that you should know are the following:\n\n& means AND, it returns TRUE if the conditions on both sides of the & are TRUE\n| means OR, it returns TRUE when at least of the two sides are TRUE\n! means NOT, it returns FALSE if the logical variable is TRUE\n== means EQUALS, it is used when specifying a value of an existing variable in and if statement\nTo access a variable in a dataframe, use $ after the name of the dataframe\n\n\n#The function `head` will only let us see the first few values\nhead(my_data$age)\n\n[1] 31 33 32 34 30 36\n\n\n\nTo create a new binary variable you can use the $ to name it and ifelse arguments to specify its values with respect to other variables in the dataframe\n\n\nmy_data$age_dummy &lt;- ifelse(my_data$age &lt; 35, \"young\", \"old\")\ntable(my_data$age_dummy)\n\n\n  old young \n  231   432 \n\n\n##Create new variables in the dataframe\n\nTo create a new categorical variable you can use the $ to name it and the cut function to specify its values with respect to other variables in the dataframe\n\n\nmy_data$age_group &lt;- cut(my_data$age, c(27, 30,34, 38))\ntable(my_data$age_group)\n\n\n(27,30] (30,34] (34,38] \n    186     246     231"
+  },
+  {
+    "objectID": "Introduction-to-R.html#further-resources",
+    "href": "Introduction-to-R.html#further-resources",
+    "title": "Introduction to R",
+    "section": "Further Resources",
+    "text": "Further Resources\n\nIsmay, C and Kim, A.Y. Statistical Inference via Data Science CRC Press\nGrolemund G., Hands-On Programming with R, O’REILLY, 2014, https://rstudio-education.github.io/hopr/index.html, Open Source\nHanck C., Arnold M., Gerber A., and Schmelzer M, Introduction to Econometrics with R, University of Duisburg-Essen, 2020, https://www.econometrics-with-r.org/index.html, Open Source"
+  }
+]
