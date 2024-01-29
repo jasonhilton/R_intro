@@ -24,16 +24,16 @@ colorize <- function(x, color) {
 
 R is different from other tools you may have used. 
 
-In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data and calculations are separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. [^1]
+In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data storage and calculations are generally separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. [^1]
 
 [^1]: It is possible to write SPSS code (called syntax) to carry out particular statistical analyses. Similarly, it is possible to write code to perform particular tasks in excel (called 'Macros', using a language called Visual Basic). However, while useful, R has a wider array of features and tools available. 
 
 This is because R is a statistical *programming language*. We write out the particular steps we need to take in one or more *scripts* - text files containing code. Using a programming language to do data analysis has a number of advantages:
 
-- **Automation.** We can set our analyses to run without manually having to oversee every step
+- **Automation.** We can set our analyses to run without manually having to oversee every step.
 - **Reusability.** Parts of our code can be used when we have to do similar tasks in other projects. This is particularly the case when we write *functions* (on which more later).
 - **Scalability.** Because our analyses are automated, it is easy to repeat on larger volumnes of data.  
-- **Reproducability** If we pass our script to someone else, they can obtain the same results as us, given the same data. 
+- **Reproducability.** If we pass our script to someone else, they can obtain the same results as us, given the same data. 
 
 ## This tutorial 
 
@@ -49,7 +49,7 @@ Most of the time we will work with R using the desktop application called `Rstud
 
 ```
 
-We can also edit the code in the code chunks. Try editing the code above, replacing the `+` with and `-`, for example.
+We can also edit the code in the code chunks. Try editing the code above, replacing the `+` with `-`, for example.
 
 Try doing some other calculations below.
 
@@ -102,6 +102,8 @@ d <- 4.545
 d
 ```
 
+Note that if we just type the name of an object into R, it's value or ther information about it will be printed to screen.
+
 [^2]: Technically, the numeric type includes both 'double' (decimal or real) and 'integer' data types. But most of the time you won't need to worry about this. It is also possible to store complex numbers, which have their own type (but again, don't worry if this doesn't mean anything to you). 
 
 
@@ -115,7 +117,7 @@ some_text
 
 ### Logical 
 
-This type can only every be one of two values, `TRUE` or `FALSE`. Sometimes, you will see these used in abbreviated fashion as `T` or `F`.
+This type can only ever be one of two values, `TRUE` or `FALSE`. Sometimes, you will see these used in abbreviated fashion as `T` or `F`.
 
 
 ```{webr-r}
@@ -133,15 +135,18 @@ Such tasks include loading a dataset, calculating the data's descriptive statist
 
 You can also use functions to do simple tasks such as computing a mean or rounding a variable.
 
-- To 'call' (use) a function, you must write the function name followed by the things you want that function to act upon (the 'arguments') enclosed in parentheses: 
+- To 'call' (use) a function, you must write the function name followed by the things you want that function to use as inputs to its task (the 'arguments') enclosed in parentheses: 
 
 `function(argument1, argument2, ...)`
 
-- These arguments could be data stored in R objects, files to open or options, etc
+- These arguments could be data stored in R objects, files to open or options controlling the behaviour  etc
+
+- There may by only one argument or several, and in some cases there may be zero. 
 
 For example, if you want to round the number 3.1415 you can use the function `round` 
 
-```{webr-r rounding}
+
+```{webr-r}
 # To round a number
 pie <- round(3.141592)
 pie
@@ -151,21 +156,21 @@ pie
 
 The functions may have more than one argument. The order in which arguments are written determines how they are used by the function. With the round argument, the second argument tells R how many digits to keep after the decimal point when rounding. 
 
-```{webr-r rounding}
+```{webr-r}
 #To round a number to the third decimal point using the second argument 'digits'
 pie <- round(3.141592, 3)
 pie
 ```
 
-If the digits argument is not specified, the default value of `0` is used instead. Instead of using the position of the arguments, we can use the name of the arguments instead. The `round` functions arguments are named `x` (the thing to be rounded) and `digits`. 
+The `digits` argument is optional, so if it is not specified, the default value of `0` is used instead. Instead of using the position of the arguments, we can use the name of the arguments instead. The `round` functions arguments are named `x` (the thing to be rounded) and `digits`.
 
-```{webr-r rounding}
+```{webr-r}
 #To round a number to the third decimal point using the second argument 'digits'
 pie <- round(digits=3, x=3.141592)
 pie
+# note because we are using names, we don't need to supply the arguments in any particular order.
 ```
-
-
+We can find out the names of the arguments to any particular functions by accessing it's help file - on which more below. 
 
 ## Data Structures 
 
@@ -188,11 +193,10 @@ cat_ages
 
 ```{webr-r}
 #Vector example
-cat_names <- c("Ramiz", "Pepe", "Bella", "Bahar") 
+cat_names <- c("Sybil", "Esme", "Greebo", "Iain") 
 cat_names
 
 ```
-
 
 You cannot mix data types within a vector, however: 
 
@@ -258,7 +262,8 @@ Try to calculate the mean of the first 5 numbers of the `my_numbers` vector we c
 
 ### NA values
 You may have noticed in the help file for the mean function, there is an argument to the function called `na.rm`. This stands for 'NA remove'. 
-NA stands for 'Not Available' [^4], and is used by R to represent missing values. If 
+NA stands for 'Not Available', and is used by R to represent missing values. If we try to calculate the mean of a vector containing missing values, we will obtain a missing value. 
+This is to ensure that we always no when we might have a problem with our calculations due to missing or invalid data.
 
 ```{webr-r}
 
@@ -267,8 +272,18 @@ mean(my_data)
 
 ```
 
-- What do you think `seq` is doing here? Use the help function to help find out. 
+- What do you think `seq` is doing in the code above? Try using the `seq` function in the space below, and use the help function to find out how it works. Some of the help file may be confusing, but focus on the bits under the argument heading `Arguments` and `Value`.
+
+
+```{webr-r}
+
+```
+
 - Calculate the mean of my_data without the NA value. Do this using the mean function, and via indexing.
+
+```{webr-r}
+
+```
 
 ### Lists
 
@@ -620,6 +635,11 @@ library(tibble)
 as_tibble(iris)
 
 ```
+
+Note that you only need to install a package once on each machine that you are using [^4]
+
+
+[4:] New versions of R packages are frequently released, so you will need to update the version you have installed sometimes.
 
 **Housekeeping tip!**
 When you write a script, begin by loading all your packages at the very top of the script.

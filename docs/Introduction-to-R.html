@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -244,7 +244,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"1 + 2","options":{"context":"interactive"}},{"id":2,"code":"# note that lines that start with the hash symbol are comments in R\n# this means that they don't do anything, and are just meant to be read.\n","options":{"context":"interactive"}},{"id":3,"code":"a <- 5\nb <- 6\na","options":{"context":"interactive"}},{"id":4,"code":"this thing <- 4","options":{"context":"interactive"}},{"id":5,"code":"a + b","options":{"context":"interactive"}},{"id":6,"code":"d <- 4.545\nd","options":{"context":"interactive"}},{"id":7,"code":"some_text <- \"Hello, I am a character object\"\nsome_text","options":{"context":"interactive"}},{"id":8,"code":"R_is_great <- TRUE\nspreadheets_rule <- FALSE\nR_is_great","options":{"context":"interactive"}},{"id":9,"code":"#Vector example\ncat_ages <- c(1, 3, 5, 5) \ncat_ages","options":{"context":"interactive"}},{"id":10,"code":"#Vector example\ncat_names <- c(\"Ramiz\", \"Pepe\", \"Bella\", \"Bahar\") \ncat_names","options":{"context":"interactive"}},{"id":11,"code":"c(\"234234\", 3)","options":{"context":"interactive"}},{"id":12,"code":"my_numbers <- 10:20\nmy_numbers","options":{"context":"interactive"}},{"id":13,"code":"cat_names[2]","options":{"context":"interactive"}},{"id":14,"code":"cat_ages[2:3]","options":{"context":"interactive"}},{"id":15,"code":"length(cat_ages)","options":{"context":"interactive"}},{"id":16,"code":"help(mean)","options":{"context":"interactive"}},{"id":17,"code":"","options":{"context":"interactive"}},{"id":18,"code":"\nmy_data <- c(4,5, NA, seq(1,100, 4))\nmean(my_data)","options":{"context":"interactive"}},{"id":19,"code":"\nEntry <- list(Name=\"Henry VIII\",\n              Occupation=\"King\",\n              Date_of_birth=1491,\n              Wives=6\n)\nEntry","options":{"context":"interactive"}},{"id":20,"code":"\nEntry$Occupation","options":{"context":"interactive"}},{"id":21,"code":"Entry[[1]]","options":{"context":"interactive"}},{"id":22,"code":"head(iris)","options":{"context":"interactive"}},{"id":23,"code":"mean(iris$Petal.Length)","options":{"context":"interactive"}},{"id":24,"code":"iris[10:20,2:3]","options":{"context":"interactive"}},{"id":25,"code":"iris[seq(2,dim(iris)[1], 10), c(\"Petal.Width\", \"Species\")]","options":{"context":"interactive"}},{"id":26,"code":"matrix(c(1,2,3,4), nrow = 2)","options":{"context":"interactive"}},{"id":27,"code":"a > b","options":{"context":"interactive"}},{"id":28,"code":"R_is_great == spreadheets_rule","options":{"context":"interactive"}},{"id":29,"code":"R_is_great == TRUE","options":{"context":"interactive"}},{"id":30,"code":"spreadheets_rule== F","options":{"context":"interactive"}},{"id":31,"code":"a <- 10\n\nif (a>5){\n  print(\"Bigger\")  \n} else { \n  print(\"Smaller\")\n}","options":{"context":"interactive"}},{"id":32,"code":"thing <- list(1,2,3)\n\nthing[[4]]\n","options":{"context":"interactive"}},{"id":33,"code":"\"4\" + 5","options":{"context":"interactive"}},{"id":34,"code":"unicorn <- c(3,4,5)\n\nunicon * 10","options":{"context":"interactive"}},{"id":35,"code":"mena(iris$Sepal.Length)","options":{"context":"interactive"}},{"id":36,"code":"mean[4]","options":{"context":"interactive"}},{"id":37,"code":"\nfor (i in 1:10){\n  # the code starts with i=1\n  print(i)\n} \n# ^ every time the code reaches this bottom bracket }, \n# it returns to the top bracket { again, with i becoming the next item in the list (2,3).\n# Once the last element of the list is reached, the for-loop terminates.\n","options":{"context":"interactive"}},{"id":38,"code":"for_loop_result <- c()\n\na <- 1:10\nb <-10:1\n\nfor (i in 1:length(a)){\n  for_loop_result <- c(for_loop_result, a[i]+b[i])\n}","options":{"context":"interactive"}},{"id":39,"code":"vectorised_result <- a + b","options":{"context":"interactive"}},{"id":40,"code":"for_loop_result == vectorised_result","options":{"context":"interactive"}}];
+globalThis.qwebrCellDetails = [{"code":"1 + 2","id":1,"options":{"context":"interactive"}},{"code":"# note that lines that start with the hash symbol are comments in R\n# this means that they don't do anything, and are just meant to be read.\n","id":2,"options":{"context":"interactive"}},{"code":"a <- 5\nb <- 6\na","id":3,"options":{"context":"interactive"}},{"code":"this thing <- 4","id":4,"options":{"context":"interactive"}},{"code":"a + b","id":5,"options":{"context":"interactive"}},{"code":"d <- 4.545\nd","id":6,"options":{"context":"interactive"}},{"code":"some_text <- \"Hello, I am a character object\"\nsome_text","id":7,"options":{"context":"interactive"}},{"code":"R_is_great <- TRUE\nspreadheets_rule <- FALSE\nR_is_great","id":8,"options":{"context":"interactive"}},{"code":"# To round a number\npie <- round(3.141592)\npie","id":9,"options":{"context":"interactive"}},{"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(3.141592, 3)\npie","id":10,"options":{"context":"interactive"}},{"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(digits=3, x=3.141592)\npie\n# note because we are using names, we don't need to supply the arguments in any particular order.","id":11,"options":{"context":"interactive"}},{"code":"#Vector example\ncat_ages <- c(1, 3, 5, 5) \ncat_ages","id":12,"options":{"context":"interactive"}},{"code":"#Vector example\ncat_names <- c(\"Sybil\", \"Esme\", \"Greebo\", \"Iain\") \ncat_names","id":13,"options":{"context":"interactive"}},{"code":"c(\"234234\", 3)","id":14,"options":{"context":"interactive"}},{"code":"my_numbers <- 10:20\nmy_numbers","id":15,"options":{"context":"interactive"}},{"code":"cat_names[2]","id":16,"options":{"context":"interactive"}},{"code":"cat_ages[2:3]","id":17,"options":{"context":"interactive"}},{"code":"length(cat_ages)","id":18,"options":{"context":"interactive"}},{"code":"help(mean)","id":19,"options":{"context":"interactive"}},{"code":"","id":20,"options":{"context":"interactive"}},{"code":"\nmy_data <- c(4,5, NA, seq(1,100, 4))\nmean(my_data)","id":21,"options":{"context":"interactive"}},{"code":"","id":22,"options":{"context":"interactive"}},{"code":"","id":23,"options":{"context":"interactive"}},{"code":"\nEntry <- list(Name=\"Henry VIII\",\n              Occupation=\"King\",\n              Date_of_birth=1491,\n              Wives=6\n)\nEntry","id":24,"options":{"context":"interactive"}},{"code":"\nEntry$Occupation","id":25,"options":{"context":"interactive"}},{"code":"Entry[[1]]","id":26,"options":{"context":"interactive"}},{"code":"head(iris)","id":27,"options":{"context":"interactive"}},{"code":"mean(iris$Petal.Length)","id":28,"options":{"context":"interactive"}},{"code":"iris[10:20,2:3]","id":29,"options":{"context":"interactive"}},{"code":"iris[seq(2,dim(iris)[1], 10), c(\"Petal.Width\", \"Species\")]","id":30,"options":{"context":"interactive"}},{"code":"matrix(c(1,2,3,4), nrow = 2)","id":31,"options":{"context":"interactive"}},{"code":"a > b","id":32,"options":{"context":"interactive"}},{"code":"R_is_great == spreadheets_rule","id":33,"options":{"context":"interactive"}},{"code":"R_is_great == TRUE","id":34,"options":{"context":"interactive"}},{"code":"spreadheets_rule== F","id":35,"options":{"context":"interactive"}},{"code":"a <- 10\n\nif (a>5){\n  print(\"Bigger\")  \n} else { \n  print(\"Smaller\")\n}","id":36,"options":{"context":"interactive"}},{"code":"thing <- list(1,2,3)\n\nthing[[4]]\n","id":37,"options":{"context":"interactive"}},{"code":"\"4\" + 5","id":38,"options":{"context":"interactive"}},{"code":"unicorn <- c(3,4,5)\n\nunicon * 10","id":39,"options":{"context":"interactive"}},{"code":"mena(iris$Sepal.Length)","id":40,"options":{"context":"interactive"}},{"code":"mean[4]","id":41,"options":{"context":"interactive"}},{"code":"\nfor (i in 1:10){\n  # the code starts with i=1\n  print(i)\n} \n# ^ every time the code reaches this bottom bracket }, \n# it returns to the top bracket { again, with i becoming the next item in the list (2,3).\n# Once the last element of the list is reached, the for-loop terminates.\n","id":42,"options":{"context":"interactive"}},{"code":"for_loop_result <- c()\n\na <- 1:10\nb <-10:1\n\nfor (i in 1:length(a)){\n  for_loop_result <- c(for_loop_result, a[i]+b[i])\n}","id":43,"options":{"context":"interactive"}},{"code":"vectorised_result <- a + b","id":44,"options":{"context":"interactive"}},{"code":"for_loop_result == vectorised_result","id":45,"options":{"context":"interactive"}}];
 
 </script>
 <script type="module">
@@ -1112,14 +1112,14 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="what-is-r" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-r">What is R?</h2>
 <p>R is different from other tools you may have used.</p>
-<p>In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data and calculations are separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data storage and calculations are generally separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>This is because R is a statistical <em>programming language</em>. We write out the particular steps we need to take in one or more <em>scripts</em> - text files containing code. Using a programming language to do data analysis has a number of advantages:</p>
 <ul>
-<li><strong>Automation.</strong> We can set our analyses to run without manually having to oversee every step</li>
+<li><strong>Automation.</strong> We can set our analyses to run without manually having to oversee every step.</li>
 <li><strong>Reusability.</strong> Parts of our code can be used when we have to do similar tasks in other projects. This is particularly the case when we write <em>functions</em> (on which more later).</li>
 <li><strong>Scalability.</strong> Because our analyses are automated, it is easy to repeat on larger volumnes of data.<br>
 </li>
-<li><strong>Reproducability</strong> If we pass our script to someone else, they can obtain the same results as us, given the same data.</li>
+<li><strong>Reproducability.</strong> If we pass our script to someone else, they can obtain the same results as us, given the same data.</li>
 </ul>
 </section>
 <section id="this-tutorial" class="level2">
@@ -1128,7 +1128,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>Most of the time we will work with R using the desktop application called <code>Rstudio</code>. For the first part of this tutorial, we will use a web interface to R called webr. This will allow us to keep things simple and focus on R itself. The interactive R code boxes (like the one below) allow us to run particular R commands or chunks of code by clicking the <code>Run Code</code> button.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>We can also edit the code in the code chunks. Try editing the code above, replacing the <code>+</code> with and <code>-</code>, for example.</p>
+<p>We can also edit the code in the code chunks. Try editing the code above, replacing the <code>+</code> with <code>-</code>, for example.</p>
 <p>Try doing some other calculations below.</p>
 <p>You can use the standard mathematical symbols. to do this: <code>+</code>, <code>-</code>, <code>/</code>. Note that <code>*</code> is used for multiplication, and <code>**</code> or <code>^</code> to raise something to a power. In R code, these symbols are called <em>operators</em>.</p>
 <div id="qwebr-insertion-location-2"></div>
@@ -1155,6 +1155,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>As the name suggests, this type corresponds to numeric data, including decimals (or ‘doubles’). <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. We can create a numeric object in the same way as we did above:</p>
 <div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Note that if we just type the name of an object into R, it’s value or ther information about it will be printed to screen.</p>
 </section>
 <section id="character" class="level3">
 <h3 class="anchored" data-anchor-id="character">Character</h3>
@@ -1164,7 +1165,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="logical" class="level3">
 <h3 class="anchored" data-anchor-id="logical">Logical</h3>
-<p>This type can only every be one of two values, <code>TRUE</code> or <code>FALSE</code>. Sometimes, you will see these used in abbreviated fashion as <code>T</code> or <code>F</code>.</p>
+<p>This type can only ever be one of two values, <code>TRUE</code> or <code>FALSE</code>. Sometimes, you will see these used in abbreviated fashion as <code>T</code> or <code>F</code>.</p>
 <div id="qwebr-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
@@ -1175,25 +1176,24 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>Such tasks include loading a dataset, calculating the data’s descriptive statistics, and running a simple linear regression.</p>
 <p>You can also use functions to do simple tasks such as computing a mean or rounding a variable.</p>
 <ul>
-<li>To ‘call’ (use) a function, you must write the function name followed by the things you want that function to act upon (the ‘arguments’) enclosed in parentheses:</li>
+<li>To ‘call’ (use) a function, you must write the function name followed by the things you want that function to use as inputs to its task (the ‘arguments’) enclosed in parentheses:</li>
 </ul>
 <p><code>function(argument1, argument2, ...)</code></p>
 <ul>
-<li>These arguments could be data stored in R objects, files to open or options, etc</li>
+<li><p>These arguments could be data stored in R objects, files to open or options controlling the behaviour etc</p></li>
+<li><p>There may by only one argument or several, and in some cases there may be zero.</p></li>
 </ul>
 <p>For example, if you want to round the number 3.1415 you can use the function <code>round</code></p>
-<pre class="{webr-r rounding}"><code># To round a number
-pie &lt;- round(3.141592)
-pie</code></pre>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><em>NB: the real value of <span class="math inline">\(\pi\)</span> is stored in the pre-existing object <code>pi</code>.</em></p>
 <p>The functions may have more than one argument. The order in which arguments are written determines how they are used by the function. With the round argument, the second argument tells R how many digits to keep after the decimal point when rounding.</p>
-<pre class="{webr-r rounding}"><code>#To round a number to the third decimal point using the second argument 'digits'
-pie &lt;- round(3.141592, 3)
-pie</code></pre>
-<p>If the digits argument is not specified, the default value of <code>0</code> is used instead. Instead of using the position of the arguments, we can use the name of the arguments instead. The <code>round</code> functions arguments are named <code>x</code> (the thing to be rounded) and <code>digits</code>.</p>
-<pre class="{webr-r rounding}"><code>#To round a number to the third decimal point using the second argument 'digits'
-pie &lt;- round(digits=3, x=3.141592)
-pie</code></pre>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>The <code>digits</code> argument is optional, so if it is not specified, the default value of <code>0</code> is used instead. Instead of using the position of the arguments, we can use the name of the arguments instead. The <code>round</code> functions arguments are named <code>x</code> (the thing to be rounded) and <code>digits</code>.</p>
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>We can find out the names of the arguments to any particular functions by accessing it’s help file - on which more below.</p>
 </section>
 <section id="data-structures" class="level2">
 <h2 class="anchored" data-anchor-id="data-structures">Data Structures</h2>
@@ -1201,103 +1201,109 @@ pie</code></pre>
 <section id="vectors" class="level3">
 <h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
 <p>Vectors are the simplest of the data types. We can create vectors using the <code>c()</code> function, with elements of the vector separated by commas:</p>
-<div id="qwebr-insertion-location-9"></div>
+<div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
 <li>You can even make vectors using strings instead of numerical values</li>
 </ul>
-<div id="qwebr-insertion-location-10"></div>
+<div id="qwebr-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>You cannot mix data types within a vector, however:</p>
-<div id="qwebr-insertion-location-11"></div>
+<div id="qwebr-insertion-location-14"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>You can also create vectors consisting of a range of integers by writing the start and end of the range you want, separated by a colon:</p>
-<div id="qwebr-insertion-location-12"></div>
+<div id="qwebr-insertion-location-15"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Sometimes, we want to select particular elements from within a vector. To do this, we write the name of the vector, followed by square brackets, and the position of the thing we want within the vector.</p>
 <p>For instance, if we want the second element from the list of cat names, we write:</p>
-<div id="qwebr-insertion-location-13"></div>
+<div id="qwebr-insertion-location-16"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>We can select more than one element using ‘slicing’. We use the same range method as before:</p>
-<div id="qwebr-insertion-location-14"></div>
+<div id="qwebr-insertion-location-17"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>You can find the length of a vector using the <code>length</code> function.</p>
-<div id="qwebr-insertion-location-15"></div>
+<div id="qwebr-insertion-location-18"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>}}</p>
 </section>
 <section id="an-aside-the-help-function" class="level3">
 <h3 class="anchored" data-anchor-id="an-aside-the-help-function">An aside: The help function</h3>
 <p>To find our more information about a particular function, we can use the <code>help</code> function. For instance, to find out more about the <code>mean</code> function, we can call the help function with <code>mean</code> as the argument:</p>
-<div id="qwebr-insertion-location-16"></div>
+<div id="qwebr-insertion-location-19"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>This is usually instantaneous, but takes a few seconds in the web version of R.</p>
 <p>Try to calculate the mean of the first 5 numbers of the <code>my_numbers</code> vector we created above.</p>
-<div id="qwebr-insertion-location-17"></div>
+<div id="qwebr-insertion-location-20"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="na-values" class="level3">
 <h3 class="anchored" data-anchor-id="na-values">NA values</h3>
-<p>You may have noticed in the help file for the mean function, there is an argument to the function called <code>na.rm</code>. This stands for ‘NA remove’. NA stands for ‘Not Available’ [^4], and is used by R to represent missing values. If</p>
-<div id="qwebr-insertion-location-18"></div>
+<p>You may have noticed in the help file for the mean function, there is an argument to the function called <code>na.rm</code>. This stands for ‘NA remove’. NA stands for ‘Not Available’, and is used by R to represent missing values. If we try to calculate the mean of a vector containing missing values, we will obtain a missing value. This is to ensure that we always no when we might have a problem with our calculations due to missing or invalid data.</p>
+<div id="qwebr-insertion-location-21"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
-<li>What do you think <code>seq</code> is doing here? Use the help function to help find out.</li>
+<li>What do you think <code>seq</code> is doing in the code above? Try using the <code>seq</code> function in the space below, and use the help function to find out how it works. Some of the help file may be confusing, but focus on the bits under the argument heading <code>Arguments</code> and <code>Value</code>.</li>
+</ul>
+<div id="qwebr-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ul>
 <li>Calculate the mean of my_data without the NA value. Do this using the mean function, and via indexing.</li>
 </ul>
+<div id="qwebr-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="lists" class="level3">
 <h3 class="anchored" data-anchor-id="lists">Lists</h3>
 <p>Lists are very similar to vectors, but can include data of different types. This means calculations with them are a bit slower, but they are more flexible.</p>
-<div id="qwebr-insertion-location-19"></div>
+<div id="qwebr-insertion-location-24"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>We can extract specific elements from a list using the <code>$</code> symbol:</p>
-<div id="qwebr-insertion-location-20"></div>
+<div id="qwebr-insertion-location-25"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>We can also index elements, but to extract them we should use the double square brackets:</p>
-<div id="qwebr-insertion-location-21"></div>
+<div id="qwebr-insertion-location-26"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="data-frames" class="level3">
 <h3 class="anchored" data-anchor-id="data-frames">Data frames</h3>
 <p>These are probably the data structure in R you will use most often. They are used for holding whole datasets. Practically speaking, they are lists of vectors of equal length.</p>
 <p>The built-in dataset <code>iris</code> is a good example of a dataframe. We can look at the first few rows of this dataframe using the head function:</p>
-<div id="qwebr-insertion-location-22"></div>
+<div id="qwebr-insertion-location-27"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>As with lists, we can access particular columns using the <code>$</code> symbol.</p>
-<div id="qwebr-insertion-location-23"></div>
+<div id="qwebr-insertion-location-28"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>As with vectors, we can slice away particular parts of the dataframe. In this case we select the 10th to the 20th row, and the second and third column.</p>
-<div id="qwebr-insertion-location-24"></div>
+<div id="qwebr-insertion-location-29"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>We can also do this by name:</p>
-<div id="qwebr-insertion-location-25"></div>
+<div id="qwebr-insertion-location-30"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Check you understand what the above code is doing, using the help function if necessary.</p>
 </section>
 <section id="matrix" class="level3">
 <h3 class="anchored" data-anchor-id="matrix">Matrix</h3>
 <p>A matrix is another collection of vectors, but is somewhat simpler than a dataframe. All elements of a matrix must have the same type, and column names are not required. We create a matrix using the <code>matrix</code> function ( surprise surprise), often from vectors.</p>
-<div id="qwebr-insertion-location-26"></div>
+<div id="qwebr-insertion-location-31"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 </section>
 <section id="conditions" class="level2">
 <h2 class="anchored" data-anchor-id="conditions">Conditions</h2>
 <p>Logical data results whenever we use <em>conditions</em>. For instance, we might check if value of variable is greater than a particular number, using the greater than <code>&gt;</code> operator.</p>
-<div id="qwebr-insertion-location-27"></div>
+<div id="qwebr-insertion-location-32"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>We can also use the <code>&lt;</code>, <code>&gt;=</code> and <code>&lt;=</code> operators to check for “less than”, “greater than or equal to”, or “less than or equal to” relationships.</p>
 <p>To test whether to values are equal, we can use the <code>==</code>, which means “is equal to”. Note that we <strong>must</strong> use two <code>=</code> symbols, otherwise our code will not work.</p>
-<div id="qwebr-insertion-location-28"></div>
+<div id="qwebr-insertion-location-33"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-29"></div>
+<div id="qwebr-insertion-location-34"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-30"></div>
+<div id="qwebr-insertion-location-35"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>These logical conditions are important when writing R code, because it allows our R scripts to do different things depending on what inputs are given to it.</p>
 <p>We do this using if / else clauses:</p>
-<div id="qwebr-insertion-location-31"></div>
+<div id="qwebr-insertion-location-36"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>If the condition beside the <code>if</code> statement is true, the first print statement is executed (run). Otherwise, the part in the else clause is run (the bit enclosed in else{…}).</p>
 </section>
@@ -1307,46 +1313,46 @@ pie</code></pre>
 <ul>
 <li><code>Subscript out of bounds</code>. This means that you have tried to go beyond the end of a vector, list or dataframe. For example, you have tried to access the 10th number in a list that is only 9 numbers long. You can find out how long a list is by using the function <code>length</code>. Similarly, the function <code>dim</code> (for ‘dimension’) tells you the number of rows and columns in a dataframe.</li>
 </ul>
-<div id="qwebr-insertion-location-32"></div>
+<div id="qwebr-insertion-location-37"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
 <li><code>non-numeric argument to binary operator</code>. This sounds like gibberish, but generally it just means your data is of the wrong type. An operator in R represents a mathematical calculation like <code>+</code>, <code>-</code>, <code>*</code>, or <code>/</code>. If we try to use these, for instance, text data, we get this error.</li>
 </ul>
 <p>Run the code below, and see if you can work out how to fix it.</p>
-<div id="qwebr-insertion-location-33"></div>
+<div id="qwebr-insertion-location-38"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Often this can happen when you read in data that has a mix of numeric an character data in one of the columns.</p>
 <ul>
 <li><code>object "unicorn" was not found</code>. This error occurs when you try to access an R object (<code>unicorn</code> in this case) that doesn’t exist. This could be because you have typed the name wrong, or because you are running your code in the wrong order and you haven’t created it yet.</li>
 </ul>
 <p>See the example below and try to fix it.</p>
-<div id="qwebr-insertion-location-34"></div>
+<div id="qwebr-insertion-location-39"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
 <li><code>Could not find function "help_me"</code>. Similarly, this happens when you try to use a function that doesn’t exist. This might be because of a mis-typing <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. See the example below.</li>
 </ul>
-<div id="qwebr-insertion-location-35"></div>
+<div id="qwebr-insertion-location-40"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
 <li><code>Object of type 'closure' is not subsettable</code> Another strange-sounding message. This occurs when you try to use indexing on a function:</li>
 </ul>
-<div id="qwebr-insertion-location-36"></div>
+<div id="qwebr-insertion-location-41"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="doing-stuff-lots-of-times" class="level2">
 <h2 class="anchored" data-anchor-id="doing-stuff-lots-of-times">Doing stuff lots of times</h2>
 <p>Often, we want to repeat the same chunk of code many times. For-loops are one way of doing this. These take values from a vector or list one at a time, and storing each value in iteration in an iteration variable, often called i.</p>
-<div id="qwebr-insertion-location-37"></div>
+<div id="qwebr-insertion-location-42"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <section id="vectorisation" class="level3">
 <h3 class="anchored" data-anchor-id="vectorisation">Vectorisation</h3>
 <p>If we wanted to add two vectors together, we could do this using a for loop:</p>
-<div id="qwebr-insertion-location-38"></div>
+<div id="qwebr-insertion-location-43"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-39"></div>
+<div id="qwebr-insertion-location-44"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>However, R has built in ways of dealing with simple operations on vectors. Mathematical operations on vectors in R are automatically <strong>vectorised</strong> - the first elements of each vector are added together and stored in first element of the answer object, and the same happens with each subsequent position:</p>
-<div id="qwebr-insertion-location-40"></div>
+<div id="qwebr-insertion-location-45"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Not everything can be easily vectorised, however, and for particularly complex calculations, it may be necessary to write for loops.</p>
 </section>
@@ -1425,19 +1431,19 @@ pie</code></pre>
 <p>For instance, we can load in the <code>rpart</code> package for tree-based models (on which more later in the course). This package is included in the base R installation.</p>
 <p>Don’t worry about what the code is doing for the moment, just notice that if we try to use a function from the <code>rpart</code> package without first loading the package we get an error:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Kyphosis <span class="sc">~</span> Age <span class="sc">+</span> Number <span class="sc">+</span> Start, <span class="at">data =</span> kyphosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Kyphosis <span class="sc">~</span> Age <span class="sc">+</span> Number <span class="sc">+</span> Start, <span class="at">data =</span> kyphosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in rpart(Kyphosis ~ Age + Number + Start, data = kyphosis): could not find function "rpart"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in eval(expr, envir, enclos): object 'fit' not found</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Kyphosis <span class="sc">~</span> Age <span class="sc">+</span> Number <span class="sc">+</span> Start, <span class="at">data =</span> kyphosis)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Kyphosis <span class="sc">~</span> Age <span class="sc">+</span> Number <span class="sc">+</span> Start, <span class="at">data =</span> kyphosis)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>n= 81 
 
@@ -1460,13 +1466,15 @@ node), split, n, loss, yval, (yprob)
 <h2 class="anchored" data-anchor-id="installing-packages">Installing packages</h2>
 <p>Most packages do not come pre-installed. We install them using the <code>install.packages</code> function. Try running the code below in Rstudio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tibble"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tibble"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Unlike when you are using the <code>library()</code> function, you must enclose the name of the package you wish to install in quotes, or else you will get an error. The tibble package provide easier-to-read dataframes, along with additional special features.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.2.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 150 × 5
    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -1484,6 +1492,8 @@ node), split, n, loss, yval, (yprob)
 # ℹ 140 more rows</code></pre>
 </div>
 </div>
+<p>Note that you only need to install a package once on each machine that you are using [^4]</p>
+<p>[4:] New versions of R packages are frequently released, so you will need to update the version you have installed sometimes.</p>
 <p><strong>Housekeeping tip!</strong> When you write a script, begin by loading all your packages at the very top of the script.</p>
 </section>
 <section id="how-to-open-a-data-file-in-rstudio" class="level1">
@@ -1495,10 +1505,13 @@ node), split, n, loss, yval, (yprob)
 <li>In your script, type the function that loads the library <code>readxl</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readxl' was built under R version 4.2.3</code></pre>
+</div>
 </div>
 <ul>
 <li>Then, type in your script the function that loads that specific file, and create a new object that contains it:</li>
