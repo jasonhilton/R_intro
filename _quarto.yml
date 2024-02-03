@@ -10,6 +10,8 @@ website:
         text: Home
       - href: Introduction-to-R.qmd
         text: "Introduction to R"
+      - href: Tidyverse-and-visualisation.qmd
+        text: "Tidyverse and Visualisation"
 
 format:
   html:

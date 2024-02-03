@@ -1,0 +1,350 @@
+---
+title: "Tidyverse and Data Visualisation"
+author: "Jason Hilton"
+---
+
+```{r setup, echo=F}
+
+library(tidyverse)
+
+```
+
+
+
+## Introduction
+
+In this workshop we will carry out some visualisation using `ggplot2`. 
+
+I recommend typing each part of the example code below into an R script and running it, rather than copying and pasting. This help you internalise the process a little better and understand what is happening at each step.
+
+
+Feel free to experiment and change bits of the code. This is the best way to learn.
+
+## Getting started 
+
+Begin by opening Rstudio and create a project for this workshop (or use one you have already created for this course). 
+
+
+[See this brief discussion of how to go about this.](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
+[See also this article about ways of working with R and Rstudio.](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/)
+
+We will need to install some additional packages for this exercise. 
+We will start by installing the tidyverse set of packages. 
+Although there are many tidyverse packages, including `tidyr`, `dplyr`, and `ggplot2`, which we could install individually, it is easier to use the 'tidyverse' package 
+
+```{r eval=F}
+
+
+install.packages("tidyverse")
+library(tidyverse)
+
+```
+
+
+The documentation for ggplot2 is available online [here](https://ggplot2.tidyverse.org/) if you need to access it.
+
+Remember that you can always access the help for any R function if you need to by typing `?` and the name of the function into the console.
+
+```{r, eval=F}
+?geom_point
+```
+
+## Reading and Tidying
+
+On the course blackboard page, you will find the three `.csv` files. 
+Download these files in a folder within your project named `data` [^1].
+[1:] All of this data is repurposed from the `gapminder` package.
+
+We can load one of these in using the `read_csv` function:
+
+```{r}
+gdp_df <- read_csv("data/gdp_pc.csv")
+
+gdp_df
+```
+
+We can see that this data is not in 'tidy' format. 
+
+The columns '1952','1957', ..., etc give each provide different sets of observations of the same variable (GDP per capita). 
+
+Therefore, we would like to convert this plot to tidy format using the `pivot_longer` function from the `tidyr` package. 
+
+
+```{r}
+gdp_tidy_df <- gdp_df %>% 
+  # select all columns except country and continent
+  pivot_longer(-c(country, continent),
+               names_to="year",
+               values_to="gdp_per_cap")
+gdp_tidy_df
+```
+
+
+## Filter, Group by, Summarise
+
+We can filter, compute summaries, and create new columns in the data by using functions from the `dplyr` package. 
+
+We can, for instance, calculate the mean gdp per capita.
+
+```{r}
+summarise(gdp_tidy_df, mean_gdp_per_cap = mean(gdp_per_cap))
+```
+
+We could also do this using the pipe operator:
+
+```{r}
+gdp_tidy_df %>% summarise(mean_gdp_per_cap=mean(gdp_per_cap))
+```
+
+We might like to find out the number of observations in each group.
+
+
+
+
+We can subset the data to find a specific year. 
+
+```{r}
+gdp_tidy_df %>% 
+  # choose only those rows where the condition year==max(year) holds
+  # (i.e. the latest year)
+  filter(year==max(year)) %>%
+  # arrange in order of gdp per capita, 
+  # in descending order (without the `-`, we would have smallest first) 
+  arrange(-gdp_per_cap)
+
+```
+
+
+
+
+We will calculate mean gdp by continent[^1], so will use the group_by function to create groups based on the `continent` column. Any subsequent calculations we carry out on that data frame will be conducted separately for each group, as though we were working on separate dataframes. 
+
+
+```{r}
+gdp_tidy_df %>% 
+  group_by(continent)
+```
+
+We can see the groups are indicated in the information printed at the top of the dataframe.
+
+
+```{r}
+gdp_tidy_df %>% 
+  group_by(continent) %>% 
+  summarise(mean_gdp_per_cap=mean(gdp_per_cap))
+
+```
+
+We can also choose a different variable to group on. 
+Try doing this by year, for example.
+
+
+## Joining
+In fact, these values are not very meaningful. We should really be accounting for differences in population size between the countries we are averaging over. 
+
+Therefore, we need to load in data on population. As above, read in the data on population and covert to tidy format, and store in dataframe called `pop_tidy_df`.
+
+
+```{r, echo=FALSE}
+pop_tidy_df <- read_csv("data/pop.csv") %>% 
+  pivot_longer(-c(country, continent),
+               names_to="year",
+               values_to="population")
+pop_tidy_df
+
+```
+
+
+We would like to combine this with the data on gdp. 
+
+We can do this using the `join` functions from dplyr.
+
+
+```{r}
+country_df <- gdp_tidy_df %>% 
+  left_join(pop_tidy_df)
+country_df
+```
+
+This function looks for columns common to both datasets, and looks for rows in each dataset with the same values in these common columns by which to join the dataset together.  
+
+Look at the simple example below to understand the result of a join operation. Notice that the correct customer age and sex is matched the relevant row of the transaction dataset. In the case of John, there is no customer data, so an `NA` value is inserted. Note also  that it doesn't matter whether the datasets are in the same order or have the same number of rows.
+
+```{r}
+transaction_df <- 
+  tibble(Transaction=c(1,2,3,4,5),
+         Customer=c("John", "Jill", "Omar", "Liying", "Omar"),
+         Amount =c(24,54,65.4,5,0.3))
+transaction_df
+
+
+customer_df <- 
+  tibble(Customer =c("Liying", "Jill", "Omar"),
+         Age =c(34,54,65),
+         Sex = c("f", "f", "m"))
+customer_df
+
+transaction_df %>% 
+  left_join(customer_df)
+
+```
+
+## Mutating 
+
+Back to the gdp data, lets calculate average gdp per capita by continent for the latest year in a more correct manner.
+
+```{r}
+country_df %>% 
+  filter(year==max(year)) %>%
+  # creating a new column
+  mutate(gdp = gdp_per_cap * population) %>%
+  group_by(continent) %>%
+  summarise(total_gdp=sum(gdp),
+            total_pop=sum(population)) %>% 
+  mutate(mean_gdp = total_gdp/total_pop)
+
+
+```
+
+## Visualisation 
+
+Next, read in the third `.csv` dataset provided, and join this to the other two, so that we have gdp, population and life expectancy data together in one data frame called `country_df`.
+
+
+<details>
+  <summary>Solution</summary>
+  
+
+
+```{r}
+life_exp_df <- read_csv("data/life_exp.csv") %>% 
+  pivot_longer(-c(country, continent),
+               names_to="year",
+               values_to="life_expectancy")
+
+country_df <- country_df %>% 
+  left_join(life_exp_df)
+country_df
+```
+
+
+</details>
+
+
+Let's start by building up a plot. 
+First we initialise a plot and choose the dataset we wish to use:
+
+```{r}
+
+ggplot(data= country_df)
+
+```
+
+
+This just creates a blank plot. This is because we have not specified any mappings from data dimensions to aesthetics, nor have we stated the geometric object we want to represent the data on the screen. 
+
+
+Let's decide that we will map some of the variables in our dataset to position aesthetics. We will map GDP to the `x` aesthetic, and life expectancy to the `y` aesthetic. By specifying these at the plot initialisation stage, we have determine that we want this to apply to all future layers.
+
+```{r}
+
+ggplot(data=country_df, mapping=aes(x=gdp_per_cap, y=life_expectancy))
+
+```
+
+
+We can now see that be specifying the mappings, ggplot knows enough about what we intend to draw the axes.
+
+
+We have still to determine what the physical representations of our data will look like. We do this by creating a new `layer` with a specific `geometry`. We will use a `point` as the representation of each observation in our dataset.
+
+```{r}
+
+ggplot(data=country_df, mapping=aes(x=gdp_per_cap, y=life_expectancy)) +
+  geom_point()
+
+```
+
+
+You can also assign a plot to `R` variable.
+
+```{r}
+
+p <- ggplot(data=country_df, mapping=aes(x=gdp_per_cap, y=life_expectancy))
+```
+
+
+This allows you to add layers to it later.
+
+```{r}
+
+p + geom_point()
+
+```
+
+
+The relationship between gdpPercap and lifeExp looks highly non-linear. Perhaps a transformation would help address this.
+
+## **Tasks**
+
+
+### Question 1
+***Change the `scale` of the x axis to a log scale (refer back to the lecture notes or documentation is necessary).***
+
+
+<details>
+  <summary>Solution</summary>
+  Something small enough to escape casual notice.
+</details>
+
+
+### Question 2
+**Colour each continent separately using the `colour` aesthetic**
+
+
+<details>
+  <summary>Solution</summary>
+  Something small enough to escape casual notice.
+</details>
+
+### Question 3
+ **Patterns aren't always easy to distinguish with lots of observations. Try faceting the plot on the `year` variable.**
+
+
+<details>
+  <summary>Solution</summary>
+  Something small enough to escape casual notice.
+</details>
+
+
+### Question 4.
+**Plot histograms of the continuous variables. Experiment with examining the distributions of these variables separately by year.**
+
+Note that ggplot2 has a `geom_histogram` geometry that allows histograms to be created easily, mapping the continuous variable of interest to the x aesthetic.  Technically speaking, this is actually a combination of a transformation of the variable into binned counts, and the use of a `bar` geometry, but the histogram geometry is a useful shorthand for this. 
+
+
+<details>
+  <summary>Solution</summary>
+  Something small enough to escape casual notice.
+</details>
+
+### Question 5
+**Label your plots with titles and more appropriate axis names.**
+
+
+<details>
+  <summary>Solution</summary>
+  Something small enough to escape casual notice.
+</details>
+
+### Question 6
+**Save one of your plots out to a `png` using `ggsave`.**
+
+Use the `help` function to get familiar with how to use `ggsave`. The `examples` section of the bottom of the help page can be particularly useful. 
+
+
+<details>
+  <summary>Solution</summary>
+  Something small enough to escape casual notice.
+</details>
