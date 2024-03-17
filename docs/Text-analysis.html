@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jason Hilton">
+
+<title>RESM3002 Workshops - Text Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">RESM3002 Workshops</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Introduction-to-R.html" rel="" target="">
+ <span class="menu-text">Introduction to R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Tidyverse-and-visualisation.html" rel="" target="">
+ <span class="menu-text">Tidyverse and Visualisation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Text-analysis.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Text Analysis</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#reading-text-data" id="toc-reading-text-data" class="nav-link" data-scroll-target="#reading-text-data">Reading text data</a>
+  <ul class="collapse">
+  <li><a href="#an-aside-writing-r-functions" id="toc-an-aside-writing-r-functions" class="nav-link" data-scroll-target="#an-aside-writing-r-functions">An aside: Writing R functions</a></li>
+  <li><a href="#back-to-the-bbc-news-data" id="toc-back-to-the-bbc-news-data" class="nav-link" data-scroll-target="#back-to-the-bbc-news-data">Back to the BBC news data</a></li>
+  </ul></li>
+  <li><a href="#tidying-text-data" id="toc-tidying-text-data" class="nav-link" data-scroll-target="#tidying-text-data">Tidying Text Data</a></li>
+  <li><a href="#predicting-categories" id="toc-predicting-categories" class="nav-link" data-scroll-target="#predicting-categories">Predicting Categories</a></li>
+  <li><a href="#lasso" id="toc-lasso" class="nav-link" data-scroll-target="#lasso">Lasso</a></li>
+  <li><a href="#neural-networks" id="toc-neural-networks" class="nav-link" data-scroll-target="#neural-networks">Neural Networks</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Text Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jason Hilton </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidytext' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Matrix</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'Matrix' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'Matrix'
+
+The following objects are masked from 'package:tidyr':
+
+    expand, pack, unpack
+
+Loaded glmnet 4.1-8</code></pre>
+</div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this workshop we will carry out some text analysis.</p>
+<p>I recommend typing each part of the example code below into an R script and running it, rather than copying and pasting. This help you internalise the process a little better and understand what is happening at each step.</p>
+<p>Feel free to experiment and change bits of the code. This is the best way to learn.</p>
+</section>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<p>Begin by opening Rstudio and create a project for this workshop (or use one you have already created for this course).</p>
+<p><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">See this brief discussion of how to go about this.</a></p>
+<p><a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">See also this article about ways of working with R and Rstudio.</a></p>
+<p>We will need to install some additional packages for this exercise. We will need the tidyverse set of packages, glmnet and keras but hopefully these are already installed from previous workshops. We will also use the ‘tidytext’ package, for analysing text in a tidy manner, the ‘stopwords’ package, to give a list of the most common English words, and the <code>rsample</code> package, for easily dividing data between training and test samples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidytext"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rsample"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"broom"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"stopwords"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Remember that you can always access the help for any R function if you need to by typing <code>?</code> and the name of the function into the console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>?unnest_tokens</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-text-data" class="level2">
+<h2 class="anchored" data-anchor-id="reading-text-data">Reading text data</h2>
+<p>On the course blackboard page, you will find a zip file containing some bbc news datasets from the noughties.</p>
+<p>This datasets is sourced from:</p>
+<blockquote class="blockquote">
+<p>D. Greene and P. Cunningham. “Practical Solutions to the Problem of Diagonal Dominance in Kernel Document Clustering”, Proc. ICML 2006.</p>
+</blockquote>
+<p>Download these files in a folder within your project named <code>data</code>.</p>
+<p>The data is organised into five categories, each contained in separate subfolders.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list all files and folders in the bbc directory</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>base_path <span class="ot">&lt;-</span> <span class="st">"data/bbc"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">list.files</span>(base_path)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># exclude the readme file</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> categories[categories <span class="sc">!=</span> <span class="st">"README.TXT"</span>]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>categories</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "business"      "entertainment" "politics"      "sport"        
+[5] "tech"         </code></pre>
+</div>
+</div>
+<p>Within each subfolder, there are numbered text files each containing a separate individual article.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (note paste0 just sticks character strings together)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># paste0("a", "bc") gives "abc" as an output</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>path_to_business <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_path, <span class="st">"/"</span>, categories[<span class="dv">1</span>])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>business_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(path_to_business)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>business_files[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "001.txt" "002.txt" "003.txt" "004.txt" "005.txt"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(business_files)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 510</code></pre>
+</div>
+</div>
+<p>We can write some code to read in these files, and store them in a character vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># at the moment we have the file names. We need the whole location (path) of the file to be able to read it in:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>business_paths <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path_to_business, <span class="st">"/"</span>, business_files) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>business_paths[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data/bbc/business/001.txt"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an empty vector to store text in</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>bus_articles <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for every file in the list of business article files</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (bus_file <span class="cf">in</span> business_paths){</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># read in the article</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  bus_article <span class="ot">&lt;-</span> <span class="fu">read_file</span>(bus_file)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add the article to the vector.</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  bus_articles <span class="ot">&lt;-</span> <span class="fu">c</span>(bus_articles, bus_article)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(bus_articles) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 510</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bus_articles[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Ad sales boost Time Warner profit\n\nQuarterly profits at US media giant TimeWarner jumped 76% to $1.13bn (£600m) for the three months to December, from $639m year-earlier.\n\nThe firm, which is now one of the biggest investors in Google, benefited from sales of high-speed internet connections and higher advert sales. TimeWarner said fourth quarter sales rose 2% to $11.1bn from $10.9bn. Its profits were buoyed by one-off gains which offset a profit dip at Warner Bros, and less users for AOL.\n\nTime Warner said on Friday that it now owns 8% of search-engine Google. But its own internet business, AOL, had has mixed fortunes. It lost 464,000 subscribers in the fourth quarter profits were lower than in the preceding three quarters. However, the company said AOL's underlying profit before exceptional items rose 8% on the back of stronger internet advertising revenues. It hopes to increase subscribers by offering the online service free to TimeWarner internet customers and will try to sign up AOL's existing customers for high-speed broadband. TimeWarner also has to restate 2000 and 2003 results following a probe by the US Securities Exchange Commission (SEC), which is close to concluding.\n\nTime Warner's fourth quarter profits were slightly better than analysts' expectations. But its film division saw profits slump 27% to $284m, helped by box-office flops Alexander and Catwoman, a sharp contrast to year-earlier, when the third and final film in the Lord of the Rings trilogy boosted results. For the full-year, TimeWarner posted a profit of $3.36bn, up 27% from its 2003 performance, while revenues grew 6.4% to $42.09bn. \"Our financial performance was strong, meeting or exceeding all of our full-year objectives and greatly enhancing our flexibility,\" chairman and chief executive Richard Parsons said. For 2005, TimeWarner is projecting operating earnings growth of around 5%, and also expects higher revenue and wider profit margins.\n\nTimeWarner is to restate its accounts as part of efforts to resolve an inquiry into AOL by US market regulators. It has already offered to pay $300m to settle charges, in a deal that is under review by the SEC. The company said it was unable to estimate the amount it needed to set aside for legal reserves, which it previously set at $500m. It intends to adjust the way it accounts for a deal with German music publisher Bertelsmann's purchase of a stake in AOL Europe, which it had reported as advertising revenue. It will now book the sale of its stake in AOL Europe as a loss on the value of that stake.\n"</code></pre>
+</div>
+</div>
+<p>In fact, R has nice tools for simplify tasks like this where we wish to do something to every element of a vector or list.</p>
+<p>The <code>map</code> family of function takes two are arguments: - The first is a vector or list - The second is a function that should be applied to every element of that list</p>
+<p>The results of each individual operation are stuck together and stored in a output vector. Depending on what type of output we get, we use different versions of the <code>map</code> function. Because we are working with characters and we want a character vector as our output, we use the <code>map_chr</code> version (there is also a <code>map_dbl</code> for numeric data, and <code>map_df</code> for dataframes).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>bus_articles <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(business_paths, read_file)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>bus_articles[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Ad sales boost Time Warner profit\n\nQuarterly profits at US media giant TimeWarner jumped 76% to $1.13bn (£600m) for the three months to December, from $639m year-earlier.\n\nThe firm, which is now one of the biggest investors in Google, benefited from sales of high-speed internet connections and higher advert sales. TimeWarner said fourth quarter sales rose 2% to $11.1bn from $10.9bn. Its profits were buoyed by one-off gains which offset a profit dip at Warner Bros, and less users for AOL.\n\nTime Warner said on Friday that it now owns 8% of search-engine Google. But its own internet business, AOL, had has mixed fortunes. It lost 464,000 subscribers in the fourth quarter profits were lower than in the preceding three quarters. However, the company said AOL's underlying profit before exceptional items rose 8% on the back of stronger internet advertising revenues. It hopes to increase subscribers by offering the online service free to TimeWarner internet customers and will try to sign up AOL's existing customers for high-speed broadband. TimeWarner also has to restate 2000 and 2003 results following a probe by the US Securities Exchange Commission (SEC), which is close to concluding.\n\nTime Warner's fourth quarter profits were slightly better than analysts' expectations. But its film division saw profits slump 27% to $284m, helped by box-office flops Alexander and Catwoman, a sharp contrast to year-earlier, when the third and final film in the Lord of the Rings trilogy boosted results. For the full-year, TimeWarner posted a profit of $3.36bn, up 27% from its 2003 performance, while revenues grew 6.4% to $42.09bn. \"Our financial performance was strong, meeting or exceeding all of our full-year objectives and greatly enhancing our flexibility,\" chairman and chief executive Richard Parsons said. For 2005, TimeWarner is projecting operating earnings growth of around 5%, and also expects higher revenue and wider profit margins.\n\nTimeWarner is to restate its accounts as part of efforts to resolve an inquiry into AOL by US market regulators. It has already offered to pay $300m to settle charges, in a deal that is under review by the SEC. The company said it was unable to estimate the amount it needed to set aside for legal reserves, which it previously set at $500m. It intends to adjust the way it accounts for a deal with German music publisher Bertelsmann's purchase of a stake in AOL Europe, which it had reported as advertising revenue. It will now book the sale of its stake in AOL Europe as a loss on the value of that stake.\n"</code></pre>
+</div>
+</div>
+<p>We have read in all the business articles. However, we now want to do the same for the sports, politics, etc. articles.</p>
+<p>Ideally, we don’t want to have to repeat the same code for each article. This can make code difficult to read and it is very easy to introduce errors when copying and pasting code. Instead, we shall write our own <strong>function</strong> to read in articles for any given category, and create a data.frame that holds the text of the articles and their categories.</p>
+<section id="an-aside-writing-r-functions" class="level3">
+<h3 class="anchored" data-anchor-id="an-aside-writing-r-functions">An aside: Writing R functions</h3>
+<p><em>If you are familiar with R functions, skip this part</em>.</p>
+<p>An R function can be defined by writing <code>function</code> followed by the names you want to give for the arguments to your function enclosed in parenthesis <code>(arg1, arg2)</code>, followed by the code that describes what you want your function to do between curly brackets <code>{}</code>. A function should describe what should be <strong>returned</strong> (outputted) once it is finished.</p>
+<p>An example is given below that computes the mean of the first argument, and then adds on the second argument. We wouldn’t ever write a function like this, as it is easier just to write this directly, but the below serves as a good example of how to write a function in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a silly example</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>my_func_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2){</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do stuff here </span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  mean_of_arg_1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(argument1)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  answer <span class="ot">&lt;-</span> mean_of_arg_1 <span class="sc">+</span> argument2</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(answer)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As with existing R functions we can call this function by typing its name and providing the specific arguments we want to run the code with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call (that is, use) the function </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_func_name</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call it with different arguments</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_func_name</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>Note that the names of arguments and any variables we create inside functions are removed after the function has finished running, so we can not now access <code>argument1</code> or <code>mean_of_arg_1</code> (try it and you should get a name error).</p>
+</section>
+<section id="back-to-the-bbc-news-data" class="level3">
+<h3 class="anchored" data-anchor-id="back-to-the-bbc-news-data">Back to the BBC news data</h3>
+<p>We can write a function to read in all the files for one category</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>read_category <span class="ot">&lt;-</span> <span class="cf">function</span>(category, bbc_path){</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The lines below has the same steps we went through above</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  category_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(bbc_path, <span class="st">"/"</span>, category)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  category_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(category_path)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  category_paths <span class="ot">&lt;-</span> <span class="fu">paste0</span>(category_path, <span class="st">"/"</span>, category_files) </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  category_articles <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(category_paths, read_file)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code below creates a dataframe with column names "Category" and "text"</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  cat_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Category=</span>category, <span class="at">text=</span>category_articles)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cat_df)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s try this on a different category</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>categories[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "politics"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pol_df <span class="ot">&lt;-</span> <span class="fu">read_category</span>(categories[<span class="dv">3</span>], base_path)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>pol_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 417 × 2
+   Category text                                                                
+   &lt;chr&gt;    &lt;chr&gt;                                                               
+ 1 politics "Labour plans maternity pay rise\n\nMaternity pay for new mothers i…
+ 2 politics "Watchdog probes e-mail deletions\n\nThe information commissioner s…
+ 3 politics "Hewitt decries 'career sexism'\n\nPlans to extend paid maternity l…
+ 4 politics "Labour chooses Manchester\n\nThe Labour Party will hold its 2006 a…
+ 5 politics "Brown ally rejects Budget spree\n\nChancellor Gordon Brown's close…
+ 6 politics "'Errors' doomed first Dome sale\n\nThe initial attempt to sell the…
+ 7 politics "Fox attacks Blair's Tory 'lies'\n\nTony Blair lied when he took th…
+ 8 politics "Women MPs reveal sexist taunts\n\nWomen MPs endure \"shocking\" le…
+ 9 politics "Campbell: E-mail row 'silly fuss'\n\nEx-No 10 media chief Alastair…
+10 politics "Crucial decision on super-casinos\n\nA decision on whether to allo…
+# ℹ 407 more rows</code></pre>
+</div>
+</div>
+<p>We want all 5 categories in one dataframe to allow us to begin modelling.</p>
+<p>Rather than constructing all 5 dataframes in separate bits of code, we can use <code>map_df</code> function to apply <code>read_categories</code> to all the elements of <code>categories</code>.</p>
+<p>The below code may take a little time to run (but hopefully not too long). Reading lots of small files from disk is generally less efficient than reading one medium size file.</p>
+<p>Note that we also add a doc_id column, which gives each article a unique identification number, using the n() function to identify the maximum number of rows, and creating a sequence from 1 to this number (2225 in this case).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note that any additional arguments to read_category that do not change with each</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># iteration (in this case, base_path) can be given to map after the name of the function</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>data_df <span class="ot">&lt;-</span> <span class="fu">map_df</span>(categories, read_category, base_path) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add unique id</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">doc_id=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reorder columns for convenience</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id, Category, text)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>data_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,225 × 3
+   doc_id Category text                                                         
+    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;                                                        
+ 1      1 business "Ad sales boost Time Warner profit\n\nQuarterly profits at U…
+ 2      2 business "Dollar gains on Greenspan speech\n\nThe dollar has hit its …
+ 3      3 business "Yukos unit buyer faces loan claim\n\nThe owners of embattle…
+ 4      4 business "High fuel prices hit BA's profits\n\nBritish Airways has bl…
+ 5      5 business "Pernod takeover talk lifts Domecq\n\nShares in UK drinks an…
+ 6      6 business "Japan narrowly escapes recession\n\nJapan's economy teetere…
+ 7      7 business "Jobs growth still slow in the US\n\nThe US created fewer jo…
+ 8      8 business "India calls for fair trade rules\n\nIndia, which attends th…
+ 9      9 business "Ethiopia's crop production up 24%\n\nEthiopia produced 14.2…
+10     10 business "Court rejects $280bn tobacco case\n\nA US government claim …
+# ℹ 2,215 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="tidying-text-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidying-text-data">Tidying Text Data</h2>
+<p>The package <code>tidytext</code> has some nice tools for dealing with text data. The first of these is the <code>unnest_tokens</code>. This first splits each element in our column containing text into tokens, and then outputs a tidy data frame with one word per row.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>token_df <span class="ot">&lt;-</span> data_df <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text, <span class="at">strip_numeric=</span><span class="cn">TRUE</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>token_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 847,351 × 3
+   doc_id Category word     
+    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;    
+ 1      1 business ad       
+ 2      1 business sales    
+ 3      1 business boost    
+ 4      1 business time     
+ 5      1 business warner   
+ 6      1 business profit   
+ 7      1 business quarterly
+ 8      1 business profits  
+ 9      1 business at       
+10      1 business us       
+# ℹ 847,341 more rows</code></pre>
+</div>
+</div>
+<p>This allows us to easily do some exploratory analysis. For instance, we can find the most frequent words:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>words_by_frequency <span class="ot">&lt;-</span> token_df <span class="sc">%&gt;%</span> <span class="fu">count</span>(word) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="sc">-</span>n) </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>words_by_frequency</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30,773 × 2
+   word      n
+   &lt;chr&gt; &lt;int&gt;
+ 1 the   52634
+ 2 to    25113
+ 3 of    20008
+ 4 and   18611
+ 5 a     18318
+ 6 in    17725
+ 7 for    8945
+ 8 is     8555
+ 9 that   8055
+10 on     7624
+# ℹ 30,763 more rows</code></pre>
+</div>
+</div>
+<p>Not surprising, perhaps! Notice that there are around 30k words used in this corpus (as can be seen from the number of rows in the dataframe).</p>
+<p>We can even look at the relationship between rank and frequency, as discussed in the lecture</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># without logging data, it is very difficult to see the relationship between rank and frequency, because frequency drops off very quickly:</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>words_by_frequency <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Rank, <span class="at">y=</span> n)) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Text-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>words_by_frequency <span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Rank), <span class="at">y=</span> <span class="fu">log</span>(n))) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Text-analysis_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is a relatively small corpus, but there does seem to be an approximately log-linear relationship here.</p>
+<p>We probably want to exclude the most frequent words from our dataset. Don’t worry about the lexicon column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nice convenience function from tidytext</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>stops <span class="ot">&lt;-</span> <span class="fu">get_stopwords</span>()</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>stops</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 175 × 2
+   word      lexicon 
+   &lt;chr&gt;     &lt;chr&gt;   
+ 1 i         snowball
+ 2 me        snowball
+ 3 my        snowball
+ 4 myself    snowball
+ 5 we        snowball
+ 6 our       snowball
+ 7 ours      snowball
+ 8 ourselves snowball
+ 9 you       snowball
+10 your      snowball
+# ℹ 165 more rows</code></pre>
+</div>
+</div>
+<p>We can exclude all the stop words from our token dataframe by using an antijoin. This compares two dataframes, and returns rows from the first dataframe which don’t appear in the second dataframe. The comparison is done based on a column shared by both columns. In this case, we can find all rows which contain words not in the word column of the <code>stops</code> dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># antijoin finds everything in token_df NOT in stop, looking at the shared column 'word'</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>token_df <span class="ot">&lt;-</span> token_df <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(stops)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(word)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lets find the top 5 words by category, now we've excluded the stops.</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>token_df <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Category, word) <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Category) <span class="sc">%&gt;%</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Category, <span class="sc">-</span>n) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Selecting by n</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 × 3
+# Groups:   Category [5]
+   Category word        n
+   &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;
+ 1 business said     1680
+ 2 business us        817
+ 3 business year      686
+ 4 business mr        600
+ 5 business also      440
+ 6 business market    429
+ 7 business new       417
+ 8 business growth    385
+ 9 business company   367
+10 business last      367
+# ℹ 41 more rows</code></pre>
+</div>
+</div>
+<p>These look a bit more useful.</p>
+</section>
+<section id="predicting-categories" class="level2">
+<h2 class="anchored" data-anchor-id="predicting-categories">Predicting Categories</h2>
+<p>Now that our data is tokenised and we have removed stop words, we want to convert it to a document term matrix, and attempt to build a classifier that predicts what category an article falls into.</p>
+<p>We start by converting our data into a document-term matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>sparse_dtm <span class="ot">&lt;-</span> token_df <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get counts of the number of times a word appears in a document</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(doc_id, word) <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># turn into a document term matrix. </span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># doc_id specifies what should be collected in the document rows</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># word identifies columns</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># n is used for the values in the interior of the matrix.</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_sparse</span>(doc_id, word, n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This gives us a sparse document term matrix with each row containing one article, and each column representing one word.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(sparse_dtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2225 30603</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at some of the columns and row entries</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sparse_dtm)[<span class="dv">50</span><span class="sc">:</span><span class="dv">60</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "december"  "dip"       "division"  "earlier"   "earnings"  "efforts"  
+ [7] "engine"    "enhancing" "estimate"  "europe"    "exceeding"</code></pre>
+</div>
+</div>
+<p>We can see an example of what the interior of the document term matrix looks like for some words in one article. Here you can see that most values are zer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>sparse_dtm[<span class="dv">3</span>,<span class="dv">50</span><span class="sc">:</span><span class="dv">75</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    december          dip     division      earlier     earnings      efforts 
+           1            0            0            0            0            0 
+      engine    enhancing     estimate       europe    exceeding  exceptional 
+           0            0            0            0            0            0 
+    exchange    executive     existing expectations      expects         film 
+           0            0            0            0            0            0 
+       final    financial         firm  flexibility        flops    following 
+           0            0            0            0            0            0 
+    fortunes       fourth 
+           0            0 </code></pre>
+</div>
+</div>
+<p>Next we will split our data into test and training datasets, by randomly choosing document ids using the rsample package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>doc_ids <span class="ot">&lt;-</span> data_df <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id) </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="co"># keep 80% of articles</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>bbc_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(doc_ids, <span class="at">prop=</span><span class="fl">0.8</span>)</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>train_ids <span class="ot">&lt;-</span> <span class="fu">training</span>(bbc_split)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>test_ids <span class="ot">&lt;-</span> <span class="fu">testing</span>(bbc_split)</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>train_ids<span class="sc">$</span>doc_id[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  503 2035  470 1990 1540  823 1122  183 1528 1331</code></pre>
+</div>
+</div>
+<p>Let’s split our sparse matrix into two matrixes, one that contains only the training set</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get only the rows</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>sparse_train_dtm <span class="ot">&lt;-</span> sparse_dtm[train_ids<span class="sc">$</span>doc_id,]</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>sparse_test_dtm <span class="ot">&lt;-</span> sparse_dtm[test_ids<span class="sc">$</span>doc_id,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We are going to fit a Lasso model to this data. We therefore need the correct category label as well as the document term matrix.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># get elements from data that have doc_ids in the dataframe 'train_ids'</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>output_train_labels <span class="ot">&lt;-</span> train_ids <span class="sc">%&gt;%</span> </span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(doc_id, Category))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(doc_id)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>output_train_labels </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,780 × 2
+   doc_id Category     
+    &lt;int&gt; &lt;chr&gt;        
+ 1    503 business     
+ 2   2035 tech         
+ 3    470 business     
+ 4   1990 tech         
+ 5   1540 sport        
+ 6    823 entertainment
+ 7   1122 politics     
+ 8    183 business     
+ 9   1528 sport        
+10   1331 sport        
+# ℹ 1,770 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do the same for the test set</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>output_test_labels <span class="ot">&lt;-</span> test_ids <span class="sc">%&gt;%</span> </span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(doc_id, Category))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(doc_id)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>output_test_labels </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 445 × 2
+   doc_id Category
+    &lt;int&gt; &lt;chr&gt;   
+ 1      9 business
+ 2     10 business
+ 3     19 business
+ 4     27 business
+ 5     39 business
+ 6     40 business
+ 7     41 business
+ 8     45 business
+ 9     49 business
+10     60 business
+# ℹ 435 more rows</code></pre>
+</div>
+</div>
+<p>Notice that in this case, we have more predictor variables than observations. In other words <span class="math inline">\(p &gt; n\)</span>, which means that we are not able to use traditional regression models without regularisation.</p>
+</section>
+<section id="lasso" class="level2">
+<h2 class="anchored" data-anchor-id="lasso">Lasso</h2>
+<p>We can now attempt to fit a Lasso model to predict new article category in the BBC data using <code>glmnet</code>. We specify alpha = 1 to focus on lasso models.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>mod_fit1 <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(sparse_train_dtm, </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>                      output_train_labels<span class="sc">$</span>Category,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family=</span><span class="st">"multinomial"</span>, <span class="at">alpha=</span><span class="dv">1</span>,</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type.measure=</span><span class="st">"class"</span>)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>lasso_diagnostics <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mod_fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can plot the number of coefficients estimated as non-zero against the size of penalty <span class="math inline">\(\lambda\)</span>. Here we can see that we that as the penalty size increases, more and more coefficients are shrunk to zero.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>lasso_diagnostics <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>lambda, <span class="at">y=</span>nzero)) <span class="sc">+</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Non-zero coefficients against penalty size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Text-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Looking at the best lambda value, we can see that this involves about only a small number of non-zero coefficients (out of about 30k for each class)!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>best_lambda <span class="ot">&lt;-</span> lasso_diagnostics <span class="sc">%&gt;%</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(estimate<span class="sc">==</span><span class="fu">min</span>(estimate)) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if there are ties, pick the model with the least number of non-zero </span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coefficients.</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nzero<span class="sc">==</span><span class="fu">min</span>(nzero))</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>best_lambda_val <span class="ot">&lt;-</span> best_lambda<span class="sc">$</span>lambda</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>best_lambda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+  lambda estimate std.error conf.low conf.high nzero
+   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+1 0.0142   0.0489   0.00427   0.0446    0.0532    90</code></pre>
+</div>
+</div>
+<p>Plotting lambda against estimated class error, we can see that the bigger values of lambda perform significantly worse at the classification task.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>lasso_diagnostics <span class="sc">%&gt;%</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>lambda, <span class="at">y=</span>estimate)) <span class="sc">+</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_linerange</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>conf.low,</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ymax=</span>conf.high)) <span class="sc">+</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> best_lambda_val) <span class="sc">+</span> </span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Classification error against penalty size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Text-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can look at the performance against the held-out test data to see how well the classifier performed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_fit1, sparse_test_dtm,<span class="at">type=</span><span class="st">"class"</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>preds[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "business" "business" "business" "business" "business"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what proportion of the predicted labels are different from the actual labels</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(preds <span class="sc">!=</span> output_test_labels<span class="sc">$</span>Category) <span class="sc">/</span> <span class="fu">length</span>(output_test_labels<span class="sc">$</span>Category)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06067416</code></pre>
+</div>
+</div>
+<p>We only get around 5-6% of cases wrong in this case.</p>
+<p>There is built-in function that will tell us the same thing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assess.glmnet</span>(mod_fit1, sparse_test_dtm, output_test_labels<span class="sc">$</span>Category,</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">family=</span><span class="st">"multinomial"</span>)<span class="sc">$</span>class</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06067416
+attr(,"measure")
+[1] "Misclassification Error"</code></pre>
+</div>
+</div>
+<p>We can also extract the values of the non-zero efficients from glmnet. Below is code to plot the top 10 coefficients for each class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>tidied_coefs <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mod_fit1<span class="sc">$</span>glmnet.fit, <span class="at">return_zeros=</span>F)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>tidied_coefs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 43,282 × 6
+   class    term   step estimate lambda dev.ratio
+   &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+ 1 business ""        1    0.153  0.201  8.33e-15
+ 2 business ""        2    0.156  0.192  6.65e- 3
+ 3 business ""        3    0.160  0.183  1.33e- 2
+ 4 business ""        4    0.167  0.175  2.69e- 2
+ 5 business ""        5    0.182  0.167  5.24e- 2
+ 6 business ""        6    0.196  0.159  7.48e- 2
+ 7 business ""        7    0.210  0.152  9.74e- 2
+ 8 business ""        8    0.214  0.145  1.24e- 1
+ 9 business ""        9    0.219  0.139  1.50e- 1
+10 business ""       10    0.218  0.132  1.77e- 1
+# ℹ 43,272 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>tidied_coefs <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># only look at coefficients for the lambda with the best cv score</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lambda<span class="sc">==</span>best_lambda_val) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for each class, find the top 10 coefficients </span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, <span class="fu">abs</span>(estimate)) <span class="sc">%&gt;%</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot the estimate for each term.</span></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>term,<span class="at">y=</span>estimate)) <span class="sc">+</span> </span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do this separately for each category (class)</span></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>class, <span class="at">scales=</span><span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rotate the plot through 90 degrees so the labels are easier to read.</span></span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Text-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We still have at least one number here, which looks a bit to specific, and so are probably not ideal - we could filter these out before fitting if we wanted.</p>
+</section>
+<section id="neural-networks" class="level1">
+<h1>Neural Networks</h1>
+<p>We can try to fit predict the same classes using neural networks using keras.</p>
+<p>First of all we need to point R towards the existing python environment provide on university desktops:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tfdatasets' was built under R version 4.3.3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_condaenv</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Apps</span><span class="sc">\\</span><span class="st">Anaconda3</span><span class="sc">\\</span><span class="st">envs</span><span class="sc">\\</span><span class="st">soton-env/python.exe"</span>)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The Keras package has built-in function to do most of the processing for us.</p>
+<p>Look at the help file for <code>text_dataset_from_directory</code></p>
+<p>This function will allow us to set up Keras to read in text data from file in batches, and automatically assumes files in directories come from different classes. We can also set up traing and validation sets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>bbc_data <span class="ot">&lt;-</span> <span class="fu">text_dataset_from_directory</span>(</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/bbc"</span>,</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed=</span>seed,</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">subset=</span><span class="st">"training"</span>,</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split=</span><span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found 2225 files belonging to 5 classes.
+Using 2003 files for training.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>bbc_valid_data <span class="ot">&lt;-</span> <span class="fu">text_dataset_from_directory</span>(</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/bbc"</span>,</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed=</span>seed,</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">subset=</span><span class="st">"validation"</span>,</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split=</span><span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found 2225 files belonging to 5 classes.
+Using 222 files for validation.</code></pre>
+</div>
+</div>
+<p>First, we can set up a vectorisation layer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>vectorisation_layer <span class="ot">&lt;-</span> <span class="fu">layer_text_vectorization</span>()</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="co"># first, learn the vocabulary (or lexicon)</span></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get just the text data, not the labels -which aren't need for the vocab</span></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>text_ds <span class="ot">&lt;-</span> bbc_data  <span class="sc">%&gt;%</span> </span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dataset_map</span>(\(x, y) x)</span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a><span class="co"># learn the vocab</span></span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>vectorisation_layer <span class="sc">%&gt;%</span> <span class="fu">adapt</span>(text_ds)</span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="co"># examine the vocab</span></span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a>vocab <span class="ot">&lt;-</span> vectorisation_layer <span class="sc">%&gt;%</span> <span class="fu">get_vocabulary</span>()</span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a>vocab <span class="sc">%&gt;%</span> length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 33075</code></pre>
+</div>
+</div>
+<p>The adapted vocab layer maps words to particular integer indexes. For example, “she” is <code>74</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vectorisation_layer</span>(<span class="st">"she sells sea shells"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tf.Tensor([   74  6274  3735 13013], shape=(4), dtype=int64)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vectorisation_layer</span>(<span class="st">"she sells sea shells on the sea shore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tf.Tensor([   74  6274  3735 13013    11     2  3735  6742], shape=(8), dtype=int64)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vectorisation_layer</span>(<span class="st">"the shells that she sells are sea shells I'm sure"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tf.Tensor([    2 13013    10    74  6274    25  3735 13013   237   661], shape=(10), dtype=int64)</code></pre>
+</div>
+</div>
+<p>Some newsworthy things from the early noughties are in the vocabulary</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vectorisation_layer</span>(<span class="st">"war"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tf.Tensor([527], shape=(1), dtype=int64)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vectorisation_layer</span>(<span class="st">"afghanistan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tf.Tensor([4493], shape=(1), dtype=int64)</code></pre>
+</div>
+</div>
+<p>In this case we will make a vectorisation layer that focusses on the top 10,000 most common words:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>max_features <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="ot">&lt;-</span> <span class="dv">500</span> <span class="co"># consider only the first 500 words of each article</span></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>vectorisation_layer <span class="ot">&lt;-</span> <span class="fu">layer_text_vectorization</span>(</span>
+<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_tokens =</span> max_features,</span>
+<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_sequence_length =</span> sequence_length</span>
+<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a>vectorisation_layer <span class="sc">%&gt;%</span> <span class="fu">adapt</span>(text_ds)</span>
+<span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a>vocab <span class="ot">&lt;-</span> vectorisation_layer <span class="sc">%&gt;%</span> <span class="fu">get_vocabulary</span>()</span>
+<span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a>vocab[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] ""      "[UNK]" "the"   "to"    "of"    "and"   "a"     "in"    "for"  
+[10] "is"   </code></pre>
+</div>
+</div>
+<p>We will build a neural network with an embedding layer, a convolution layer, and a dense layer. We have dropout layers included to avoid overfitting. The embedding layer converts each word to continuous vector. The convolution layer learns relevant features over</p>
+<p>The output layer has a softmax activation layer - which is standard for categorical outputs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>embedding_dim <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>modnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>(<span class="at">input_shape =</span> <span class="fu">c</span>(1L),</span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">dtype =</span> <span class="st">"string"</span>, </span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">name =</span> <span class="st">'text'</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>  vectorisation_layer <span class="sc">%&gt;%</span> </span>
+<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_embedding</span>(max_features, embedding_dim) <span class="sc">%&gt;%</span></span>
+<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dropout</span>(<span class="fl">0.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_conv_1d</span>(<span class="dv">64</span>, <span class="dv">7</span>, <span class="at">padding =</span> <span class="st">"valid"</span>, <span class="at">activation =</span> <span class="st">"relu"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-10"><a href="#cb102-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_global_max_pooling_1d</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb102-11"><a href="#cb102-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="dv">32</span>, <span class="at">activation =</span> <span class="st">"relu"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-12"><a href="#cb102-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dropout</span>(<span class="fl">0.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-13"><a href="#cb102-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="dv">5</span>, <span class="at">activation =</span> <span class="st">"softmax"</span>, <span class="at">name =</span> <span class="st">"predictions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can compile the model with the most commonly used loss function for multinomial models, the categorical cross-entropy. This is closely related to the likelihood function of a standard multi-nomial regression model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>modnn <span class="sc">%&gt;%</span> </span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(<span class="at">loss =</span> <span class="st">"sparse_categorical_crossentropy"</span>, </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">"accuracy"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now fit the model, looping thirty times through the dataset in batches of size 32, and keeping track of model performance using the validation portion of the dataset.</p>
+<p>The neural network model appears to do slightly better than the lasso, although there is not a lot in it. The categories in this dataset are quite distinctive, which may not always be the case.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>modnn <span class="sc">%&gt;%</span> <span class="fu">fit</span>(bbc_data, <span class="at">validation_data =</span> bbc_valid_data, <span class="at">epochs =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 1/30
+63/63 - 3s - loss: 1.6062 - accuracy: 0.2341 - val_loss: 1.6024 - val_accuracy: 0.2252 - 3s/epoch - 40ms/step
+Epoch 2/30
+63/63 - 2s - loss: 1.5901 - accuracy: 0.2521 - val_loss: 1.5825 - val_accuracy: 0.2613 - 2s/epoch - 25ms/step
+Epoch 3/30
+63/63 - 2s - loss: 1.5502 - accuracy: 0.3160 - val_loss: 1.5267 - val_accuracy: 0.3198 - 2s/epoch - 24ms/step
+Epoch 4/30
+63/63 - 2s - loss: 1.4650 - accuracy: 0.3744 - val_loss: 1.4184 - val_accuracy: 0.4910 - 2s/epoch - 24ms/step
+Epoch 5/30
+63/63 - 2s - loss: 1.3511 - accuracy: 0.4329 - val_loss: 1.2703 - val_accuracy: 0.5901 - 2s/epoch - 24ms/step
+Epoch 6/30
+63/63 - 2s - loss: 1.2166 - accuracy: 0.5122 - val_loss: 1.1076 - val_accuracy: 0.6982 - 2s/epoch - 24ms/step
+Epoch 7/30
+63/63 - 2s - loss: 1.0387 - accuracy: 0.5926 - val_loss: 0.9082 - val_accuracy: 0.7432 - 2s/epoch - 25ms/step
+Epoch 8/30
+63/63 - 2s - loss: 0.8785 - accuracy: 0.6745 - val_loss: 0.7511 - val_accuracy: 0.7928 - 2s/epoch - 24ms/step
+Epoch 9/30
+63/63 - 2s - loss: 0.7610 - accuracy: 0.7149 - val_loss: 0.6434 - val_accuracy: 0.7928 - 2s/epoch - 24ms/step
+Epoch 10/30
+63/63 - 2s - loss: 0.6678 - accuracy: 0.7629 - val_loss: 0.5518 - val_accuracy: 0.8153 - 2s/epoch - 25ms/step
+Epoch 11/30
+63/63 - 2s - loss: 0.5805 - accuracy: 0.8058 - val_loss: 0.4600 - val_accuracy: 0.8604 - 2s/epoch - 24ms/step
+Epoch 12/30
+63/63 - 2s - loss: 0.5060 - accuracy: 0.8313 - val_loss: 0.3959 - val_accuracy: 0.9009 - 2s/epoch - 25ms/step
+Epoch 13/30
+63/63 - 2s - loss: 0.4353 - accuracy: 0.8622 - val_loss: 0.3377 - val_accuracy: 0.9189 - 2s/epoch - 25ms/step
+Epoch 14/30
+63/63 - 2s - loss: 0.3617 - accuracy: 0.8802 - val_loss: 0.2980 - val_accuracy: 0.9234 - 2s/epoch - 24ms/step
+Epoch 15/30
+63/63 - 2s - loss: 0.3347 - accuracy: 0.8917 - val_loss: 0.2711 - val_accuracy: 0.9279 - 2s/epoch - 24ms/step
+Epoch 16/30
+63/63 - 2s - loss: 0.3082 - accuracy: 0.9061 - val_loss: 0.2461 - val_accuracy: 0.9459 - 2s/epoch - 24ms/step
+Epoch 17/30
+63/63 - 2s - loss: 0.2659 - accuracy: 0.9196 - val_loss: 0.2398 - val_accuracy: 0.9414 - 2s/epoch - 24ms/step
+Epoch 18/30
+63/63 - 2s - loss: 0.2280 - accuracy: 0.9311 - val_loss: 0.2313 - val_accuracy: 0.9324 - 2s/epoch - 24ms/step
+Epoch 19/30
+63/63 - 2s - loss: 0.2372 - accuracy: 0.9306 - val_loss: 0.2249 - val_accuracy: 0.9550 - 2s/epoch - 25ms/step
+Epoch 20/30
+63/63 - 2s - loss: 0.2180 - accuracy: 0.9321 - val_loss: 0.2194 - val_accuracy: 0.9459 - 2s/epoch - 24ms/step
+Epoch 21/30
+63/63 - 2s - loss: 0.1872 - accuracy: 0.9476 - val_loss: 0.2274 - val_accuracy: 0.9505 - 2s/epoch - 24ms/step
+Epoch 22/30
+63/63 - 2s - loss: 0.1688 - accuracy: 0.9481 - val_loss: 0.2046 - val_accuracy: 0.9550 - 2s/epoch - 24ms/step
+Epoch 23/30
+63/63 - 2s - loss: 0.1588 - accuracy: 0.9481 - val_loss: 0.2177 - val_accuracy: 0.9595 - 2s/epoch - 24ms/step
+Epoch 24/30
+63/63 - 2s - loss: 0.1333 - accuracy: 0.9596 - val_loss: 0.2030 - val_accuracy: 0.9595 - 2s/epoch - 24ms/step
+Epoch 25/30
+63/63 - 2s - loss: 0.1266 - accuracy: 0.9596 - val_loss: 0.2030 - val_accuracy: 0.9595 - 2s/epoch - 24ms/step
+Epoch 26/30
+63/63 - 2s - loss: 0.1232 - accuracy: 0.9576 - val_loss: 0.2045 - val_accuracy: 0.9595 - 2s/epoch - 24ms/step
+Epoch 27/30
+63/63 - 2s - loss: 0.1118 - accuracy: 0.9611 - val_loss: 0.2012 - val_accuracy: 0.9640 - 2s/epoch - 24ms/step
+Epoch 28/30
+63/63 - 2s - loss: 0.1085 - accuracy: 0.9646 - val_loss: 0.1892 - val_accuracy: 0.9640 - 2s/epoch - 24ms/step
+Epoch 29/30
+63/63 - 2s - loss: 0.1068 - accuracy: 0.9616 - val_loss: 0.1908 - val_accuracy: 0.9685 - 2s/epoch - 25ms/step
+Epoch 30/30
+63/63 - 2s - loss: 0.0912 - accuracy: 0.9715 - val_loss: 0.2095 - val_accuracy: 0.9730 - 2s/epoch - 24ms/step</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>eval <span class="ot">&lt;-</span> modnn <span class="sc">%&gt;%</span> <span class="fu">evaluate</span>(bbc_valid_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7/7 - 0s - loss: 0.2095 - accuracy: 0.9730 - 127ms/epoch - 18ms/step</code></pre>
+</div>
+</div>
+<p>In practice, we would test different neural network architectures to find the one that performed best.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>This workshop draws in part from material in: <a href="https://juliasilge.com/blog/tidy-text-classification/">https://juliasilge.com/blog/tidy-text-classification/</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

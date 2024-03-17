@@ -4,7 +4,7 @@ author: "Jason Hilton"
 ---
 
 ```{r setup, echo=F}
-
+library(here)
 library(tidyverse)
 
 ```
@@ -58,8 +58,14 @@ Download these files in a folder within your project named `data` [^1].
 
 We can load one of these in using the `read_csv` function:
 
-```{r}
+```{r, eval=F}
 gdp_df <- read_csv("data/gdp_pc.csv")
+
+gdp_df
+```
+
+```{r, echo=FALSE}
+gdp_df <- read_csv(here("data/gdp_pc.csv"))
 
 gdp_df
 ```
@@ -147,8 +153,18 @@ Therefore, we need to load in data on population. As above, try to read in the d
 
 <details>
   <summary>Solution</summary>
-```{r}
+```{r, eval=F}
 pop_tidy_df <- read_csv("data/pop.csv") %>% 
+  pivot_longer(-c(country, continent),
+               names_to="year",
+               values_to="population")
+pop_tidy_df
+
+```  
+
+
+```{r, echo=F}
+pop_tidy_df <- read_csv(here("data/pop.csv")) %>% 
   pivot_longer(-c(country, continent),
                names_to="year",
                values_to="population")
@@ -222,8 +238,19 @@ Next, read in the third `.csv` dataset provided, and join this to the other two,
   
 
 
-```{r}
+```{r,eval=F}
 life_exp_df <- read_csv("data/life_exp.csv") %>% 
+  pivot_longer(-c(country, continent),
+               names_to="year",
+               values_to="life_expectancy")
+
+country_df <- country_df %>% 
+  left_join(life_exp_df)
+country_df
+```
+
+```{r,echo=F}
+life_exp_df <- read_csv(here("data/life_exp.csv")) %>% 
   pivot_longer(-c(country, continent),
                names_to="year",
                values_to="life_expectancy")

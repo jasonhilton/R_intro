@@ -12,6 +12,8 @@ website:
         text: "Introduction to R"
       - href: Tidyverse-and-visualisation.qmd
         text: "Tidyverse and Visualisation"
+      - href: Text-analysis.qmd
+        text: "Text Analysis"
 
 format:
   html:

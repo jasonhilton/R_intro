@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -244,7 +244,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"context":"interactive"},"id":1,"code":"1 + 2"},{"options":{"context":"interactive"},"id":2,"code":"# note that lines that start with the hash symbol are comments in R\n# this means that they don't do anything, and are just meant to be read.\n"},{"options":{"context":"interactive"},"id":3,"code":"a <- 5\nb <- 6\na"},{"options":{"context":"interactive"},"id":4,"code":"this thing <- 4"},{"options":{"context":"interactive"},"id":5,"code":"a + b"},{"options":{"context":"interactive"},"id":6,"code":"d <- 4.545\nd"},{"options":{"context":"interactive"},"id":7,"code":"some_text <- \"Hello, I am a character object\"\nsome_text"},{"options":{"context":"interactive"},"id":8,"code":"R_is_great <- TRUE\nspreadheets_rule <- FALSE\nR_is_great"},{"options":{"context":"interactive"},"id":9,"code":"#Vector example\ncat_ages <- c(1, 3, 5, 5) \ncat_ages"},{"options":{"context":"interactive"},"id":10,"code":"#Vector example\ncat_names <- c(\"Ramiz\", \"Pepe\", \"Bella\", \"Bahar\") \ncat_names"},{"options":{"context":"interactive"},"id":11,"code":"c(\"234234\", 3)"},{"options":{"context":"interactive"},"id":12,"code":"my_numbers <- 10:20\nmy_numbers"},{"options":{"context":"interactive"},"id":13,"code":"cat_names[2]"},{"options":{"context":"interactive"},"id":14,"code":"cat_ages[2:3]"},{"options":{"context":"interactive"},"id":15,"code":"length(cat_ages)"},{"options":{"context":"interactive"},"id":16,"code":"help(mean)"},{"options":{"context":"interactive"},"id":17,"code":""},{"options":{"context":"interactive"},"id":18,"code":"\nmy_data <- c(4,5, NA, seq(1,100, 4))\nmean(my_data)"},{"options":{"context":"interactive"},"id":19,"code":"\nEntry <- list(Name=\"Henry VIII\",\n              Occupation=\"King\",\n              Date_of_birth=1491,\n              Wives=6\n)\nEntry"},{"options":{"context":"interactive"},"id":20,"code":"\nEntry$Occupation"},{"options":{"context":"interactive"},"id":21,"code":"Entry[[1]]"},{"options":{"context":"interactive"},"id":22,"code":"head(iris)"},{"options":{"context":"interactive"},"id":23,"code":"mean(iris$Petal.Length)"},{"options":{"context":"interactive"},"id":24,"code":"iris[10:20,2:3]"},{"options":{"context":"interactive"},"id":25,"code":"iris[seq(2,dim(iris)[1], 10), c(\"Petal.Width\", \"Species\")]"},{"options":{"context":"interactive"},"id":26,"code":"matrix(c(1,2,3,4), nrow = 2)"},{"options":{"context":"interactive"},"id":27,"code":"a > b"},{"options":{"context":"interactive"},"id":28,"code":"R_is_great == spreadheets_rule"},{"options":{"context":"interactive"},"id":29,"code":"R_is_great == TRUE"},{"options":{"context":"interactive"},"id":30,"code":"spreadheets_rule== F"},{"options":{"context":"interactive"},"id":31,"code":"a <- 10\n\nif (a>5){\n  print(\"Bigger\")  \n} else { \n  print(\"Smaller\")\n}"},{"options":{"context":"interactive"},"id":32,"code":"thing <- list(1,2,3)\n\nthing[[4]]\n"},{"options":{"context":"interactive"},"id":33,"code":"\"4\" + 5"},{"options":{"context":"interactive"},"id":34,"code":"unicorn <- c(3,4,5)\n\nunicon * 10"},{"options":{"context":"interactive"},"id":35,"code":"mena(iris$Sepal.Length)"},{"options":{"context":"interactive"},"id":36,"code":"mean[4]"},{"options":{"context":"interactive"},"id":37,"code":"\nfor (i in 1:10){\n  # the code starts with i=1\n  print(i)\n} \n# ^ every time the code reaches this bottom bracket }, \n# it returns to the top bracket { again, with i becoming the next item in the list (2,3).\n# Once the last element of the list is reached, the for-loop terminates.\n"},{"options":{"context":"interactive"},"id":38,"code":"for_loop_result <- c()\n\na <- 1:10\nb <-10:1\n\nfor (i in 1:length(a)){\n  for_loop_result <- c(for_loop_result, a[i]+b[i])\n}"},{"options":{"context":"interactive"},"id":39,"code":"vectorised_result <- a + b"},{"options":{"context":"interactive"},"id":40,"code":"for_loop_result == vectorised_result"}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"1 + 2","options":{"context":"interactive"}},{"id":2,"code":"# note that lines that start with the hash symbol are comments in R\n# this means that they don't do anything, and are just meant to be read.\n","options":{"context":"interactive"}},{"id":3,"code":"a <- 5\nb <- 6\na","options":{"context":"interactive"}},{"id":4,"code":"this thing <- 4","options":{"context":"interactive"}},{"id":5,"code":"a + b","options":{"context":"interactive"}},{"id":6,"code":"d <- 4.545\nd","options":{"context":"interactive"}},{"id":7,"code":"some_text <- \"Hello, I am a character object\"\nsome_text","options":{"context":"interactive"}},{"id":8,"code":"R_is_great <- TRUE\nspreadheets_rule <- FALSE\nR_is_great","options":{"context":"interactive"}},{"id":9,"code":"# To round a number\npie <- round(3.141592)\npie","options":{"context":"interactive"}},{"id":10,"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(3.141592, 3)\npie","options":{"context":"interactive"}},{"id":11,"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(digits=3, x=3.141592)\npie\n# note because we are using names, we don't need to supply the arguments in any particular order.","options":{"context":"interactive"}},{"id":12,"code":"#Vector example\ncat_ages <- c(1, 3, 5, 5) \ncat_ages","options":{"context":"interactive"}},{"id":13,"code":"#Vector example\ncat_names <- c(\"Sybil\", \"Esme\", \"Greebo\", \"Iain\") \ncat_names","options":{"context":"interactive"}},{"id":14,"code":"c(\"234234\", 3)","options":{"context":"interactive"}},{"id":15,"code":"my_numbers <- 10:20\nmy_numbers","options":{"context":"interactive"}},{"id":16,"code":"cat_names[2]","options":{"context":"interactive"}},{"id":17,"code":"cat_ages[2:3]","options":{"context":"interactive"}},{"id":18,"code":"length(cat_ages)","options":{"context":"interactive"}},{"id":19,"code":"help(mean)","options":{"context":"interactive"}},{"id":20,"code":"","options":{"context":"interactive"}},{"id":21,"code":"\nmy_data <- c(4,5, NA, seq(1,100, 4))\nmean(my_data)","options":{"context":"interactive"}},{"id":22,"code":"","options":{"context":"interactive"}},{"id":23,"code":"","options":{"context":"interactive"}},{"id":24,"code":"\nEntry <- list(Name=\"Henry VIII\",\n              Occupation=\"King\",\n              Date_of_birth=1491,\n              Wives=6\n)\nEntry","options":{"context":"interactive"}},{"id":25,"code":"\nEntry$Occupation","options":{"context":"interactive"}},{"id":26,"code":"Entry[[1]]","options":{"context":"interactive"}},{"id":27,"code":"head(iris)","options":{"context":"interactive"}},{"id":28,"code":"mean(iris$Petal.Length)","options":{"context":"interactive"}},{"id":29,"code":"iris[10:20,2:3]","options":{"context":"interactive"}},{"id":30,"code":"iris[seq(2,dim(iris)[1], 10), c(\"Petal.Width\", \"Species\")]","options":{"context":"interactive"}},{"id":31,"code":"matrix(c(1,2,3,4), nrow = 2)","options":{"context":"interactive"}},{"id":32,"code":"a > b","options":{"context":"interactive"}},{"id":33,"code":"R_is_great == spreadheets_rule","options":{"context":"interactive"}},{"id":34,"code":"R_is_great == TRUE","options":{"context":"interactive"}},{"id":35,"code":"spreadheets_rule== F","options":{"context":"interactive"}},{"id":36,"code":"a <- 10\n\nif (a>5){\n  print(\"Bigger\")  \n} else { \n  print(\"Smaller\")\n}","options":{"context":"interactive"}},{"id":37,"code":"thing <- list(1,2,3)\n\nthing[[4]]\n","options":{"context":"interactive"}},{"id":38,"code":"\"4\" + 5","options":{"context":"interactive"}},{"id":39,"code":"unicorn <- c(3,4,5)\n\nunicon * 10","options":{"context":"interactive"}},{"id":40,"code":"mena(iris$Sepal.Length)","options":{"context":"interactive"}},{"id":41,"code":"mean[4]","options":{"context":"interactive"}},{"id":42,"code":"\nfor (i in 1:10){\n  # the code starts with i=1\n  print(i)\n} \n# ^ every time the code reaches this bottom bracket }, \n# it returns to the top bracket { again, with i becoming the next item in the list (2,3).\n# Once the last element of the list is reached, the for-loop terminates.\n","options":{"context":"interactive"}},{"id":43,"code":"for_loop_result <- c()\n\na <- 1:10\nb <-10:1\n\nfor (i in 1:length(a)){\n  for_loop_result <- c(for_loop_result, a[i]+b[i])\n}","options":{"context":"interactive"}},{"id":44,"code":"vectorised_result <- a + b","options":{"context":"interactive"}},{"id":45,"code":"for_loop_result == vectorised_result","options":{"context":"interactive"}}];
 
 </script>
 <script type="module">
@@ -872,6 +872,10 @@ globalThis.qwebrExecuteCode = async function (
     <a class="nav-link" href="./Tidyverse-and-visualisation.html" rel="" target="">
  <span class="menu-text">Tidyverse and Visualisation</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Text-analysis.html" rel="" target="">
+ <span class="menu-text">Text Analysis</span></a>
+  </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -1474,11 +1478,9 @@ node), split, n, loss, yval, (yprob)
 </div>
 <p>Unlike when you are using the <code>library()</code> function, you must enclose the name of the package you wish to install in quotes, or else you will get an error. The tibble package provide easier-to-read dataframes, along with additional special features.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tibble' was built under R version 4.2.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 150 × 5
    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -1509,23 +1511,20 @@ node), split, n, loss, yval, (yprob)
 <li>In your script, type the function that loads the library <code>readxl</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readxl' was built under R version 4.2.3</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Then, type in your script the function that loads that specific file, and create a new object that contains it:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/wage2.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/wage2.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this example, we named the object “mydata”. You can now see this object in the top-right Environment window.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 16
    wage hours    IQ   KWW  educ exper tenure   age married south urban  sibs
@@ -1538,7 +1537,7 @@ node), split, n, loss, yval, (yprob)
 6  1154    45   111    37    15    13      1    36       1     0     0     2
 # ℹ 4 more variables: brthord &lt;dbl&gt;, meduc &lt;dbl&gt;, feduc &lt;dbl&gt;, lwage &lt;dbl&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      wage            hours             IQ             KWW       
  Min.   : 115.0   Min.   :25.00   Min.   : 54.0   Min.   :13.00  
@@ -1581,8 +1580,8 @@ node), split, n, loss, yval, (yprob)
 <li><p>To access a variable in a dataframe, use <code>$</code> after the name of the dataframe</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The function `head` will only let us see the first few values</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The function `head` will only let us see the first few values</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 31 33 32 34 30 36</code></pre>
 </div>
@@ -1591,8 +1590,8 @@ node), split, n, loss, yval, (yprob)
 <li>To create a new binary variable you can use the <code>$</code> to name it and <code>ifelse</code> arguments to specify its values with respect to other variables in the dataframe</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(my_data<span class="sc">$</span>age <span class="sc">&lt;</span> <span class="dv">35</span>, <span class="st">"young"</span>, <span class="st">"old"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_dummy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(my_data<span class="sc">$</span>age <span class="sc">&lt;</span> <span class="dv">35</span>, <span class="st">"young"</span>, <span class="st">"old"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_dummy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   old young 
@@ -1604,8 +1603,8 @@ node), split, n, loss, yval, (yprob)
 <li>To create a new categorical variable you can use the $ to name it and the <code>cut</code> function to specify its values with respect to other variables in the dataframe</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(my_data<span class="sc">$</span>age, <span class="fu">c</span>(<span class="dv">27</span>, <span class="dv">30</span>,<span class="dv">34</span>, <span class="dv">38</span>))</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(my_data<span class="sc">$</span>age, <span class="fu">c</span>(<span class="dv">27</span>, <span class="dv">30</span>,<span class="dv">34</span>, <span class="dv">38</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 (27,30] (30,34] (34,38] 
@@ -1619,7 +1618,7 @@ node), split, n, loss, yval, (yprob)
 <li>Once you have loaded your data and named it as an object (<code>mydata</code> in the example above), you can estimate some basic by typing the following command:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      wage            hours             IQ             KWW       
  Min.   : 115.0   Min.   :25.00   Min.   : 54.0   Min.   :13.00  
@@ -1668,7 +1667,7 @@ node), split, n, loss, yval, (yprob)
 <li>To run a linear regression, you type the following command:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(dependent <span class="sc">~</span> independent1 <span class="sc">+</span> independent2, <span class="at">data=</span>my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(dependent <span class="sc">~</span> independent1 <span class="sc">+</span> independent2, <span class="at">data=</span>my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>where “regression” is the name of the object that contains the regression results, “dependent” is the name of the dependent variable (<span class="math inline">\(y\)</span>) in the data, and “independent1” and “independent2” are the names of the independent variables (<span class="math inline">\(x\)</span>) in the data.</p>
 <ul>
@@ -1676,7 +1675,7 @@ node), split, n, loss, yval, (yprob)
 <li><p>Once we run the regression, we need to run another command to display the results:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>where “summary” is the function that calls the results of the regression, and “regression” is the name I chose for the object that contains the regression results</p>
 <p><strong>TASK:</strong> Try running a linear regression model using the wage2.xls data.</p>

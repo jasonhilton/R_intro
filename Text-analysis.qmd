@@ -1,0 +1,677 @@
+---
+title: "Text Analysis"
+author: "Jason Hilton"
+---
+
+```{r setup, echo=F}
+
+library(tidyverse)
+library(broom)
+library(tidytext)
+library(glmnet)
+library(rsample)
+set.seed(100)
+```
+
+
+
+## Introduction
+
+In this workshop we will carry out some text analysis. 
+
+I recommend typing each part of the example code below into an R script and running it, rather than copying and pasting. This help you internalise the process a little better and understand what is happening at each step.
+
+
+Feel free to experiment and change bits of the code. This is the best way to learn.
+
+## Getting started 
+
+Begin by opening Rstudio and create a project for this workshop (or use one you have already created for this course). 
+
+
+[See this brief discussion of how to go about this.](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
+[See also this article about ways of working with R and Rstudio.](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/)
+
+We will need to install some additional packages for this exercise. 
+We will need the tidyverse set of packages, glmnet and keras but hopefully these are already installed from previous workshops.
+We will also use the 'tidytext' package, for analysing text in a tidy manner, the 'stopwords' package, to give a list of the most common English words, and the `rsample` package, for easily dividing data between training and test samples.
+
+
+```{r eval=F}
+
+
+install.packages("tidytext")
+install.packages("rsample")
+install.packages("broom")
+install.packages("stopwords")
+library(tidytext)
+library(rsample)
+library(broom)
+library(tidyverse)
+library(glmnet)
+set.seed(100)
+
+
+```
+
+
+
+Remember that you can always access the help for any R function if you need to by typing `?` and the name of the function into the console.
+
+```{r, eval=F}
+?unnest_tokens
+```
+
+## Reading text data
+
+On the course blackboard page, you will find a zip file containing some bbc news datasets from the noughties. 
+
+This datasets is sourced from: 
+
+> D. Greene and P. Cunningham. "Practical Solutions to the Problem of Diagonal Dominance in Kernel Document Clustering", Proc. ICML 2006.
+
+
+
+
+Download these files in a folder within your project named `data`.
+
+
+The data is organised into five categories, each contained in separate subfolders.
+
+```{r}
+# list all files and folders in the bbc directory
+base_path <- "data/bbc"
+categories <- list.files(base_path)
+# exclude the readme file
+categories <- categories[categories != "README.TXT"]
+categories
+```
+
+Within each subfolder, there are numbered text files each containing a separate individual article.
+
+```{r}
+# (note paste0 just sticks character strings together)
+# paste0("a", "bc") gives "abc" as an output
+path_to_business <- paste0(base_path, "/", categories[1])
+business_files <- list.files(path_to_business)
+business_files[1:5]
+length(business_files)
+```
+
+We can write some code to read in these files, and store them in a character vector:
+
+```{r}
+
+# at the moment we have the file names. We need the whole location (path) of the file to be able to read it in:
+
+business_paths <- paste0(path_to_business, "/", business_files) 
+
+business_paths[1]
+
+# create an empty vector to store text in
+bus_articles <- c()
+
+# for every file in the list of business article files
+for (bus_file in business_paths){
+  # read in the article
+  bus_article <- read_file(bus_file)
+  # add the article to the vector.
+  bus_articles <- c(bus_articles, bus_article)
+}
+ 
+length(bus_articles) 
+
+bus_articles[1]
+
+
+
+```
+
+In fact, R has nice tools for simplify tasks like this where we wish to do something to every element of a vector or list. 
+
+The `map` family of function takes two are arguments: 
+- The first is a vector or list
+- The second is a function that should be applied to every element of that list
+
+The results of each individual operation are stuck together and stored in a output vector.
+Depending on what type of output we get, we use different versions of the `map` function. Because we are working with characters and we want a character vector as our output, we use the `map_chr` version (there is also a `map_dbl` for numeric data, and `map_df` for dataframes).
+
+
+```{r}
+
+bus_articles <- map_chr(business_paths, read_file)
+bus_articles[1]
+
+```
+
+
+
+We have read in all the business articles. However, we now want to do the same for the sports, politics, etc. articles. 
+
+Ideally, we don't want to have to repeat the same code for each article. This can make code difficult to read and it is very easy to introduce errors when copying and pasting code. 
+Instead, we shall write our own **function** to read in articles for any given category, and create a data.frame that holds the text of the articles and their categories.
+
+### An aside: Writing R functions 
+
+*If you are familiar with R functions, skip this part*.
+
+An R function can be defined by writing `function` followed by the names you want to give for the arguments to your function enclosed in parenthesis `(arg1, arg2)`, followed by the code that describes what you want your function to do between curly brackets `{}`. A function should describe what should be **returned** (outputted) once it is finished. 
+
+An example is given below that computes the mean of the first argument, and then adds on the second argument. We wouldn't ever write a function like this, as it is easier just to write this directly, but the below serves as a good example of how to write a function in R.
+
+```{R}
+
+# a silly example
+my_func_name <- function(argument1, argument2){
+  # do stuff here 
+  mean_of_arg_1 <- mean(argument1)
+  answer <- mean_of_arg_1 + argument2
+  return(answer)
+}
+
+```
+
+
+As with existing R functions we can call this function by typing its name and providing the specific arguments we want to run the code with:
+
+```{r}
+# call (that is, use) the function 
+my_func_name(c(1,2,3), 5)
+
+# call it with different arguments
+my_func_name(c(4,5,6), -1)
+```
+
+Note that the names of arguments and any variables we create inside functions are removed after the function has finished running, so we can not now access `argument1` or `mean_of_arg_1` (try it and you should get a name error).
+
+
+
+### Back to the BBC news data
+
+We can write a function to read in all the files for one category
+
+```{r}
+
+
+read_category <- function(category, bbc_path){
+  # The lines below has the same steps we went through above
+  category_path <- paste0(bbc_path, "/", category)
+  category_files <- list.files(category_path)
+  category_paths <- paste0(category_path, "/", category_files) 
+  category_articles <- map_chr(category_paths, read_file)
+  
+  # code below creates a dataframe with column names "Category" and "text"
+  cat_df <- tibble(Category=category, text=category_articles)
+  return(cat_df)
+}
+
+
+```
+Let's  try this on a different category
+
+```{r}
+categories[3]
+
+pol_df <- read_category(categories[3], base_path)
+pol_df
+
+```
+We want all 5 categories in one dataframe to allow us to begin modelling.
+
+Rather than constructing all 5 dataframes in separate bits of code, we can use `map_df` function to apply `read_categories` to all the elements of `categories`.
+
+The below code may take a little time to run (but hopefully not too long).
+Reading lots of small files from disk is generally less efficient than reading one medium size file.
+
+Note that we also add a doc_id column, which gives each article a unique identification number, using the n() function to identify the maximum number of rows, and creating a sequence from 1 to this number (2225 in this case).
+
+
+```{r}
+# note that any additional arguments to read_category that do not change with each
+# iteration (in this case, base_path) can be given to map after the name of the function
+data_df <- map_df(categories, read_category, base_path) %>% 
+  # add unique id
+  mutate(doc_id=1:n()) %>% 
+  # reorder columns for convenience
+  select(doc_id, Category, text)
+data_df
+
+```
+
+## Tidying Text Data
+
+The package `tidytext` has some nice tools for dealing with text data.
+The first of these is the `unnest_tokens`. 
+This first splits each element in our column containing text into tokens, and then outputs a tidy data frame with one word per row.
+
+
+
+```{r}
+token_df <- data_df %>% 
+  unnest_tokens(word, text, strip_numeric=TRUE)
+
+token_df
+
+
+```
+
+
+
+This allows us to easily do some exploratory analysis. 
+For instance, we can find the most frequent words:
+
+```{r}
+words_by_frequency <- token_df %>% count(word) %>% arrange(-n) 
+words_by_frequency
+```
+Not surprising, perhaps! 
+Notice that there are around 30k words used in this corpus (as can be seen from the number of rows in the dataframe).
+
+
+We can even look at the relationship between rank and frequency, as discussed in the lecture
+
+```{r}
+
+# without logging data, it is very difficult to see the relationship between rank and frequency, because frequency drops off very quickly:
+words_by_frequency %>% 
+  mutate(Rank=1:n()) %>% 
+  ggplot(aes(x=Rank, y= n)) +
+  geom_line() + 
+  theme_bw()
+
+
+words_by_frequency %>% 
+  mutate(Rank=1:n()) %>% 
+  ggplot(aes(x=log(Rank), y= log(n))) +
+  geom_line() + 
+  theme_bw()
+
+```
+This is a relatively small corpus, but there does seem to be an approximately log-linear relationship here.
+
+We probably want to exclude the most frequent words from our dataset. Don't worry about the lexicon column.
+
+```{r}
+# nice convenience function from tidytext
+stops <- get_stopwords()
+
+stops
+```
+
+
+We can exclude all the stop words from our token dataframe by using an antijoin.
+This compares two dataframes, and returns rows from the first dataframe which don't appear in the second dataframe. The comparison is done based on a column shared by both columns.
+In this case, we can find all rows which contain words not in the word column of the `stops` dataframe.
+
+```{r}
+# antijoin finds everything in token_df NOT in stop, looking at the shared column 'word'
+token_df <- token_df %>% anti_join(stops)
+
+# lets find the top 5 words by category, now we've excluded the stops.
+token_df %>% 
+  count(Category, word) %>%
+  group_by(Category) %>%
+  arrange(Category, -n) %>% top_n(10)
+```
+
+These look a bit more useful. 
+
+
+
+
+## Predicting Categories
+
+Now that our data is tokenised and we have removed stop words, we want to convert it to a document term matrix, and attempt to build a classifier that predicts what category an article falls into.
+
+We start by converting our data into a document-term matrix:
+
+```{r}
+
+
+sparse_dtm <- token_df %>%
+  # get counts of the number of times a word appears in a document
+  count(doc_id, word) %>%
+  # turn into a document term matrix. 
+  # doc_id specifies what should be collected in the document rows
+  # word identifies columns
+  # n is used for the values in the interior of the matrix.
+  cast_sparse(doc_id, word, n)
+
+```
+
+
+This gives us a sparse document term matrix with each row containing one article, and each column representing one word.
+
+
+```{r}
+dim(sparse_dtm)
+# look at some of the columns and row entries
+colnames(sparse_dtm)[50:60]
+```
+
+
+We can see an example of what the interior of the document term matrix looks like for some words in one article. 
+Here you can see that most values are zer.
+
+```{r}
+sparse_dtm[3,50:75]
+```
+
+
+Next we will split our data into test and training datasets, by randomly choosing document ids using the rsample package:
+
+
+```{r}
+library(rsample)
+doc_ids <- data_df %>% 
+  select(doc_id) 
+
+# keep 80% of articles
+bbc_split <- initial_split(doc_ids, prop=0.8)
+
+train_ids <- training(bbc_split)
+test_ids <- testing(bbc_split)
+
+train_ids$doc_id[1:10]
+```
+
+
+Let's split our sparse matrix into two matrixes, one that contains only the training set 
+
+
+```{r}
+# get only the rows
+sparse_train_dtm <- sparse_dtm[train_ids$doc_id,]
+sparse_test_dtm <- sparse_dtm[test_ids$doc_id,]
+```
+
+
+
+We are going to fit a Lasso model to this data. We therefore need the correct category label as well as the document term matrix. 
+
+```{r}
+ # get elements from data that have doc_ids in the dataframe 'train_ids'
+output_train_labels <- train_ids %>% 
+  left_join(data_df %>% select(doc_id, Category))
+
+output_train_labels 
+
+# do the same for the test set
+output_test_labels <- test_ids %>% 
+  left_join(data_df %>% select(doc_id, Category))
+
+output_test_labels 
+
+
+
+```
+
+Notice that in this case, we have more predictor variables than observations.
+In other words $p > n$, which means that we are not able to use traditional regression models without regularisation.
+
+## Lasso
+
+We can now attempt to fit a Lasso model to predict new article category in the BBC data using `glmnet`. We specify alpha = 1 to focus on lasso models.
+
+```{r}
+mod_fit1 <- cv.glmnet(sparse_train_dtm, 
+                      output_train_labels$Category,
+                      family="multinomial", alpha=1,
+                      type.measure="class")
+
+
+lasso_diagnostics <- tidy(mod_fit1)
+```
+
+
+We can plot the number of coefficients estimated as non-zero against the size of penalty $\lambda$. Here we can see that we that as the penalty size increases, more and more coefficients are shrunk to zero.
+
+```{r}
+
+lasso_diagnostics %>%
+  ggplot(aes(x=lambda, y=nzero)) +
+  geom_line() + 
+  theme_bw() + 
+  ggtitle("Non-zero coefficients against penalty size")
+
+```
+
+
+Looking at the best lambda value, we can see that this involves about only a small number of non-zero coefficients (out of about 30k for each class)!
+
+```{r}
+
+best_lambda <- lasso_diagnostics %>% 
+  filter(estimate==min(estimate)) %>% 
+  # if there are ties, pick the model with the least number of non-zero 
+  # coefficients.
+  filter(nzero==min(nzero))
+best_lambda_val <- best_lambda$lambda
+
+best_lambda
+```
+Plotting lambda against estimated class error, we can see that the bigger values of lambda perform significantly worse at the classification task.
+
+```{r}
+lasso_diagnostics %>%
+  ggplot(aes(x=lambda, y=estimate)) +
+  geom_point() + 
+  geom_linerange(aes(ymin=conf.low,
+                     ymax=conf.high)) +
+  geom_vline(xintercept = best_lambda_val) + 
+  theme_bw() + 
+  ggtitle("Classification error against penalty size")
+
+```
+
+We can look at the performance against the held-out test data to see how well the classifier performed. 
+
+
+```{r}
+
+preds <- predict(mod_fit1, sparse_test_dtm,type="class")
+preds[1:5]
+
+# what proportion of the predicted labels are different from the actual labels
+sum(preds != output_test_labels$Category) / length(output_test_labels$Category)
+```
+
+We only get around 5-6% of cases wrong in this case.
+
+There is built-in function that will tell us the same thing:
+
+```{r}
+
+assess.glmnet(mod_fit1, sparse_test_dtm, output_test_labels$Category,
+              family="multinomial")$class
+```
+
+We can also extract the values of the non-zero efficients from glmnet.
+Below is code to plot the top 10 coefficients for each class.
+
+
+```{r}
+
+
+tidied_coefs <- tidy(mod_fit1$glmnet.fit, return_zeros=F)
+
+tidied_coefs
+
+tidied_coefs %>% 
+  # only look at coefficients for the lambda with the best cv score
+  filter(lambda==best_lambda_val) %>% 
+  # for each class, find the top 10 coefficients 
+  group_by(class) %>% 
+  top_n(10, abs(estimate)) %>%
+  # plot the estimate for each term.
+  ggplot(aes(x=term,y=estimate)) + 
+  geom_col() +
+  # do this separately for each category (class)
+  facet_wrap(~class, scales="free") +
+  # rotate the plot through 90 degrees so the labels are easier to read.
+  coord_flip()
+
+```
+
+We still have at least one number here, which looks a bit to specific, and so are probably not ideal - we could filter these out before fitting if we wanted.
+
+
+
+# Neural Networks
+
+We can try to fit predict the same classes using neural networks using keras.
+
+First of all we need to point R towards the existing python environment provide on university desktops:
+
+```{r, echo=F}
+Sys.setenv("RETICULATE_PYTHON" = "E:/anaconda/envs/adzuna2")
+library(keras)
+library(tfdatasets)
+```
+
+```{r eval=F}
+reticulate::use_condaenv("C:\\Apps\\Anaconda3\\envs\\soton-env/python.exe")
+library(keras)
+library(tfdatasets)
+
+```
+
+
+The Keras package has built-in function to do most of the processing for us. 
+
+Look at the help file for `text_dataset_from_directory`
+
+This function will allow us to set up Keras to read in text data from file in batches, and automatically assumes files in directories come from different classes. We can also set up traing and validation sets.
+
+```{R}
+
+seed <- 42
+
+bbc_data <- text_dataset_from_directory(
+  "data/bbc",
+  seed=seed,
+  subset="training",
+  validation_split=0.1)
+
+bbc_valid_data <- text_dataset_from_directory(
+  "data/bbc",
+  seed=seed,
+  subset="validation",
+  validation_split=0.1)
+
+
+```
+
+
+First, we can set up a vectorisation layer
+
+```{r}
+# initialise
+vectorisation_layer <- layer_text_vectorization()
+
+# first, learn the vocabulary (or lexicon)
+# get just the text data, not the labels -which aren't need for the vocab
+text_ds <- bbc_data  %>% 
+  dataset_map(\(x, y) x)
+
+# learn the vocab
+vectorisation_layer %>% adapt(text_ds)
+# examine the vocab
+vocab <- vectorisation_layer %>% get_vocabulary()
+
+vocab %>% length
+```
+
+The adapted vocab layer maps words to particular integer indexes. For example, "she" is `74`
+
+```{r}
+vectorisation_layer("she sells sea shells")
+vectorisation_layer("she sells sea shells on the sea shore")
+vectorisation_layer("the shells that she sells are sea shells I'm sure")
+```
+
+Some newsworthy things from the early noughties are in the vocabulary
+
+```{r}
+vectorisation_layer("war")
+vectorisation_layer("afghanistan")
+
+```
+
+In this case we will make a vectorisation layer that focusses on the top 10,000 most common words:
+
+
+```{r}
+max_features <- 10000
+
+sequence_length <- 500 # consider only the first 500 words of each article
+
+
+vectorisation_layer <- layer_text_vectorization(
+  max_tokens = max_features,
+  output_sequence_length = sequence_length
+)
+vectorisation_layer %>% adapt(text_ds)
+vocab <- vectorisation_layer %>% get_vocabulary()
+vocab[1:10]
+```
+
+
+We will build a neural network with an embedding layer, a convolution layer, and a dense layer. We have dropout layers included to avoid overfitting.
+The embedding layer converts each word to continuous vector. The convolution layer learns relevant features over 
+
+The output layer has a softmax activation layer - which is standard for categorical outputs.
+
+
+```{r}
+
+embedding_dim <- 16
+
+modnn <- keras_model_sequential(input_shape = c(1L),
+                                dtype = "string", 
+                                name = 'text')  %>%
+  vectorisation_layer %>% 
+  layer_embedding(max_features, embedding_dim) %>%
+  layer_dropout(0.5) %>%
+  layer_conv_1d(64, 7, padding = "valid", activation = "relu") %>%
+  layer_global_max_pooling_1d() %>%
+  layer_dense(32, activation = "relu") %>%
+  layer_dropout(0.5) %>%
+  layer_dense(5, activation = "softmax", name = "predictions")
+
+
+```
+
+
+We can compile the model with the most commonly used loss function for multinomial models, the categorical cross-entropy. This is closely related to the likelihood function of a standard multi-nomial regression model.
+
+```{r}
+modnn %>% 
+  compile(loss = "sparse_categorical_crossentropy", 
+          metrics = c("accuracy"))
+
+```
+
+
+We can now fit the model, looping thirty times through the dataset in batches of size 32, and keeping track of model performance using the validation portion of the dataset. 
+
+The neural network model appears to do slightly better than the lasso, although there is not a lot in it. 
+The categories in this dataset are quite distinctive, which may not always be the case.
+
+
+```{r}
+modnn %>% fit(bbc_data, validation_data = bbc_valid_data, epochs = 30)
+
+eval <- modnn %>% evaluate(bbc_valid_data)
+
+```
+
+In practice, we would test different neural network architectures to find the one that performed best.
+
+
+# References
+
+This workshop draws in part from material in: [https://juliasilge.com/blog/tidy-text-classification/](https://juliasilge.com/blog/tidy-text-classification/)
+
+
