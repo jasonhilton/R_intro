@@ -288,7 +288,7 @@ words_by_frequency %>%
   theme_bw()
 
 ```
-This is a relatively small corpus, but there does seem to be an approximately log-linear relationship here.
+This is a relatively small corpus, but there does seem to be an approximately log-log relationship here.
 
 We probably want to exclude the most frequent words from our dataset. Don't worry about the lexicon column.
 

@@ -1,0 +1,319 @@
+---
+title: "Web Scraping"
+author: "Jason Hilton"
+---
+
+
+
+## Introduction
+
+We are going to scrape some text data from a websites created directly for the purposes of practicing scraping. 
+
+As you may remember from our discussions in the lecture, if we were applying this on 'real' websites, we would have to be careful about the ethical, legal and privacy implications of the data we were planning to collect. 
+
+We also need to be careful about the *rate* at which we scrape webpages from a site: too many page requests can overwhelm the server, or may consume unreasonable server resource, worsening the experience for other users. It could also lead to restriction being applied to  your ability to make future requests for webpages from this site.
+
+We therefore must practice *polite* scraping by identifying ourselves and intentionally limiting the number of requests we make of the server. 
+
+
+## Recap: HTML pages
+
+To remind ourselves of the material covered in the lecture, we wish to extract data from a webpage provided in `html` format. Normally `html` pages is provided to our web-browsers in response to a request, which might occur, for instance, when we click on a link. However, we are going to request a web-page using R, and use the R package Rvest to extract data from the result. 
+
+
+A very simple example of an html document is given below. We have opening and closing html *tags* which defining html *elements*, which may be nested within each other. In the below, there is a paragraph element `<p>` with some text content which is contained within a `<div>` element (`div` for 'division') which is generally used to divide up the page and group together particular elements that are related somehow. 
+
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta-information, title, scripts. -->
+  </head>
+  <body>
+    <div>
+      <p> I am here! </p>
+    </div>
+  </body>
+</html>
+```
+
+A more visual example of an html page structure is given below:
+
+
+![Source: [https://www.w3schools.com/html/html_intro.asp](https://www.w3schools.com/html/html_intro.asp)](images/html_diag.JPG)
+
+## Recap: html attributes
+
+HTML elements may have attributes. These describe certain properties relating to that element. These can help us extract information from a web-page.
+
+### IDs and Classes
+
+The two most useful attributes are `id` and `class`. IDs uniquely identify particular html elements, so that two html elements on the same page can't share the same ID. IDs are specified as below.
+
+```
+<p id="introduction">
+```
+
+Classes identify particular elements that are related in some way. Classes are often used to provide uniform formatting across such related elements.
+
+
+```
+<div class="bio">
+```
+
+## Recap: CSS selectors
+
+When we identify a page from which we want to scrape data, it is helpful to investigate the html *source* of this page. The will help us right the code that will allow us to select the elements from which we want to extract content. 
+
+You may remember from the lecture that we can do this using `css` selectors. CSS stands for cascading style sheet, and it is the language through which website programmers how particular groups of the html elements should appear. 
+
+The *style* of HTML content is the way it appears when it is viewed through a web browser.
+
+This is generally determined by instructions written in the CSS (**C**ascading **S**tyle **S**heets) language.
+
+
+- These instructions provides information about fonts, colours, size etc.
+
+
+Why do we care about this? 
+
+- In order to determine which elements of an HTML page should be styled, CSS uses *selectors*
+- This is specific way of referring to particular elements, classes and ids in CSS code
+- We can use these CSS selectors to specify which html elements we want to extract for analysis
+
+
+The most important css rules are: 
+
+- To select by element, the name of the element is simply written. For example `p`, `h2`, `div`, etc
+- To select by class, we add the `.` symbol. For example, `.big-title`
+- To select by id, we add the `#` symbol: `#bio`.
+
+We can chain these selectors together: 
+
+- `p.body-text` selects all paragraph elements of class `body-text`
+- `.body-text.intro` selects all elements with both classes body text and intro 
+- `.body-text .intro` *note space* selects all elements of class `intro` that are descendents of elements of  class  `.body-text`. 
+
+Full reference here: [https://www.w3schools.com/cssref/css_selectors.php](https://www.w3schools.com/cssref/css_selectors.php)
+
+Now that we have done our revision, we can try look at trying to scrape data from a particular site. 
+
+Visit [https://quotes.toscrape.com/](https://quotes.toscrape.com/) and examine the structure of the site. This site contains a set of quotations from various famous people. The information is spread over several pages. We would like to extract information from each of these quotes, and load them into a sensible dataframe. 
+
+We start by loading in the packages `tidyverse` and `rvest`.
+
+
+```{r}
+library(tidyverse)
+
+library(rvest)
+```
+
+
+We can use the rvest function `read_html` to read the html of the quotes page mentioned previously.
+The function issues a http request and parses the result.
+
+```{r}
+quotes_html  <- read_html("https://quotes.toscrape.com/")
+quotes_html
+```
+  
+The result is an R object `quotes_html` that contains an R representation of the website.
+
+We can use the function `html_elements` to extract all elements that match a particular css selector. But first we need to find which css elements we want to extract.
+
+In the quotes to scrape website, right click anywhere on the page and click 'View page source' or similar (the exact menu option may depend upon your browser). You should be able to see the html source corresponding to this page. 
+
+Take a moment to examine the structure of the page, and see how it compares to what you see when you open the web page with the browser. 
+
+You may notice that each quote is contained within a `div` element of class `quote`. Within each of these divs is a span of class `text`, which contains the text of the quote, and a `small` element of class `author`, which has the name of the author.
+
+Therefore, we can extract all the div elements of class quote using the css selector `div.quote`.
+
+```{r}
+quotes_html %>% html_elements("div.quote")
+```
+
+
+We can extract all the elements, within the quote div, we might want to extract the text span. We can do this by using the selector `div.quote .text`, which selects all descendents of class `.text` which were descendents of div elements of class `quote`.
+
+
+```{r}
+quotes_html %>% html_elements("div.quote .text")
+```
+
+Finally, we can extract the actual quote text content from the html elemenst we extracted using the `html_text2` function. Putting it all together:
+
+
+```{r}
+quote_text <- quotes_html %>% html_elements("div.quote .text") %>%
+  html_text2()
+
+length(quote_text)
+
+quote_text[10]
+
+```
+
+**TASK:** Try to write similar code to extract the name of the author of each quote.
+
+<details>
+  <summary>Solution</summary>
+
+```{r}
+authors <- quotes_html %>% html_elements("div.quote .author") %>%
+  html_text2()
+
+authors
+
+```
+</details>
+
+
+We could now also combine the text and the authors' names in a dataframe: 
+
+```{r}
+
+quote_df <- tibble(Author=authors, Quote_text=quote_text)
+quote_df
+
+```
+
+
+Investigating the site more fully, you may notice that this is just the first page of several within the quotes to scrape website.
+We would like to extract data from each from each of these pages.
+
+However, as we mentioned we would like to do this is a 'polite' manner, obeying instructions in the sites `robots.txt` file (which tells where we are allowed to scrape), and not making page requests too quickly.
+
+We can do this using the aptly-named `polite` R package, which interacts well with rvest. 
+
+There are three functions we need to use from the polite package, `bow`, `scrape` and `nod`.
+
+- `bow` specifies what rate we should  scrape at and parses the `robots.txt` file, as well as the base url of the site.
+- `scrape` issues the http request to actually download the page.
+- `nod` specifies any additional page we would like to scrape.
+
+We can use these function to extract the same information as previously.
+
+
+```{r}
+library(polite)
+
+polite_connection <- bow("https://quotes.toscrape.com/")
+
+
+polite_connection %>% scrape() %>% 
+  html_elements("div.quote .text") %>%
+  html_text2()
+
+```
+
+
+Now we are ready to extract quotes from all the pages on the site.
+
+These pages have a predictable web address: 
+
+- `https://quotes.toscrape.com/page/1/`
+- `https://quotes.toscrape.com/page/2/`
+- ...
+
+
+We can use the `nod` function to direct our scraping to page 2:
+
+
+```{r}
+polite_connection %>% 
+  nod("page/2") %>% 
+  scrape() %>% 
+  html_elements("div.quote .text") %>%
+  html_text2()
+
+
+```
+
+We can therefore now right an `R` function to extract the text and author name from each page:
+
+
+```{r}
+
+get_quote_text <- function(page_no, polite_con){
+  quote_text <- polite_con %>% 
+    nod(paste0("page/", page_no)) %>% 
+    scrape() %>% 
+    html_elements("div.quote .text") %>%
+    html_text2()
+  author <- polite_con %>% 
+    nod(paste0("page/", page_no)) %>% 
+    scrape() %>% 
+    html_elements("div.quote .author") %>%
+    html_text2()
+  
+  out_df <- tibble(Author=author, Quote_text=quote_text)
+  return(out_df)
+}
+
+
+page_1_df <- get_quote_text(1,polite_connection)
+
+```
+
+
+At present we don't know the last page number of the site. 
+A simple way to find this out is to try a few: 
+
+
+```{r}
+get_quote_text(10,polite_connection)
+
+```
+
+```{r}
+get_quote_text(20,polite_connection)
+
+```
+
+
+
+```{r}
+get_quote_text(11,polite_connection)
+
+```
+
+
+So it turns out there are 10 pages of quotes.
+We can therefore write a for-loop to loop over all the pages and extract the information we need. 
+
+```{R}
+quote_df <- get_quote_text(1,polite_connection)
+
+for (i in 2:10){
+  quote_df <- rbind(quote_df, get_quote_text(i, polite_connection))
+  
+}
+
+dim(quote_df)
+
+quote_df
+```
+
+
+We now have a list of 100 quotes, which we have scraped from the several pages across the site. 
+Obviously we can use this technique to scrape text data over a large number of pages, and then subsequently use text analysis techniques as discussed in that part of the course. 
+
+**Extra task**
+
+If you would like to practice, you may wish to have a go at scraping information from this site: 
+
+[https://books.toscrape.com/](https://books.toscrape.com/)
+
+
+# Resources
+
+- Polite documentation [https://dmi3kno.github.io/polite/](https://dmi3kno.github.io/polite/)
+- Rvest documentation [https://rvest.tidyverse.org/index.html](https://rvest.tidyverse.org/index.html)
+
+
+
+
+
