@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jason Hilton">
+
+<title>RESM3002 Workshops - Web Scraping</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">RESM3002 Workshops</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Introduction-to-R.html"> 
+<span class="menu-text">Introduction to R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Tidyverse-and-visualisation.html"> 
+<span class="menu-text">Tidyverse and Visualisation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Text-analysis.html"> 
+<span class="menu-text">Text Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Web-scraping.html" aria-current="page"> 
+<span class="menu-text">Web Scraping</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#recap-html-pages" id="toc-recap-html-pages" class="nav-link" data-scroll-target="#recap-html-pages">Recap: HTML pages</a></li>
+  <li><a href="#recap-html-attributes" id="toc-recap-html-attributes" class="nav-link" data-scroll-target="#recap-html-attributes">Recap: html attributes</a>
+  <ul class="collapse">
+  <li><a href="#ids-and-classes" id="toc-ids-and-classes" class="nav-link" data-scroll-target="#ids-and-classes">IDs and Classes</a></li>
+  </ul></li>
+  <li><a href="#recap-css-selectors" id="toc-recap-css-selectors" class="nav-link" data-scroll-target="#recap-css-selectors">Recap: CSS selectors</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Web Scraping</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jason Hilton </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>We are going to scrape some text data from a websites created directly for the purposes of practicing scraping.</p>
+<p>As you may remember from our discussions in the lecture, if we were applying this on ‘real’ websites, we would have to be careful about the ethical, legal and privacy implications of the data we were planning to collect.</p>
+<p>We also need to be careful about the <em>rate</em> at which we scrape webpages from a site: too many page requests can overwhelm the server, or may consume unreasonable server resource, worsening the experience for other users. It could also lead to restriction being applied to your ability to make future requests for webpages from this site.</p>
+<p>We therefore must practice <em>polite</em> scraping by identifying ourselves and intentionally limiting the number of requests we make of the server.</p>
+</section>
+<section id="recap-html-pages" class="level2">
+<h2 class="anchored" data-anchor-id="recap-html-pages">Recap: HTML pages</h2>
+<p>To remind ourselves of the material covered in the lecture, we wish to extract data from a webpage provided in <code>html</code> format. Normally <code>html</code> pages is provided to our web-browsers in response to a request, which might occur, for instance, when we click on a link. However, we are going to request a web-page using R, and use the R package Rvest to extract data from the result.</p>
+<p>A very simple example of an html document is given below. We have opening and closing html <em>tags</em> which defining html <em>elements</em>, which may be nested within each other. In the below, there is a paragraph element <code>&lt;p&gt;</code> with some text content which is contained within a <code>&lt;div&gt;</code> element (<code>div</code> for ‘division’) which is generally used to divide up the page and group together particular elements that are related somehow.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;!-- Meta-information, title, scripts. --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;p&gt; I am here! &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>A more visual example of an html page structure is given below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/html_diag.JPG" class="img-fluid figure-img"></p>
+<figcaption>Source: <a href="https://www.w3schools.com/html/html_intro.asp">https://www.w3schools.com/html/html_intro.asp</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="recap-html-attributes" class="level2">
+<h2 class="anchored" data-anchor-id="recap-html-attributes">Recap: html attributes</h2>
+<p>HTML elements may have attributes. These describe certain properties relating to that element. These can help us extract information from a web-page.</p>
+<section id="ids-and-classes" class="level3">
+<h3 class="anchored" data-anchor-id="ids-and-classes">IDs and Classes</h3>
+<p>The two most useful attributes are <code>id</code> and <code>class</code>. IDs uniquely identify particular html elements, so that two html elements on the same page can’t share the same ID. IDs are specified as below.</p>
+<pre><code>&lt;p id="introduction"&gt;</code></pre>
+<p>Classes identify particular elements that are related in some way. Classes are often used to provide uniform formatting across such related elements.</p>
+<pre><code>&lt;div class="bio"&gt;</code></pre>
+</section>
+</section>
+<section id="recap-css-selectors" class="level2">
+<h2 class="anchored" data-anchor-id="recap-css-selectors">Recap: CSS selectors</h2>
+<p>When we identify a page from which we want to scrape data, it is helpful to investigate the html <em>source</em> of this page. The will help us right the code that will allow us to select the elements from which we want to extract content.</p>
+<p>You may remember from the lecture that we can do this using <code>css</code> selectors. CSS stands for cascading style sheet, and it is the language through which website programmers how particular groups of the html elements should appear.</p>
+<p>The <em>style</em> of HTML content is the way it appears when it is viewed through a web browser.</p>
+<p>This is generally determined by instructions written in the CSS (<strong>C</strong>ascading <strong>S</strong>tyle <strong>S</strong>heets) language.</p>
+<ul>
+<li>These instructions provides information about fonts, colours, size etc.</li>
+</ul>
+<p>Why do we care about this?</p>
+<ul>
+<li>In order to determine which elements of an HTML page should be styled, CSS uses <em>selectors</em></li>
+<li>This is specific way of referring to particular elements, classes and ids in CSS code</li>
+<li>We can use these CSS selectors to specify which html elements we want to extract for analysis</li>
+</ul>
+<p>The most important css rules are:</p>
+<ul>
+<li>To select by element, the name of the element is simply written. For example <code>p</code>, <code>h2</code>, <code>div</code>, etc</li>
+<li>To select by class, we add the <code>.</code> symbol. For example, <code>.big-title</code></li>
+<li>To select by id, we add the <code>#</code> symbol: <code>#bio</code>.</li>
+</ul>
+<p>We can chain these selectors together:</p>
+<ul>
+<li><code>p.body-text</code> selects all paragraph elements of class <code>body-text</code></li>
+<li><code>.body-text.intro</code> selects all elements with both classes body text and intro</li>
+<li><code>.body-text .intro</code> <em>note space</em> selects all elements of class <code>intro</code> that are descendents of elements of class <code>.body-text</code>.</li>
+</ul>
+<p>Full reference here: <a href="https://www.w3schools.com/cssref/css_selectors.php">https://www.w3schools.com/cssref/css_selectors.php</a></p>
+<p>Now that we have done our revision, we can try look at trying to scrape data from a particular site.</p>
+<p>Visit <a href="https://quotes.toscrape.com/">https://quotes.toscrape.com/</a> and examine the structure of the site. This site contains a set of quotations from various famous people. The information is spread over several pages. We would like to extract information from each of these quotes, and load them into a sensible dataframe.</p>
+<p>We start by loading in the packages <code>tidyverse</code> and <code>rvest</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'rvest' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'rvest'
+
+The following object is masked from 'package:readr':
+
+    guess_encoding</code></pre>
+</div>
+</div>
+<p>We can use the rvest function <code>read_html</code> to read the html of the quotes page mentioned previously. The function issues a http request and parses the result.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>quotes_html  <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://quotes.toscrape.com/"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>quotes_html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{html_document}
+&lt;html lang="en"&gt;
+[1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+[2] &lt;body&gt;\n    &lt;div class="container"&gt;\n        &lt;div class="row header-box"&gt; ...</code></pre>
+</div>
+</div>
+<p>The result is an R object <code>quotes_html</code> that contains an R representation of the website.</p>
+<p>We can use the function <code>html_elements</code> to extract all elements that match a particular css selector. But first we need to find which css elements we want to extract.</p>
+<p>In the quotes to scrape website, right click anywhere on the page and click ‘View page source’ or similar (the exact menu option may depend upon your browser). You should be able to see the html source corresponding to this page.</p>
+<p>Take a moment to examine the structure of the page, and see how it compares to what you see when you open the web page with the browser.</p>
+<p>You may notice that each quote is contained within a <code>div</code> element of class <code>quote</code>. Within each of these divs is a span of class <code>text</code>, which contains the text of the quote, and a <code>small</code> element of class <code>author</code>, which has the name of the author.</p>
+<p>Therefore, we can extract all the div elements of class quote using the css selector <code>div.quote</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>quotes_html <span class="sc">%&gt;%</span> <span class="fu">html_elements</span>(<span class="st">"div.quote"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (10)}
+ [1] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [2] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [3] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [4] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [5] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [6] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [7] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [8] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+ [9] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...
+[10] &lt;div class="quote" itemscope itemtype="http://schema.org/CreativeWork"&gt;\ ...</code></pre>
+</div>
+</div>
+<p>We can extract all the elements, within the quote div, we might want to extract the text span. We can do this by using the selector <code>div.quote .text</code>, which selects all descendents of class <code>.text</code> which were descendents of div elements of class <code>quote</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>quotes_html <span class="sc">%&gt;%</span> <span class="fu">html_elements</span>(<span class="st">"div.quote .text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (10)}
+ [1] &lt;span class="text" itemprop="text"&gt;“The world as we have created it is a ...
+ [2] &lt;span class="text" itemprop="text"&gt;“It is our choices, Harry, that show  ...
+ [3] &lt;span class="text" itemprop="text"&gt;“There are only two ways to live your ...
+ [4] &lt;span class="text" itemprop="text"&gt;“The person, be it gentleman or lady, ...
+ [5] &lt;span class="text" itemprop="text"&gt;“Imperfection is beauty, madness is g ...
+ [6] &lt;span class="text" itemprop="text"&gt;“Try not to become a man of success.  ...
+ [7] &lt;span class="text" itemprop="text"&gt;“It is better to be hated for what yo ...
+ [8] &lt;span class="text" itemprop="text"&gt;“I have not failed. I've just found 1 ...
+ [9] &lt;span class="text" itemprop="text"&gt;“A woman is like a tea bag; you never ...
+[10] &lt;span class="text" itemprop="text"&gt;“A day without sunshine is like, you  ...</code></pre>
+</div>
+</div>
+<p>Finally, we can extract the actual quote text content from the html elemenst we extracted using the <code>html_text2</code> function. Putting it all together:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>quote_text <span class="ot">&lt;-</span> quotes_html <span class="sc">%&gt;%</span> <span class="fu">html_elements</span>(<span class="st">"div.quote .text"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text2</span>()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(quote_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>quote_text[<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "“A day without sunshine is like, you know, night.”"</code></pre>
+</div>
+</div>
+<p><strong>TASK:</strong> Try to write similar code to extract the name of the author of each quote.</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>authors <span class="ot">&lt;-</span> quotes_html <span class="sc">%&gt;%</span> <span class="fu">html_elements</span>(<span class="st">"div.quote .author"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text2</span>()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>authors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Albert Einstein"   "J.K. Rowling"      "Albert Einstein"  
+ [4] "Jane Austen"       "Marilyn Monroe"    "Albert Einstein"  
+ [7] "André Gide"        "Thomas A. Edison"  "Eleanor Roosevelt"
+[10] "Steve Martin"     </code></pre>
+</div>
+</div>
+</details>
+<p>We could now also combine the text and the authors’ names in a dataframe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>quote_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Author=</span>authors, <span class="at">Quote_text=</span>quote_text)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>quote_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   Author            Quote_text                                                 
+   &lt;chr&gt;             &lt;chr&gt;                                                      
+ 1 Albert Einstein   “The world as we have created it is a process of our think…
+ 2 J.K. Rowling      “It is our choices, Harry, that show what we truly are, fa…
+ 3 Albert Einstein   “There are only two ways to live your life. One is as thou…
+ 4 Jane Austen       “The person, be it gentleman or lady, who has not pleasure…
+ 5 Marilyn Monroe    “Imperfection is beauty, madness is genius and it's better…
+ 6 Albert Einstein   “Try not to become a man of success. Rather become a man o…
+ 7 André Gide        “It is better to be hated for what you are than to be love…
+ 8 Thomas A. Edison  “I have not failed. I've just found 10,000 ways that won't…
+ 9 Eleanor Roosevelt “A woman is like a tea bag; you never know how strong it i…
+10 Steve Martin      “A day without sunshine is like, you know, night.”         </code></pre>
+</div>
+</div>
+<p>Investigating the site more fully, you may notice that this is just the first page of several within the quotes to scrape website. We would like to extract data from each from each of these pages.</p>
+<p>However, as we mentioned we would like to do this is a ‘polite’ manner, obeying instructions in the sites <code>robots.txt</code> file (which tells where we are allowed to scrape), and not making page requests too quickly.</p>
+<p>We can do this using the aptly-named <code>polite</code> R package, which interacts well with rvest.</p>
+<p>There are three functions we need to use from the polite package, <code>bow</code>, <code>scrape</code> and <code>nod</code>.</p>
+<ul>
+<li><code>bow</code> specifies what rate we should scrape at and parses the <code>robots.txt</code> file, as well as the base url of the site.</li>
+<li><code>scrape</code> issues the http request to actually download the page.</li>
+<li><code>nod</code> specifies any additional page we would like to scrape.</li>
+</ul>
+<p>We can use these function to extract the same information as previously.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'polite' was built under R version 4.3.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>polite_connection <span class="ot">&lt;-</span> <span class="fu">bow</span>(<span class="st">"https://quotes.toscrape.com/"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>polite_connection <span class="sc">%&gt;%</span> <span class="fu">scrape</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_elements</span>(<span class="st">"div.quote .text"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”"                
+ [2] "“It is our choices, Harry, that show what we truly are, far more than our abilities.”"                                              
+ [3] "“There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”"
+ [4] "“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”"                           
+ [5] "“Imperfection is beauty, madness is genius and it's better to be absolutely ridiculous than absolutely boring.”"                    
+ [6] "“Try not to become a man of success. Rather become a man of value.”"                                                                
+ [7] "“It is better to be hated for what you are than to be loved for what you are not.”"                                                 
+ [8] "“I have not failed. I've just found 10,000 ways that won't work.”"                                                                  
+ [9] "“A woman is like a tea bag; you never know how strong it is until it's in hot water.”"                                              
+[10] "“A day without sunshine is like, you know, night.”"                                                                                 </code></pre>
+</div>
+</div>
+<p>Now we are ready to extract quotes from all the pages on the site.</p>
+<p>These pages have a predictable web address:</p>
+<ul>
+<li><code>https://quotes.toscrape.com/page/1/</code></li>
+<li><code>https://quotes.toscrape.com/page/2/</code></li>
+<li>…</li>
+</ul>
+<p>We can use the <code>nod</code> function to direct our scraping to page 2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>polite_connection <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nod</span>(<span class="st">"page/2"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scrape</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_elements</span>(<span class="st">"div.quote .text"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "“This life is what you make it. No matter what, you're going to mess up sometimes, it's a universal truth. But the good part is you get to decide how you're going to mess it up. Girls will be your friends - they'll act like it anyway. But just remember, some come, some go. The ones that stay with you through everything - they're your true best friends. Don't let go of them. Also remember, sisters make the best friends in the world. As for lovers, well, they'll come and go too. And baby, I hate to say it, most of them - actually pretty much all of them are going to break your heart, but you can't give up because if you give up, you'll never find your soulmate. You'll never find that half who makes you whole and that goes for everything. Just because you fail once, doesn't mean you're gonna fail at everything. Keep trying, hold on, and always, always, always believe in yourself, because if you don't, then who will, sweetie? So keep your head high, keep your chin up, and most importantly, keep smiling, because life's a beautiful thing and there's so much to smile about.”"
+ [2] "“It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+ [3] "“If you can't explain it to a six year old, you don't understand it yourself.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+ [4] "“You may not be her first, her last, or her only. She loved before she may love again. But if she loves you now, what else matters? She's not perfect—you aren't either, and the two of you may never be perfect together but if she can make you laugh, cause you to think twice, and admit to being human and making mistakes, hold onto her and give her the most you can. She may not be thinking about you every second of the day, but she will give you a part of her that she knows you can break—her heart. So don't hurt her, don't change her, don't analyze and don't expect more than she can give. Smile when she makes you happy, let her know when she makes you mad, and miss her when she's not there.”"                                                                                                                                                                                                                                                                                                                                                                                                   
+ [5] "“I like nonsense, it wakes up the brain cells. Fantasy is a necessary ingredient in living.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+ [6] "“I may not have gone where I intended to go, but I think I have ended up where I needed to be.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+ [7] "“The opposite of love is not hate, it's indifference. The opposite of art is not ugliness, it's indifference. The opposite of faith is not heresy, it's indifference. And the opposite of life is not death, it's indifference.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+ [8] "“It is not a lack of love, but a lack of friendship that makes unhappy marriages.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+ [9] "“Good friends, good books, and a sleepy conscience: this is the ideal life.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+[10] "“Life is what happens to us while we are making other plans.”"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </code></pre>
+</div>
+</div>
+<p>We can therefore now right an <code>R</code> function to extract the text and author name from each page:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>get_quote_text <span class="ot">&lt;-</span> <span class="cf">function</span>(page_no, polite_con){</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  quote_text <span class="ot">&lt;-</span> polite_con <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nod</span>(<span class="fu">paste0</span>(<span class="st">"page/"</span>, page_no)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scrape</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"div.quote .text"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text2</span>()</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">&lt;-</span> polite_con <span class="sc">%&gt;%</span> </span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nod</span>(<span class="fu">paste0</span>(<span class="st">"page/"</span>, page_no)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scrape</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"div.quote .author"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text2</span>()</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  out_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Author=</span>author, <span class="at">Quote_text=</span>quote_text)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_df)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>page_1_df <span class="ot">&lt;-</span> <span class="fu">get_quote_text</span>(<span class="dv">1</span>,polite_connection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>At present we don’t know the last page number of the site. A simple way to find this out is to try a few:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_quote_text</span>(<span class="dv">10</span>,polite_connection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   Author             Quote_text                                                
+   &lt;chr&gt;              &lt;chr&gt;                                                     
+ 1 J.K. Rowling       "“The truth.\" Dumbledore sighed. \"It is a beautiful and…
+ 2 Jimi Hendrix       "“I'm the one that's got to die when it's time for me to …
+ 3 J.M. Barrie        "“To die will be an awfully big adventure.”"              
+ 4 E.E. Cummings      "“It takes courage to grow up and become who you really a…
+ 5 Khaled Hosseini    "“But better to get hurt by the truth than comforted with…
+ 6 Harper Lee         "“You never really understand a person until you consider…
+ 7 Madeleine L'Engle  "“You have to write the book that wants to be written. An…
+ 8 Mark Twain         "“Never tell the truth to people who are not worthy of it…
+ 9 Dr. Seuss          "“A person's a person, no matter how small.”"             
+10 George R.R. Martin "“... a mind needs books as a sword needs a whetstone, if…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_quote_text</span>(<span class="dv">20</span>,polite_connection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# ℹ 2 variables: Author &lt;chr&gt;, Quote_text &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_quote_text</span>(<span class="dv">11</span>,polite_connection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# ℹ 2 variables: Author &lt;chr&gt;, Quote_text &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>So it turns out there are 10 pages of quotes. We can therefore write a for-loop to loop over all the pages and extract the information we need.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>quote_df <span class="ot">&lt;-</span> <span class="fu">get_quote_text</span>(<span class="dv">1</span>,polite_connection)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  quote_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(quote_df, <span class="fu">get_quote_text</span>(i, polite_connection))</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(quote_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100   2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>quote_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 2
+   Author            Quote_text                                                 
+   &lt;chr&gt;             &lt;chr&gt;                                                      
+ 1 Albert Einstein   “The world as we have created it is a process of our think…
+ 2 J.K. Rowling      “It is our choices, Harry, that show what we truly are, fa…
+ 3 Albert Einstein   “There are only two ways to live your life. One is as thou…
+ 4 Jane Austen       “The person, be it gentleman or lady, who has not pleasure…
+ 5 Marilyn Monroe    “Imperfection is beauty, madness is genius and it's better…
+ 6 Albert Einstein   “Try not to become a man of success. Rather become a man o…
+ 7 André Gide        “It is better to be hated for what you are than to be love…
+ 8 Thomas A. Edison  “I have not failed. I've just found 10,000 ways that won't…
+ 9 Eleanor Roosevelt “A woman is like a tea bag; you never know how strong it i…
+10 Steve Martin      “A day without sunshine is like, you know, night.”         
+# ℹ 90 more rows</code></pre>
+</div>
+</div>
+<p>We now have a list of 100 quotes, which we have scraped from the several pages across the site. Obviously we can use this technique to scrape text data over a large number of pages, and then subsequently use text analysis techniques as discussed in that part of the course.</p>
+<p><strong>Extra task</strong></p>
+<p>If you would like to practice, you may wish to have a go at scraping information from this site:</p>
+<p><a href="https://books.toscrape.com/">https://books.toscrape.com/</a></p>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<ul>
+<li>Polite documentation <a href="https://dmi3kno.github.io/polite/">https://dmi3kno.github.io/polite/</a></li>
+<li>Rvest documentation <a href="https://rvest.tidyverse.org/index.html">https://rvest.tidyverse.org/index.html</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
