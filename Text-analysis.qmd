@@ -542,7 +542,7 @@ The Keras package has built-in function to do most of the processing for us.
 
 Look at the help file for `text_dataset_from_directory`
 
-This function will allow us to set up Keras to read in text data from file in batches, and automatically assumes files in directories come from different classes. We can also set up traing and validation sets.
+This function will allow us to set up Keras to read in text data from file in batches, and automatically assumes files in directories come from different classes. We can also set up training and validation sets.
 
 ```{R}
 

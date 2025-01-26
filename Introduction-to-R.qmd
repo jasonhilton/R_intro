@@ -24,9 +24,9 @@ colorize <- function(x, color) {
 
 R is different from other tools you may have used. 
 
-In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data storage and calculations are generally separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. [^1]
+In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data storage and calculations are generally separated. In some other data analysis tools such as SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. [^1]
 
-[^1]: It is possible to write SPSS code (called syntax) to carry out particular statistical analyses. Similarly, it is possible to write code to perform particular tasks in excel (called 'Macros', using a language called Visual Basic). However, while useful, R has a wider array of features and tools available. 
+[^1]: It is possible to write SPSS code (called syntax) to carry out particular statistical analyses. Similarly, it is possible to write code to perform particular tasks in excel (called 'Macros', using a language called Visual Basic). However, while useful, these alternatives have a narrower  array of features and tools available. 
 
 This is because R is a statistical *programming language*. We write out the particular steps we need to take in one or more *scripts* - text files containing code. Using a programming language to do data analysis has a number of advantages:
 
@@ -40,7 +40,7 @@ This is because R is a statistical *programming language*. We write out the part
 The aim of this worksheet is to introduce you to the basics of R. Nothing will be very complicated - and in fact, the examples are deliberately very simple - but there will be a lot to take in all at once, and it might take you a while to digest everything. The more you work with R, the more these things will become second nature, however. Don't be afraid to try your own examples in the worksheet below.
 
 
-Most of the time we will work with R using the desktop application called `Rstudio`. For the first part of this tutorial, we will use a web interface to R called webr. This will allow us to keep things simple and focus on R itself. The interactive R code boxes (like the one below) allow us to run particular R commands or chunks of code by clicking the `Run Code` button. 
+Most of the time we will work with R using the desktop application called `Rstudio`. For the first part of this tutorial, we will use a web interface to R called `webr`. This will allow us to keep things simple and focus on R itself rather than on the Rstudio interface. The interactive R code boxes (like the one below) allow us to run particular R commands or chunks of code by clicking the `Run Code` button. You can change or add to what is written in these chunks to address questions given in the workshop, or to experiment and try things out for yourself.
 
 
 
@@ -102,7 +102,7 @@ d <- 4.545
 d
 ```
 
-Note that if we just type the name of an object into R, it's value or ther information about it will be printed to screen.
+Note that if we just type the name of an object into R, it's value or other information about it will be printed to screen.
 
 [^2]: Technically, the numeric type includes both 'double' (decimal or real) and 'integer' data types. But most of the time you won't need to worry about this. It is also possible to store complex numbers, which have their own type (but again, don't worry if this doesn't mean anything to you). 
 
@@ -178,7 +178,7 @@ The basic data types can be combined within data structures. R has several of th
 
 ### Vectors
 
-Vectors are the simplest of the data types. We can create vectors using the `c()` function, with elements of the vector separated by commas: 
+Vectors are the simplest of the data types, most commonly consisting of sequences of numbers or text. We can create vectors using the `c()` function, with elements of the vector separated by commas: 
 
 
 ```{webr-r}
@@ -213,7 +213,7 @@ my_numbers
 ```
 
 
-Sometimes, we want to select particular elements from within a vector. To do this, we write the name of the vector, followed by square brackets, and the position of the thing we want within the vector. 
+Sometimes, we want to select particular elements from within a vector. To do this, we write the name of the vector, followed by square brackets, and the position of the thing we want within the vector. This is known as 'indexing'.
 
 For instance, if we want the second element from the list of cat names, we write:
 
@@ -263,7 +263,7 @@ Try to calculate the mean of the first 5 numbers of the `my_numbers` vector we c
 ### NA values
 You may have noticed in the help file for the mean function, there is an argument to the function called `na.rm`. This stands for 'NA remove'. 
 NA stands for 'Not Available', and is used by R to represent missing values. If we try to calculate the mean of a vector containing missing values, we will obtain a missing value. 
-This is to ensure that we always no when we might have a problem with our calculations due to missing or invalid data.
+This is to ensure that we always know when we might have a problem with our calculations due to missing or invalid data.
 
 ```{webr-r}
 
@@ -279,7 +279,7 @@ mean(my_data)
 
 ```
 
-- Calculate the mean of my_data without the NA value. Do this using the mean function, and via indexing.
+- Calculate the mean of my_data without the NA value. Do this both by setting the `na.rm` argument to the mean function as T, and also via indexing.
 
 ```{webr-r}
 
@@ -287,7 +287,7 @@ mean(my_data)
 
 ### Lists
 
-Lists are very similar to vectors, but can include data of different types. This means calculations with them are a bit slower, but they are more flexible. 
+Lists are very similar to vectors, but can include data of different types. This means calculations with them are a bit slower, but they are more flexible. You can also provide a name for each entry within the list. We create lists using the list function:
 
 
 ```{webr-r}
@@ -324,7 +324,7 @@ They are used for holding whole datasets.
 Practically speaking, they are lists of vectors of equal length.
 
 The built-in dataset `iris` is a good example of a dataframe. 
-We can look at the first few rows of this dataframe using the head function:
+We can look at the first few rows of this dataframe using the `head` function:
 
 ```{webr-r}
 head(iris)

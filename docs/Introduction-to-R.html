@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jason Hilton">
 
-<title>RESM3002 Workshops - Introduction to R</title>
+<title>Introduction to R – RESM3002 Workshops</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -80,7 +80,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -244,7 +251,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"1 + 2","options":{"context":"interactive"}},{"id":2,"code":"# note that lines that start with the hash symbol are comments in R\n# this means that they don't do anything, and are just meant to be read.\n","options":{"context":"interactive"}},{"id":3,"code":"a <- 5\nb <- 6\na","options":{"context":"interactive"}},{"id":4,"code":"this thing <- 4","options":{"context":"interactive"}},{"id":5,"code":"a + b","options":{"context":"interactive"}},{"id":6,"code":"d <- 4.545\nd","options":{"context":"interactive"}},{"id":7,"code":"some_text <- \"Hello, I am a character object\"\nsome_text","options":{"context":"interactive"}},{"id":8,"code":"R_is_great <- TRUE\nspreadheets_rule <- FALSE\nR_is_great","options":{"context":"interactive"}},{"id":9,"code":"# To round a number\npie <- round(3.141592)\npie","options":{"context":"interactive"}},{"id":10,"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(3.141592, 3)\npie","options":{"context":"interactive"}},{"id":11,"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(digits=3, x=3.141592)\npie\n# note because we are using names, we don't need to supply the arguments in any particular order.","options":{"context":"interactive"}},{"id":12,"code":"#Vector example\ncat_ages <- c(1, 3, 5, 5) \ncat_ages","options":{"context":"interactive"}},{"id":13,"code":"#Vector example\ncat_names <- c(\"Sybil\", \"Esme\", \"Greebo\", \"Iain\") \ncat_names","options":{"context":"interactive"}},{"id":14,"code":"c(\"234234\", 3)","options":{"context":"interactive"}},{"id":15,"code":"my_numbers <- 10:20\nmy_numbers","options":{"context":"interactive"}},{"id":16,"code":"cat_names[2]","options":{"context":"interactive"}},{"id":17,"code":"cat_ages[2:3]","options":{"context":"interactive"}},{"id":18,"code":"length(cat_ages)","options":{"context":"interactive"}},{"id":19,"code":"help(mean)","options":{"context":"interactive"}},{"id":20,"code":"","options":{"context":"interactive"}},{"id":21,"code":"\nmy_data <- c(4,5, NA, seq(1,100, 4))\nmean(my_data)","options":{"context":"interactive"}},{"id":22,"code":"","options":{"context":"interactive"}},{"id":23,"code":"","options":{"context":"interactive"}},{"id":24,"code":"\nEntry <- list(Name=\"Henry VIII\",\n              Occupation=\"King\",\n              Date_of_birth=1491,\n              Wives=6\n)\nEntry","options":{"context":"interactive"}},{"id":25,"code":"\nEntry$Occupation","options":{"context":"interactive"}},{"id":26,"code":"Entry[[1]]","options":{"context":"interactive"}},{"id":27,"code":"head(iris)","options":{"context":"interactive"}},{"id":28,"code":"mean(iris$Petal.Length)","options":{"context":"interactive"}},{"id":29,"code":"iris[10:20,2:3]","options":{"context":"interactive"}},{"id":30,"code":"iris[seq(2,dim(iris)[1], 10), c(\"Petal.Width\", \"Species\")]","options":{"context":"interactive"}},{"id":31,"code":"matrix(c(1,2,3,4), nrow = 2)","options":{"context":"interactive"}},{"id":32,"code":"a > b","options":{"context":"interactive"}},{"id":33,"code":"R_is_great == spreadheets_rule","options":{"context":"interactive"}},{"id":34,"code":"R_is_great == TRUE","options":{"context":"interactive"}},{"id":35,"code":"spreadheets_rule== F","options":{"context":"interactive"}},{"id":36,"code":"a <- 10\n\nif (a>5){\n  print(\"Bigger\")  \n} else { \n  print(\"Smaller\")\n}","options":{"context":"interactive"}},{"id":37,"code":"thing <- list(1,2,3)\n\nthing[[4]]\n","options":{"context":"interactive"}},{"id":38,"code":"\"4\" + 5","options":{"context":"interactive"}},{"id":39,"code":"unicorn <- c(3,4,5)\n\nunicon * 10","options":{"context":"interactive"}},{"id":40,"code":"mena(iris$Sepal.Length)","options":{"context":"interactive"}},{"id":41,"code":"mean[4]","options":{"context":"interactive"}},{"id":42,"code":"\nfor (i in 1:10){\n  # the code starts with i=1\n  print(i)\n} \n# ^ every time the code reaches this bottom bracket }, \n# it returns to the top bracket { again, with i becoming the next item in the list (2,3).\n# Once the last element of the list is reached, the for-loop terminates.\n","options":{"context":"interactive"}},{"id":43,"code":"for_loop_result <- c()\n\na <- 1:10\nb <-10:1\n\nfor (i in 1:length(a)){\n  for_loop_result <- c(for_loop_result, a[i]+b[i])\n}","options":{"context":"interactive"}},{"id":44,"code":"vectorised_result <- a + b","options":{"context":"interactive"}},{"id":45,"code":"for_loop_result == vectorised_result","options":{"context":"interactive"}}];
+globalThis.qwebrCellDetails = [{"code":"1 + 2","id":1,"options":{"context":"interactive"}},{"code":"# note that lines that start with the hash symbol are comments in R\n# this means that they don't do anything, and are just meant to be read.\n","id":2,"options":{"context":"interactive"}},{"code":"a <- 5\nb <- 6\na","id":3,"options":{"context":"interactive"}},{"code":"this thing <- 4","id":4,"options":{"context":"interactive"}},{"code":"a + b","id":5,"options":{"context":"interactive"}},{"code":"d <- 4.545\nd","id":6,"options":{"context":"interactive"}},{"code":"some_text <- \"Hello, I am a character object\"\nsome_text","id":7,"options":{"context":"interactive"}},{"code":"R_is_great <- TRUE\nspreadheets_rule <- FALSE\nR_is_great","id":8,"options":{"context":"interactive"}},{"code":"# To round a number\npie <- round(3.141592)\npie","id":9,"options":{"context":"interactive"}},{"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(3.141592, 3)\npie","id":10,"options":{"context":"interactive"}},{"code":"#To round a number to the third decimal point using the second argument 'digits'\npie <- round(digits=3, x=3.141592)\npie\n# note because we are using names, we don't need to supply the arguments in any particular order.","id":11,"options":{"context":"interactive"}},{"code":"#Vector example\ncat_ages <- c(1, 3, 5, 5) \ncat_ages","id":12,"options":{"context":"interactive"}},{"code":"#Vector example\ncat_names <- c(\"Sybil\", \"Esme\", \"Greebo\", \"Iain\") \ncat_names","id":13,"options":{"context":"interactive"}},{"code":"c(\"234234\", 3)","id":14,"options":{"context":"interactive"}},{"code":"my_numbers <- 10:20\nmy_numbers","id":15,"options":{"context":"interactive"}},{"code":"cat_names[2]","id":16,"options":{"context":"interactive"}},{"code":"cat_ages[2:3]","id":17,"options":{"context":"interactive"}},{"code":"length(cat_ages)","id":18,"options":{"context":"interactive"}},{"code":"help(mean)","id":19,"options":{"context":"interactive"}},{"code":"","id":20,"options":{"context":"interactive"}},{"code":"\nmy_data <- c(4,5, NA, seq(1,100, 4))\nmean(my_data)","id":21,"options":{"context":"interactive"}},{"code":"","id":22,"options":{"context":"interactive"}},{"code":"","id":23,"options":{"context":"interactive"}},{"code":"\nEntry <- list(Name=\"Henry VIII\",\n              Occupation=\"King\",\n              Date_of_birth=1491,\n              Wives=6\n)\nEntry","id":24,"options":{"context":"interactive"}},{"code":"\nEntry$Occupation","id":25,"options":{"context":"interactive"}},{"code":"Entry[[1]]","id":26,"options":{"context":"interactive"}},{"code":"head(iris)","id":27,"options":{"context":"interactive"}},{"code":"mean(iris$Petal.Length)","id":28,"options":{"context":"interactive"}},{"code":"iris[10:20,2:3]","id":29,"options":{"context":"interactive"}},{"code":"iris[seq(2,dim(iris)[1], 10), c(\"Petal.Width\", \"Species\")]","id":30,"options":{"context":"interactive"}},{"code":"matrix(c(1,2,3,4), nrow = 2)","id":31,"options":{"context":"interactive"}},{"code":"a > b","id":32,"options":{"context":"interactive"}},{"code":"R_is_great == spreadheets_rule","id":33,"options":{"context":"interactive"}},{"code":"R_is_great == TRUE","id":34,"options":{"context":"interactive"}},{"code":"spreadheets_rule== F","id":35,"options":{"context":"interactive"}},{"code":"a <- 10\n\nif (a>5){\n  print(\"Bigger\")  \n} else { \n  print(\"Smaller\")\n}","id":36,"options":{"context":"interactive"}},{"code":"thing <- list(1,2,3)\n\nthing[[4]]\n","id":37,"options":{"context":"interactive"}},{"code":"\"4\" + 5","id":38,"options":{"context":"interactive"}},{"code":"unicorn <- c(3,4,5)\n\nunicon * 10","id":39,"options":{"context":"interactive"}},{"code":"mena(iris$Sepal.Length)","id":40,"options":{"context":"interactive"}},{"code":"mean[4]","id":41,"options":{"context":"interactive"}},{"code":"\nfor (i in 1:10){\n  # the code starts with i=1\n  print(i)\n} \n# ^ every time the code reaches this bottom bracket }, \n# it returns to the top bracket { again, with i becoming the next item in the list (2,3).\n# Once the last element of the list is reached, the for-loop terminates.\n","id":42,"options":{"context":"interactive"}},{"code":"for_loop_result <- c()\n\na <- 1:10\nb <-10:1\n\nfor (i in 1:length(a)){\n  for_loop_result <- c(for_loop_result, a[i]+b[i])\n}","id":43,"options":{"context":"interactive"}},{"code":"vectorised_result <- a + b","id":44,"options":{"context":"interactive"}},{"code":"for_loop_result == vectorised_result","id":45,"options":{"context":"interactive"}}];
 
 </script>
 <script type="module">
@@ -837,8 +844,35 @@ globalThis.qwebrExecuteCode = async function (
 
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -847,39 +881,39 @@ globalThis.qwebrExecuteCode = async function (
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">RESM3002 Workshops</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./Introduction-to-R.html" rel="" target="" aria-current="page">
- <span class="menu-text">Introduction to R</span></a>
+    <a class="nav-link active" href="./Introduction-to-R.html" aria-current="page"> 
+<span class="menu-text">Introduction to R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Tidyverse-and-visualisation.html" rel="" target="">
- <span class="menu-text">Tidyverse and Visualisation</span></a>
+    <a class="nav-link" href="./Tidyverse-and-visualisation.html"> 
+<span class="menu-text">Tidyverse and Visualisation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Text-analysis.html" rel="" target="">
- <span class="menu-text">Text Analysis</span></a>
+    <a class="nav-link" href="./Text-analysis.html"> 
+<span class="menu-text">Text Analysis</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -1115,12 +1149,14 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   </div>
   
 
+
 </header>
+
 
 <section id="what-is-r" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-r">What is R?</h2>
 <p>R is different from other tools you may have used.</p>
-<p>In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data storage and calculations are generally separated. In SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In Excel, the calculations we carry out in the data are embedded in the spreadsheet containing the data we are working with, in the form of formulas. In contrast, with R, data storage and calculations are generally separated. In some other data analysis tools such as SPSS, we generally point and click on menu options and dialog boxes to allow us to perform statistical analyses. In R, we instead write particular instructions in the form of code. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>This is because R is a statistical <em>programming language</em>. We write out the particular steps we need to take in one or more <em>scripts</em> - text files containing code. Using a programming language to do data analysis has a number of advantages:</p>
 <ul>
 <li><strong>Automation.</strong> We can set our analyses to run without manually having to oversee every step.</li>
@@ -1133,7 +1169,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="this-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="this-tutorial">This tutorial</h2>
 <p>The aim of this worksheet is to introduce you to the basics of R. Nothing will be very complicated - and in fact, the examples are deliberately very simple - but there will be a lot to take in all at once, and it might take you a while to digest everything. The more you work with R, the more these things will become second nature, however. Don’t be afraid to try your own examples in the worksheet below.</p>
-<p>Most of the time we will work with R using the desktop application called <code>Rstudio</code>. For the first part of this tutorial, we will use a web interface to R called webr. This will allow us to keep things simple and focus on R itself. The interactive R code boxes (like the one below) allow us to run particular R commands or chunks of code by clicking the <code>Run Code</code> button.</p>
+<p>Most of the time we will work with R using the desktop application called <code>Rstudio</code>. For the first part of this tutorial, we will use a web interface to R called <code>webr</code>. This will allow us to keep things simple and focus on R itself rather than on the Rstudio interface. The interactive R code boxes (like the one below) allow us to run particular R commands or chunks of code by clicking the <code>Run Code</code> button. You can change or add to what is written in these chunks to address questions given in the workshop, or to experiment and try things out for yourself.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>We can also edit the code in the code chunks. Try editing the code above, replacing the <code>+</code> with <code>-</code>, for example.</p>
@@ -1163,7 +1199,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>As the name suggests, this type corresponds to numeric data, including decimals (or ‘doubles’). <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. We can create a numeric object in the same way as we did above:</p>
 <div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Note that if we just type the name of an object into R, it’s value or ther information about it will be printed to screen.</p>
+<p>Note that if we just type the name of an object into R, it’s value or other information about it will be printed to screen.</p>
 </section>
 <section id="character" class="level3">
 <h3 class="anchored" data-anchor-id="character">Character</h3>
@@ -1208,7 +1244,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>The basic data types can be combined within data structures. R has several of these.</p>
 <section id="vectors" class="level3">
 <h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
-<p>Vectors are the simplest of the data types. We can create vectors using the <code>c()</code> function, with elements of the vector separated by commas:</p>
+<p>Vectors are the simplest of the data types, most commonly consisting of sequences of numbers or text. We can create vectors using the <code>c()</code> function, with elements of the vector separated by commas:</p>
 <div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
@@ -1222,7 +1258,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>You can also create vectors consisting of a range of integers by writing the start and end of the range you want, separated by a colon:</p>
 <div id="qwebr-insertion-location-15"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Sometimes, we want to select particular elements from within a vector. To do this, we write the name of the vector, followed by square brackets, and the position of the thing we want within the vector.</p>
+<p>Sometimes, we want to select particular elements from within a vector. To do this, we write the name of the vector, followed by square brackets, and the position of the thing we want within the vector. This is known as ‘indexing’.</p>
 <p>For instance, if we want the second element from the list of cat names, we write:</p>
 <div id="qwebr-insertion-location-16"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1246,7 +1282,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="na-values" class="level3">
 <h3 class="anchored" data-anchor-id="na-values">NA values</h3>
-<p>You may have noticed in the help file for the mean function, there is an argument to the function called <code>na.rm</code>. This stands for ‘NA remove’. NA stands for ‘Not Available’, and is used by R to represent missing values. If we try to calculate the mean of a vector containing missing values, we will obtain a missing value. This is to ensure that we always no when we might have a problem with our calculations due to missing or invalid data.</p>
+<p>You may have noticed in the help file for the mean function, there is an argument to the function called <code>na.rm</code>. This stands for ‘NA remove’. NA stands for ‘Not Available’, and is used by R to represent missing values. If we try to calculate the mean of a vector containing missing values, we will obtain a missing value. This is to ensure that we always know when we might have a problem with our calculations due to missing or invalid data.</p>
 <div id="qwebr-insertion-location-21"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
@@ -1255,14 +1291,14 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div id="qwebr-insertion-location-22"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
-<li>Calculate the mean of my_data without the NA value. Do this using the mean function, and via indexing.</li>
+<li>Calculate the mean of my_data without the NA value. Do this both by setting the <code>na.rm</code> argument to the mean function as T, and also via indexing.</li>
 </ul>
 <div id="qwebr-insertion-location-23"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="lists" class="level3">
 <h3 class="anchored" data-anchor-id="lists">Lists</h3>
-<p>Lists are very similar to vectors, but can include data of different types. This means calculations with them are a bit slower, but they are more flexible.</p>
+<p>Lists are very similar to vectors, but can include data of different types. This means calculations with them are a bit slower, but they are more flexible. You can also provide a name for each entry within the list. We create lists using the list function:</p>
 <div id="qwebr-insertion-location-24"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>We can extract specific elements from a list using the <code>$</code> symbol:</p>
@@ -1275,7 +1311,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="data-frames" class="level3">
 <h3 class="anchored" data-anchor-id="data-frames">Data frames</h3>
 <p>These are probably the data structure in R you will use most often. They are used for holding whole datasets. Practically speaking, they are lists of vectors of equal length.</p>
-<p>The built-in dataset <code>iris</code> is a good example of a dataframe. We can look at the first few rows of this dataframe using the head function:</p>
+<p>The built-in dataset <code>iris</code> is a good example of a dataframe. We can look at the first few rows of this dataframe using the <code>head</code> function:</p>
 <div id="qwebr-insertion-location-27"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>As with lists, we can access particular columns using the <code>$</code> symbol.</p>
@@ -1445,7 +1481,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'fit' not found</code></pre>
+<pre><code>Error: object 'fit' not found</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1478,9 +1514,11 @@ node), split, n, loss, yval, (yprob)
 </div>
 <p>Unlike when you are using the <code>library()</code> function, you must enclose the name of the package you wish to install in quotes, or else you will get an error. The tibble package provide easier-to-read dataframes, along with additional special features.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.4.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 150 × 5
    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -1511,20 +1549,23 @@ node), split, n, loss, yval, (yprob)
 <li>In your script, type the function that loads the library <code>readxl</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readxl' was built under R version 4.4.2</code></pre>
+</div>
 </div>
 <ul>
 <li>Then, type in your script the function that loads that specific file, and create a new object that contains it:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/wage2.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/wage2.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this example, we named the object “mydata”. You can now see this object in the top-right Environment window.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 16
    wage hours    IQ   KWW  educ exper tenure   age married south urban  sibs
@@ -1537,7 +1578,7 @@ node), split, n, loss, yval, (yprob)
 6  1154    45   111    37    15    13      1    36       1     0     0     2
 # ℹ 4 more variables: brthord &lt;dbl&gt;, meduc &lt;dbl&gt;, feduc &lt;dbl&gt;, lwage &lt;dbl&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      wage            hours             IQ             KWW       
  Min.   : 115.0   Min.   :25.00   Min.   : 54.0   Min.   :13.00  
@@ -1580,8 +1621,8 @@ node), split, n, loss, yval, (yprob)
 <li><p>To access a variable in a dataframe, use <code>$</code> after the name of the dataframe</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The function `head` will only let us see the first few values</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The function `head` will only let us see the first few values</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 31 33 32 34 30 36</code></pre>
 </div>
@@ -1590,8 +1631,8 @@ node), split, n, loss, yval, (yprob)
 <li>To create a new binary variable you can use the <code>$</code> to name it and <code>ifelse</code> arguments to specify its values with respect to other variables in the dataframe</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(my_data<span class="sc">$</span>age <span class="sc">&lt;</span> <span class="dv">35</span>, <span class="st">"young"</span>, <span class="st">"old"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_dummy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(my_data<span class="sc">$</span>age <span class="sc">&lt;</span> <span class="dv">35</span>, <span class="st">"young"</span>, <span class="st">"old"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_dummy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   old young 
@@ -1603,8 +1644,8 @@ node), split, n, loss, yval, (yprob)
 <li>To create a new categorical variable you can use the $ to name it and the <code>cut</code> function to specify its values with respect to other variables in the dataframe</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(my_data<span class="sc">$</span>age, <span class="fu">c</span>(<span class="dv">27</span>, <span class="dv">30</span>,<span class="dv">34</span>, <span class="dv">38</span>))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(my_data<span class="sc">$</span>age, <span class="fu">c</span>(<span class="dv">27</span>, <span class="dv">30</span>,<span class="dv">34</span>, <span class="dv">38</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 (27,30] (30,34] (34,38] 
@@ -1618,7 +1659,7 @@ node), split, n, loss, yval, (yprob)
 <li>Once you have loaded your data and named it as an object (<code>mydata</code> in the example above), you can estimate some basic by typing the following command:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      wage            hours             IQ             KWW       
  Min.   : 115.0   Min.   :25.00   Min.   : 54.0   Min.   :13.00  
@@ -1667,7 +1708,7 @@ node), split, n, loss, yval, (yprob)
 <li>To run a linear regression, you type the following command:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(dependent <span class="sc">~</span> independent1 <span class="sc">+</span> independent2, <span class="at">data=</span>my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(dependent <span class="sc">~</span> independent1 <span class="sc">+</span> independent2, <span class="at">data=</span>my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>where “regression” is the name of the object that contains the regression results, “dependent” is the name of the dependent variable (<span class="math inline">\(y\)</span>) in the data, and “independent1” and “independent2” are the names of the independent variables (<span class="math inline">\(x\)</span>) in the data.</p>
 <ul>
@@ -1675,7 +1716,7 @@ node), split, n, loss, yval, (yprob)
 <li><p>Once we run the regression, we need to run another command to display the results:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>where “summary” is the function that calls the results of the regression, and “regression” is the name I chose for the object that contains the regression results</p>
 <p><strong>TASK:</strong> Try running a linear regression model using the wage2.xls data.</p>
@@ -1696,7 +1737,7 @@ node), split, n, loss, yval, (yprob)
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>It is possible to write SPSS code (called syntax) to carry out particular statistical analyses. Similarly, it is possible to write code to perform particular tasks in excel (called ‘Macros’, using a language called Visual Basic). However, while useful, R has a wider array of features and tools available.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>It is possible to write SPSS code (called syntax) to carry out particular statistical analyses. Similarly, it is possible to write code to perform particular tasks in excel (called ‘Macros’, using a language called Visual Basic). However, while useful, these alternatives have a narrower array of features and tools available.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Technically, the numeric type includes both ‘double’ (decimal or real) and ‘integer’ data types. But most of the time you won’t need to worry about this. It is also possible to store complex numbers, which have their own type (but again, don’t worry if this doesn’t mean anything to you).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Alternatively, it could be because you are trying to use a function from a package that isn’t loaded yet. See the section on packages.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
@@ -1736,18 +1777,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1779,11 +1809,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1793,8 +1862,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1806,7 +1884,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1850,6 +2051,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1875,6 +2077,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2033,6 +2261,7 @@ qwebrInstance.then(
   }
 );
 </script>
+
 
 
 
