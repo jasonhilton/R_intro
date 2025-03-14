@@ -232,7 +232,7 @@ polite_connection %>%
 
 ```
 
-We can therefore now right an `R` function to extract the text and author name from each page:
+We can therefore now write an `R` function to extract the text and author name from each page:
 
 
 ```{r}
@@ -288,7 +288,8 @@ We can therefore write a for-loop to loop over all the pages and extract the inf
 quote_df <- get_quote_text(1,polite_connection)
 
 for (i in 2:10){
-  quote_df <- rbind(quote_df, get_quote_text(i, polite_connection))
+  new_quote_df <- get_quote_text(i, polite_connection)
+  quote_df <- rbind(quote_df, new_quote_df)
   
 }
 
@@ -296,6 +297,34 @@ dim(quote_df)
 
 quote_df
 ```
+
+
+A better way might be to check the output, and `break` out of a loop once you stop getting dataframes with positive numbers of rows.
+
+TASK: Have a go at this option using `nrow`, `break`, and and `if` statement.
+
+<details>
+  <summary>Solution</summary>
+```{R}
+quote_df <- get_quote_text(1,polite_connection)
+
+
+
+for (i in 2:100){
+  print(i)
+  new_quote_df <- get_quote_text(i, polite_connection)
+  if (nrow(new_quote_df)<1){
+    break
+  } else {
+    quote_df <- rbind(quote_df, new_quote_df)  
+  }
+}
+
+dim(quote_df)
+
+quote_df
+```
+</details>
 
 
 We now have a list of 100 quotes, which we have scraped from the several pages across the site. 
