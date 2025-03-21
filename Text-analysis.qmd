@@ -1,3 +1,5 @@
+
+
 ---
 title: "Text Analysis"
 author: "Jason Hilton"
@@ -134,8 +136,12 @@ The `map` family of function takes two are arguments:
 - The first is a vector or list
 - The second is a function that should be applied to every element of that list
 
-The results of each individual operation are stuck together and stored in a output vector.
+
+
+The results of each individual operation are stuck together and stored in a output vector or list.
 Depending on what type of output we get, we use different versions of the `map` function. Because we are working with characters and we want a character vector as our output, we use the `map_chr` version (there is also a `map_dbl` for numeric data, and `map_df` for dataframes).
+
+The below code applies the function `read_file` to every individual element of the vector `business_paths`. You might like to type `business_paths` into the R console to check what this vector looks like. 
 
 
 ```{r}
@@ -156,7 +162,9 @@ Instead, we shall write our own **function** to read in articles for any given c
 
 *If you are familiar with R functions, skip this part*.
 
-An R function can be defined by writing `function` followed by the names you want to give for the arguments to your function enclosed in parenthesis `(arg1, arg2)`, followed by the code that describes what you want your function to do between curly brackets `{}`. A function should describe what should be **returned** (outputted) once it is finished. 
+An R function can be defined by writing `function` followed by the names you want to give for the arguments to your function enclosed in parenthesis `(arg1, arg2)`, followed by the code that describes what you want your function to do between curly brackets `{}`. A function should describe what should be **returned** (outputed) once it is finished.  
+
+NB: remember an **argument** is the technical term to an input to a function. For instance, the argument to the mean function, is the list of numbers we want to compute the mean of.  
 
 An example is given below that computes the mean of the first argument, and then adds on the second argument. We wouldn't ever write a function like this, as it is easier just to write this directly, but the below serves as a good example of how to write a function in R.
 
@@ -195,7 +203,7 @@ We can write a function to read in all the files for one category
 
 
 read_category <- function(category, bbc_path){
-  # The lines below has the same steps we went through above
+  # The lines below have the same steps we went through above
   category_path <- paste0(bbc_path, "/", category)
   category_files <- list.files(category_path)
   category_paths <- paste0(category_path, "/", category_files) 
@@ -315,8 +323,36 @@ token_df %>%
   arrange(Category, -n) %>% top_n(10)
 ```
 
-These look a bit more useful. 
+These look a bit more useful. Said seems to appear a lot in all categories and probably could be removed at this stage!
 
+
+# **TASK** 
+**Try to remove all occurrences of the word 'said' from the dataframe.**
+
+<details>
+  <summary>Solution</summary>
+```{r}
+token_df <- token_df %>% filter(word!="said")
+```
+  
+</details>
+
+
+We might also want to get rid of the rarest words, which are unlikely to be generalisable to new cases (these might correspond to specific people's names, for example). 
+
+# **TASK** 
+**Remove all the words with 5 or fewer occurences **
+
+<details>
+  <summary>Solution</summary>
+
+```{r}
+uncommon <- words_by_frequency %>% filter(n<6) %>% select(-n)
+
+token_df <- token_df %>% anti_join(uncommon)
+
+```
+</details>
 
 
 
@@ -352,7 +388,7 @@ colnames(sparse_dtm)[50:60]
 
 
 We can see an example of what the interior of the document term matrix looks like for some words in one article. 
-Here you can see that most values are zer.
+Here you can see that most values are zero.
 
 ```{r}
 sparse_dtm[3,50:75]
@@ -418,7 +454,8 @@ We can now attempt to fit a Lasso model to predict new article category in the B
 mod_fit1 <- cv.glmnet(sparse_train_dtm, 
                       output_train_labels$Category,
                       family="multinomial", alpha=1,
-                      type.measure="class")
+                      type.measure="class",
+                      lambda=c(0.0002, 0.0005,0.001,0.002,0.005,0.01,0.02, 0.05, 0.1))
 
 
 lasso_diagnostics <- tidy(mod_fit1)
@@ -438,15 +475,14 @@ lasso_diagnostics %>%
 ```
 
 
-Looking at the best lambda value, we can see that this involves about only a small number of non-zero coefficients (out of about 30k for each class)!
+Looking at the best lambda value, we can see that this involves about only a small number of non-zero coefficients (out of about 10k for each class)!
 
 ```{r}
 
 best_lambda <- lasso_diagnostics %>% 
   filter(estimate==min(estimate)) %>% 
-  # if there are ties, pick the model with the least number of non-zero 
-  # coefficients.
-  filter(nzero==min(nzero))
+  # if there are ties, pick the model with the biggest penalty
+  filter(lambda==max(lambda))
 best_lambda_val <- best_lambda$lambda
 
 best_lambda
@@ -455,11 +491,11 @@ Plotting lambda against estimated class error, we can see that the bigger values
 
 ```{r}
 lasso_diagnostics %>%
-  ggplot(aes(x=lambda, y=estimate)) +
+  ggplot(aes(x=log(lambda), y=estimate)) +
   geom_point() + 
   geom_linerange(aes(ymin=conf.low,
                      ymax=conf.high)) +
-  geom_vline(xintercept = best_lambda_val) + 
+  geom_vline(xintercept = log(best_lambda_val)) + 
   theme_bw() + 
   ggtitle("Classification error against penalty size")
 
@@ -477,7 +513,7 @@ preds[1:5]
 sum(preds != output_test_labels$Category) / length(output_test_labels$Category)
 ```
 
-We only get around 5-6% of cases wrong in this case.
+We only get around 2-3% of cases wrong in this case.
 
 There is built-in function that will tell us the same thing:
 
@@ -522,10 +558,10 @@ We still have at least one number here, which looks a bit to specific, and so ar
 
 We can try to fit predict the same classes using neural networks using keras.
 
-First of all we need to point R towards the existing python environment provide on university desktops:
+First of all we need to point R towards the existing python environment provided on university desktops:
 
 ```{r, echo=F}
-Sys.setenv("RETICULATE_PYTHON" = "E:/anaconda/envs/adzuna2")
+#Sys.setenv("RETICULATE_PYTHON" = "E:/anaconda/envs/adzuna2")
 library(keras)
 library(tfdatasets)
 ```
@@ -544,7 +580,7 @@ Look at the help file for `text_dataset_from_directory`
 
 This function will allow us to set up Keras to read in text data from file in batches, and automatically assumes files in directories come from different classes. We can also set up training and validation sets.
 
-```{R}
+```{R, warning=FALSE, message=FALSE}
 
 seed <- 42
 
@@ -564,9 +600,10 @@ bbc_valid_data <- text_dataset_from_directory(
 ```
 
 
-First, we can set up a vectorisation layer
+First, we can set up a vectorisation layer. 
+All this does is cycle through the dataset and assign an number to each unique word.
 
-```{r}
+```{r, warning=FALSE}
 # initialise
 vectorisation_layer <- layer_text_vectorization()
 
@@ -619,7 +656,7 @@ vocab[1:10]
 
 
 We will build a neural network with an embedding layer, a convolution layer, and a dense layer. We have dropout layers included to avoid overfitting.
-The embedding layer converts each word to continuous vector. The convolution layer learns relevant features over 
+The embedding layer converts each word to a continuous vector. The convolution layer then analysis sequences of these vectors. 
 
 The output layer has a softmax activation layer - which is standard for categorical outputs.
 
@@ -646,7 +683,7 @@ modnn <- keras_model_sequential(input_shape = c(1L),
 
 We can compile the model with the most commonly used loss function for multinomial models, the categorical cross-entropy. This is closely related to the likelihood function of a standard multi-nomial regression model.
 
-```{r}
+```{r, warning=FALSE}
 modnn %>% 
   compile(loss = "sparse_categorical_crossentropy", 
           metrics = c("accuracy"))
@@ -656,11 +693,11 @@ modnn %>%
 
 We can now fit the model, looping thirty times through the dataset in batches of size 32, and keeping track of model performance using the validation portion of the dataset. 
 
-The neural network model appears to do slightly better than the lasso, although there is not a lot in it. 
+The neural network model appears to do slightly worse than the lasso, although there is not a lot in it. 
 The categories in this dataset are quite distinctive, which may not always be the case.
 
 
-```{r}
+```{r, warning=FALSE}
 modnn %>% fit(bbc_data, validation_data = bbc_valid_data, epochs = 30)
 
 eval <- modnn %>% evaluate(bbc_valid_data)

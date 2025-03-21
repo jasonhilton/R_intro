@@ -14,8 +14,8 @@ website:
         text: "Tidyverse and Visualisation"
       - href: Web-scraping.qmd
         text: "Web Scraping"
-      # - href: Text-analysis.qmd
-      #   text: "Text Analysis"
+      - href: Text-analysis.qmd
+        text: "Text Analysis"
       
 
 
