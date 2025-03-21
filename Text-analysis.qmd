@@ -5,7 +5,7 @@ title: "Text Analysis"
 author: "Jason Hilton"
 ---
 
-```{r setup, echo=F}
+```{r setup, echo=F, message=FALSE, warning=FALSE}
 
 library(tidyverse)
 library(broom)

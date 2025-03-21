@@ -39,14 +39,14 @@
     "href": "Text-analysis.html",
     "title": "Text Analysis",
     "section": "",
-    "text": "Warning: package 'tidyverse' was built under R version 4.4.2\n\n\nWarning: package 'ggplot2' was built under R version 4.4.2\n\n\nWarning: package 'tibble' was built under R version 4.4.2\n\n\nWarning: package 'tidyr' was built under R version 4.4.2\n\n\nWarning: package 'readr' was built under R version 4.4.2\n\n\nWarning: package 'purrr' was built under R version 4.4.2\n\n\nWarning: package 'dplyr' was built under R version 4.4.2\n\n\nWarning: package 'stringr' was built under R version 4.4.2\n\n\nWarning: package 'forcats' was built under R version 4.4.2\n\n\nWarning: package 'lubridate' was built under R version 4.4.2\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nWarning: package 'broom' was built under R version 4.4.2\n\n\nWarning: package 'tidytext' was built under R version 4.4.2\n\n\nWarning: package 'glmnet' was built under R version 4.4.2\n\n\nLoading required package: Matrix\n\nAttaching package: 'Matrix'\n\nThe following objects are masked from 'package:tidyr':\n\n    expand, pack, unpack\n\nLoaded glmnet 4.1-8\n\n\nWarning: package 'rsample' was built under R version 4.4.2"
+    "text": "In this workshop we will carry out some text analysis.\nI recommend typing each part of the example code below into an R script and running it, rather than copying and pasting. This help you internalise the process a little better and understand what is happening at each step.\nFeel free to experiment and change bits of the code. This is the best way to learn."
   },
   {
     "objectID": "Text-analysis.html#introduction",
     "href": "Text-analysis.html#introduction",
     "title": "Text Analysis",
-    "section": "Introduction",
-    "text": "Introduction\nIn this workshop we will carry out some text analysis.\nI recommend typing each part of the example code below into an R script and running it, rather than copying and pasting. This help you internalise the process a little better and understand what is happening at each step.\nFeel free to experiment and change bits of the code. This is the best way to learn."
+    "section": "",
+    "text": "In this workshop we will carry out some text analysis.\nI recommend typing each part of the example code below into an R script and running it, rather than copying and pasting. This help you internalise the process a little better and understand what is happening at each step.\nFeel free to experiment and change bits of the code. This is the best way to learn."
   },
   {
     "objectID": "Text-analysis.html#getting-started",
