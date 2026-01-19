@@ -639,7 +639,7 @@ as_tibble(iris)
 Note that you only need to install a package once on each machine that you are using [^4]
 
 
-[4:] New versions of R packages are frequently released, so you will need to update the version you have installed sometimes.
+[^4]: New versions of R packages are frequently released, so you will need to update the version you have installed sometimes.
 
 **Housekeeping tip!**
 When you write a script, begin by loading all your packages at the very top of the script.
@@ -702,7 +702,7 @@ my_data$age_dummy <- ifelse(my_data$age < 35, "young", "old")
 table(my_data$age_dummy)
 ```
 
-##Create new variables in the dataframe
+## Create new variables in the dataframe
 
 - To create a new categorical variable you can use the $ to name it and the `cut` function to specify its values with respect to other variables in the dataframe
 ```{r}

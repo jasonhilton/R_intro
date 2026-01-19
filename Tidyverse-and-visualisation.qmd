@@ -3,7 +3,7 @@ title: "Tidyverse and Data Visualisation"
 author: "Jason Hilton"
 ---
 
-```{r setup, echo=F}
+```{r setup, echo=F, message=FALSE}
 library(here)
 library(tidyverse)
 
@@ -54,7 +54,8 @@ Remember that you can always access the help for any R function if you need to b
 
 On the course blackboard page, you will find the three `.csv` files. 
 Download these files in a folder within your project named `data` [^1].
-[1:] All of this data is repurposed from the `gapminder` package.
+
+[^1]: All of this data is repurposed from the `gapminder` package.
 
 We can load one of these in using the `read_csv` function:
 

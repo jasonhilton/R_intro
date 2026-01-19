@@ -1,5 +1,3 @@
-
-
 ---
 title: "Text Analysis"
 author: "Jason Hilton"

@@ -12,10 +12,7 @@ website:
         text: "Introduction to R"
       - href: Tidyverse-and-visualisation.qmd
         text: "Tidyverse and Visualisation"
-      - href: Web-scraping.qmd
-        text: "Web Scraping"
-      - href: Text-analysis.qmd
-        text: "Text Analysis"
+
       
 
 
